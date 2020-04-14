@@ -1,0 +1,9 @@
+main:
+  - title: "Posts"
+    url: /posts/
+  - title: "Travel"
+    url: /travel/
+  - title: "Projects"
+    url: /projects/
+  - title: "About"
+    url: /about/
