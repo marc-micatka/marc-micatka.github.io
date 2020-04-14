@@ -1,0 +1,587 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Using Motion History Images as a Horrible Way to Identify Activities - Refreshingly Dangerous</title>
+<meta name="description" content="OMSCS 6476 Computer Vision - Spring 2019 ">
+
+
+  <meta name="author" content="Marc Micatka">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Refreshingly Dangerous">
+<meta property="og:title" content="Using Motion History Images as a Horrible Way to Identify Activities">
+<meta property="og:url" content="http://localhost:4000/mhi/">
+
+
+  <meta property="og:description" content="OMSCS 6476 Computer Vision - Spring 2019 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-04-14T00:00:00-07:00">
+
+
+
+  <meta property="article:modified_time" content="2020-04-14T00:00:00-07:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/mhi/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Refreshingly Dangerous
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/travel/">Travel</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/headshot.jpeg" alt="Marc Micatka" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Marc Micatka</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Projects.Travel.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Using Motion History Images as a Horrible Way to Identify Activities">
+    <meta itemprop="description" content="OMSCS 6476 Computer Vision - Spring 2019">
+    <meta itemprop="datePublished" content="2020-04-14T00:00:00-07:00">
+    <meta itemprop="dateModified" content="2020-04-14T00:00:00-07:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Using Motion History Images as a Horrible Way to Identify Activities
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I took Knowledge-Based Artifical Intelligence Fall 2019 and throughly enjoyed the class projects and the ability to frontload all the course content as this class overlapped with our five week trip through Oceania.
+In addition to <em>many</em> ethics essays, the class grade was mostly based on a cummulative project using Python and Pillow to solve <a href="https://en.wikipedia.org/wiki/Raven%27s_Progressive_Matrices" target="_blank">Raven’s Progressive Matrices.</a> These were Professor David Joyner’s version of RMPs because of copyright issues, but the concept was the same.</p>
+
+<h3 id="ravens-progressive-matices">Raven’s Progressive Matices</h3>
+<p>Raven’s Progressive Matrices (RPM) are visual analogy tests used to measure abstract reasoning and fluid intelligence. Originally developed by John Raven in 1936, the test consists of 60 non-verbal pattern-matching and visual analogy questions. 2x2 or 3x3 image matrices are presented with one item missing. The task,as shown in <strong>Figure 1</strong>, is to select the visually analogous answer that best completes the matrix.</p>
+
+<figure class="half">
+    <a href="/assets/images/kbai/basicB09.png"><img src="/assets/images/kbai/basicB09.png" /></a>
+    <a href="/assets/images/kbai/basicE08.png"><img src="/assets/images/kbai/basicE08.png" /></a>
+    <figcaption><b>Figure 1</b> - Raven's Matrix for a simple 2x2 problem and a more complicated 3x3 problem.</figcaption>
+</figure>
+
+<h3 id="project-1">Project 1</h3>
+<p>For Project 1, the problems were 2x2 and the transformation were often basic – a simple geometric transformation of the original image. After the images are loaded, the algorithm computes various transformations between A and B and between A and C, giving each transformation a similarity score (mean square error) between the transformed image and A.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">sigma_exp</span> <span class="o">=</span> <span class="mf">.5</span>
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">MSE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">MSE</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">sigma_exp</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The algorithm calculates all metrics in <em>Table 1</em> for each suggested answer. It then compares these proposed matrices with the base transformation matrices <em>Th</em> and <em>Tv</em> and the best match is then chosen from the possible answers.</p>
+
+<p><em>Table 1 - Transformations used in Project 1</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"><strong>Transformation</strong></th>
+      <th style="text-align: center"><strong>Description</strong></th>
+      <th style="text-align: right"><strong>Weight</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Identity</td>
+      <td style="text-align: center">Compare A and B directly</td>
+      <td style="text-align: right">1.00</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflection: X</td>
+      <td style="text-align: center">Reflect B across X-axis</td>
+      <td style="text-align: right">0.50</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflection: Y</td>
+      <td style="text-align: center">Reflect B across Y-axis</td>
+      <td style="text-align: right">0.50</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Rotation: 90</td>
+      <td style="text-align: center">Rotate B 90 degrees</td>
+      <td style="text-align: right">0.25</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Rotation: 180</td>
+      <td style="text-align: center">Rotate B 180 degrees</td>
+      <td style="text-align: right">0.25</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Histogram Comparison</td>
+      <td style="text-align: center">Compare the ratio of white/black pixels</td>
+      <td style="text-align: right">0.25</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>With access to only rudimentary image transformation operations (no access to OpenCV!), I tried to find easy transformations and metrics that could mimic more human-esque qualities. Humans can easily count objects in frame but it’s more difficult to separate images into distinct blobs and count the blobs. Instead of implementing blob detection, I used the ratio of white and black pixels between images. This gives a good approximation of when shapes are being added or removed while requiring almost no additional coding or computation time.</p>
+
+<h3 id="project-2-and-3">Project 2 and 3</h3>
+
+<p>For project 2 and 3, the agent is asked to solve 3x3 matrices that involve more complicated transformations.</p>
+
+<p>The final agent attempts to follow the same approach as the agent designed in Project 1. First, different affine transformations are calculated for horizontal and vertical figures. This includes direct transformations like A to B but also indirect, like A to C. The direct and indirect transformations are computed for D to F, E to F, E to H, and B to H. The transformation that returns the highest similarity score is chosen along with the direction that resulted in that score (direct versus indirect, horizontal or vertical).
+The agent then calculates the similarity between the H/F or C/G and choices 1 - 6 using only the transformation chosen in earlier steps. The option that returns the highest similarity match over a threshold value is chosen as the answer. If no answer scores over the threshold, the agent will revert to simpler weighted voting method applied in Project 1.
+Basic Problem C-07 (<strong>Figure 2</strong>) will be used as an example. Initially, A will be compared to B and will return the highest similarity value and the transformation that returns this score. This is repeated for the other comparison images. For C-07, <em>Horizontal, Indirect</em>, returns the highest score for <em>Y-Axis Mirror</em> across all transformations and all images. The agent would then only assess image G and the answers 1-6 for this transformation.</p>
+
+<figure class="half">
+    <a href="/assets/images/kbai/basicC07.png"><img src="/assets/images/kbai/basicC07.png" /></a>
+    <a href="/assets/images/kbai/problem_approach.png"><img src="/assets/images/kbai/problem_approach.png" /></a>
+    <figcaption><b>Figure 1</b> - Problem solving approach using Basic Problem C-07 as an example.</figcaption>
+</figure>
+
+<h3 id="project-references">Project References</h3>
+<p>Joyner, D. B. (2015). Using Human Computation to Acquire Novel Methods for Addressing Visual Analogy Problems on Intelligence Tests. <em>Proceedings ofthe Sixth International Conference on Computational Creativity.</em> Provo, Utah.</p>
+
+<h3 id="project-reports">Project Reports</h3>
+<p>See the links below for all three project reports.</p>
+
+<p><a href="/downloads/kbai/Project1_Micatka.pdf" target="_blank">Project 1</a></p>
+
+<p><a href="/downloads/kbai/Project2_Micatka.pdf" target="_blank">Project 2</a></p>
+
+<p><a href="/downloads/kbai/Project3_Micatka.pdf" target="_blank">Project 3</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#computer-vision" class="page__taxonomy-item" rel="tag">Computer Vision</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#omscs" class="page__taxonomy-item" rel="tag">OMSCS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#projects" class="page__taxonomy-item" rel="tag">Projects</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-04-14">April 14, 2020</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/kbai/" class="pagination--pager" title="An AI Agent for Solving Raven’s Progressive Matrices
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/kbai/" rel="permalink">An AI Agent for Solving Raven’s Progressive Matrices
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/jekyll/update/welcome-to-jekyll/" rel="permalink">Welcome to Jekyll!
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blog/welcome-to-jekyll/" rel="permalink">Welcome to Jekyll!
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/splash-page/" rel="permalink">Splash Page
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">Bacon ipsum dolor sit amet salami ham hock ham, hamburger corned beef short ribs kielbasa biltong t-bone drumstick tri-tip tail sirloin pork chop.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://linkedin.com/marcmicatka" rel="nofollow noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://github.com/marc-micatka" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,10 +1,198 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-13T16:35:26-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Marc Micatka</title><subtitle>Projects and travel portfolio.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2020/04/13/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2020-04-13T16:18:25-07:00</published><updated>2020-04-13T16:18:25-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/13/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/13/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-14T15:44:14-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Refreshingly Dangerous</title><subtitle>Projects. Travel.</subtitle><author><name>Marc Micatka</name></author><entry><title type="html">An AI Agent for Solving Raven’s Progressive Matrices</title><link href="http://localhost:4000/kbai/" rel="alternate" type="text/html" title="An AI Agent for Solving Raven's Progressive Matrices" /><published>2020-04-14T00:00:00-07:00</published><updated>2020-04-14T00:00:00-07:00</updated><id>http://localhost:4000/kbai</id><content type="html" xml:base="http://localhost:4000/kbai/">&lt;p&gt;I took Knowledge-Based Artifical Intelligence Fall 2019 and throughly enjoyed the class projects and the ability to frontload all the course content as this class overlapped with our five week trip through Oceania.
+In addition to &lt;em&gt;many&lt;/em&gt; ethics essays, the class grade was mostly based on a cummulative project using Python and Pillow to solve &lt;a href=&quot;https://en.wikipedia.org/wiki/Raven%27s_Progressive_Matrices&quot; target=&quot;_blank&quot;&gt;Raven’s Progressive Matrices.&lt;/a&gt; These were Professor David Joyner’s version of RMPs because of copyright issues, but the concept was the same.&lt;/p&gt;
+
+&lt;h3 id=&quot;ravens-progressive-matices&quot;&gt;Raven’s Progressive Matices&lt;/h3&gt;
+&lt;p&gt;Raven’s Progressive Matrices (RPM) are visual analogy tests used to measure abstract reasoning and fluid intelligence. Originally developed by John Raven in 1936, the test consists of 60 non-verbal pattern-matching and visual analogy questions. 2x2 or 3x3 image matrices are presented with one item missing. The task,as shown in &lt;strong&gt;Figure 1&lt;/strong&gt;, is to select the visually analogous answer that best completes the matrix.&lt;/p&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+    &lt;a href=&quot;/assets/images/kbai/basicB09.png&quot;&gt;&lt;img src=&quot;/assets/images/kbai/basicB09.png&quot; /&gt;&lt;/a&gt;
+    &lt;a href=&quot;/assets/images/kbai/basicE08.png&quot;&gt;&lt;img src=&quot;/assets/images/kbai/basicE08.png&quot; /&gt;&lt;/a&gt;
+    &lt;figcaption&gt;&lt;b&gt;Figure 1&lt;/b&gt; - Raven's Matrix for a simple 2x2 problem and a more complicated 3x3 problem.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;project-1&quot;&gt;Project 1&lt;/h3&gt;
+&lt;p&gt;For Project 1, the problems were 2x2 and the transformation were often basic – a simple geometric transformation of the original image. After the images are loaded, the algorithm computes various transformations between A and B and between A and C, giving each transformation a similarity score (mean square error) between the transformed image and A.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sigma_exp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;MSE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subtract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MSE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigma_exp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The algorithm calculates all metrics in &lt;em&gt;Table 1&lt;/em&gt; for each suggested answer. It then compares these proposed matrices with the base transformation matrices &lt;em&gt;Th&lt;/em&gt; and &lt;em&gt;Tv&lt;/em&gt; and the best match is then chosen from the possible answers.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Table 1 - Transformations used in Project 1&lt;/em&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Transformation&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;&lt;strong&gt;Weight&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Identity&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Compare A and B directly&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1.00&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Reflection: X&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Reflect B across X-axis&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.50&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Reflection: Y&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Reflect B across Y-axis&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.50&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Rotation: 90&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Rotate B 90 degrees&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.25&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Rotation: 180&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Rotate B 180 degrees&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.25&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Histogram Comparison&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Compare the ratio of white/black pixels&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.25&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;With access to only rudimentary image transformation operations (no access to OpenCV!), I tried to find easy transformations and metrics that could mimic more human-esque qualities. Humans can easily count objects in frame but it’s more difficult to separate images into distinct blobs and count the blobs. Instead of implementing blob detection, I used the ratio of white and black pixels between images. This gives a good approximation of when shapes are being added or removed while requiring almost no additional coding or computation time.&lt;/p&gt;
+
+&lt;h3 id=&quot;project-2-and-3&quot;&gt;Project 2 and 3&lt;/h3&gt;
+
+&lt;p&gt;For project 2 and 3, the agent is asked to solve 3x3 matrices that involve more complicated transformations.&lt;/p&gt;
+
+&lt;p&gt;The final agent attempts to follow the same approach as the agent designed in Project 1. First, different affine transformations are calculated for horizontal and vertical figures. This includes direct transformations like A to B but also indirect, like A to C. The direct and indirect transformations are computed for D to F, E to F, E to H, and B to H. The transformation that returns the highest similarity score is chosen along with the direction that resulted in that score (direct versus indirect, horizontal or vertical).
+The agent then calculates the similarity between the H/F or C/G and choices 1 - 6 using only the transformation chosen in earlier steps. The option that returns the highest similarity match over a threshold value is chosen as the answer. If no answer scores over the threshold, the agent will revert to simpler weighted voting method applied in Project 1.
+Basic Problem C-07 (&lt;strong&gt;Figure 2&lt;/strong&gt;) will be used as an example. Initially, A will be compared to B and will return the highest similarity value and the transformation that returns this score. This is repeated for the other comparison images. For C-07, &lt;em&gt;Horizontal, Indirect&lt;/em&gt;, returns the highest score for &lt;em&gt;Y-Axis Mirror&lt;/em&gt; across all transformations and all images. The agent would then only assess image G and the answers 1-6 for this transformation.&lt;/p&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+    &lt;a href=&quot;/assets/images/kbai/basicC07.png&quot;&gt;&lt;img src=&quot;/assets/images/kbai/basicC07.png&quot; /&gt;&lt;/a&gt;
+    &lt;a href=&quot;/assets/images/kbai/problem_approach.png&quot;&gt;&lt;img src=&quot;/assets/images/kbai/problem_approach.png&quot; /&gt;&lt;/a&gt;
+    &lt;figcaption&gt;&lt;b&gt;Figure 1&lt;/b&gt; - Problem solving approach using Basic Problem C-07 as an example.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;project-references&quot;&gt;Project References&lt;/h3&gt;
+&lt;p&gt;Joyner, D. B. (2015). Using Human Computation to Acquire Novel Methods for Addressing Visual Analogy Problems on Intelligence Tests. &lt;em&gt;Proceedings ofthe Sixth International Conference on Computational Creativity.&lt;/em&gt; Provo, Utah.&lt;/p&gt;
+
+&lt;h3 id=&quot;project-reports&quot;&gt;Project Reports&lt;/h3&gt;
+&lt;p&gt;See the links below for all three project reports.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/downloads/kbai/Project1_Micatka.pdf&quot; target=&quot;_blank&quot;&gt;Project 1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/downloads/kbai/Project2_Micatka.pdf&quot; target=&quot;_blank&quot;&gt;Project 2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/downloads/kbai/Project3_Micatka.pdf&quot; target=&quot;_blank&quot;&gt;Project 3&lt;/a&gt;&lt;/p&gt;</content><author><name>Marc Micatka</name></author><category term="Projects" /><category term="OMSCS" /><category term="AI" /><category term="Computer Vision" /><summary type="html">OMSCS 7637 KBAI - Fall 2019</summary></entry><entry><title type="html">Using Motion History Images as a Horrible Way to Identify Activities</title><link href="http://localhost:4000/mhi/" rel="alternate" type="text/html" title="Using Motion History Images as a Horrible Way to Identify Activities" /><published>2020-04-14T00:00:00-07:00</published><updated>2020-04-14T00:00:00-07:00</updated><id>http://localhost:4000/mhi</id><content type="html" xml:base="http://localhost:4000/mhi/">&lt;p&gt;I took Knowledge-Based Artifical Intelligence Fall 2019 and throughly enjoyed the class projects and the ability to frontload all the course content as this class overlapped with our five week trip through Oceania.
+In addition to &lt;em&gt;many&lt;/em&gt; ethics essays, the class grade was mostly based on a cummulative project using Python and Pillow to solve &lt;a href=&quot;https://en.wikipedia.org/wiki/Raven%27s_Progressive_Matrices&quot; target=&quot;_blank&quot;&gt;Raven’s Progressive Matrices.&lt;/a&gt; These were Professor David Joyner’s version of RMPs because of copyright issues, but the concept was the same.&lt;/p&gt;
+
+&lt;h3 id=&quot;ravens-progressive-matices&quot;&gt;Raven’s Progressive Matices&lt;/h3&gt;
+&lt;p&gt;Raven’s Progressive Matrices (RPM) are visual analogy tests used to measure abstract reasoning and fluid intelligence. Originally developed by John Raven in 1936, the test consists of 60 non-verbal pattern-matching and visual analogy questions. 2x2 or 3x3 image matrices are presented with one item missing. The task,as shown in &lt;strong&gt;Figure 1&lt;/strong&gt;, is to select the visually analogous answer that best completes the matrix.&lt;/p&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+    &lt;a href=&quot;/assets/images/kbai/basicB09.png&quot;&gt;&lt;img src=&quot;/assets/images/kbai/basicB09.png&quot; /&gt;&lt;/a&gt;
+    &lt;a href=&quot;/assets/images/kbai/basicE08.png&quot;&gt;&lt;img src=&quot;/assets/images/kbai/basicE08.png&quot; /&gt;&lt;/a&gt;
+    &lt;figcaption&gt;&lt;b&gt;Figure 1&lt;/b&gt; - Raven's Matrix for a simple 2x2 problem and a more complicated 3x3 problem.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;project-1&quot;&gt;Project 1&lt;/h3&gt;
+&lt;p&gt;For Project 1, the problems were 2x2 and the transformation were often basic – a simple geometric transformation of the original image. After the images are loaded, the algorithm computes various transformations between A and B and between A and C, giving each transformation a similarity score (mean square error) between the transformed image and A.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sigma_exp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;.5&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;MSE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subtract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MSE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigma_exp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The algorithm calculates all metrics in &lt;em&gt;Table 1&lt;/em&gt; for each suggested answer. It then compares these proposed matrices with the base transformation matrices &lt;em&gt;Th&lt;/em&gt; and &lt;em&gt;Tv&lt;/em&gt; and the best match is then chosen from the possible answers.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Table 1 - Transformations used in Project 1&lt;/em&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Transformation&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;&lt;strong&gt;Weight&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Identity&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Compare A and B directly&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1.00&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Reflection: X&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Reflect B across X-axis&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.50&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Reflection: Y&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Reflect B across Y-axis&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.50&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Rotation: 90&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Rotate B 90 degrees&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.25&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Rotation: 180&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Rotate B 180 degrees&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.25&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Histogram Comparison&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Compare the ratio of white/black pixels&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.25&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;With access to only rudimentary image transformation operations (no access to OpenCV!), I tried to find easy transformations and metrics that could mimic more human-esque qualities. Humans can easily count objects in frame but it’s more difficult to separate images into distinct blobs and count the blobs. Instead of implementing blob detection, I used the ratio of white and black pixels between images. This gives a good approximation of when shapes are being added or removed while requiring almost no additional coding or computation time.&lt;/p&gt;
+
+&lt;h3 id=&quot;project-2-and-3&quot;&gt;Project 2 and 3&lt;/h3&gt;
+
+&lt;p&gt;For project 2 and 3, the agent is asked to solve 3x3 matrices that involve more complicated transformations.&lt;/p&gt;
+
+&lt;p&gt;The final agent attempts to follow the same approach as the agent designed in Project 1. First, different affine transformations are calculated for horizontal and vertical figures. This includes direct transformations like A to B but also indirect, like A to C. The direct and indirect transformations are computed for D to F, E to F, E to H, and B to H. The transformation that returns the highest similarity score is chosen along with the direction that resulted in that score (direct versus indirect, horizontal or vertical).
+The agent then calculates the similarity between the H/F or C/G and choices 1 - 6 using only the transformation chosen in earlier steps. The option that returns the highest similarity match over a threshold value is chosen as the answer. If no answer scores over the threshold, the agent will revert to simpler weighted voting method applied in Project 1.
+Basic Problem C-07 (&lt;strong&gt;Figure 2&lt;/strong&gt;) will be used as an example. Initially, A will be compared to B and will return the highest similarity value and the transformation that returns this score. This is repeated for the other comparison images. For C-07, &lt;em&gt;Horizontal, Indirect&lt;/em&gt;, returns the highest score for &lt;em&gt;Y-Axis Mirror&lt;/em&gt; across all transformations and all images. The agent would then only assess image G and the answers 1-6 for this transformation.&lt;/p&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+    &lt;a href=&quot;/assets/images/kbai/basicC07.png&quot;&gt;&lt;img src=&quot;/assets/images/kbai/basicC07.png&quot; /&gt;&lt;/a&gt;
+    &lt;a href=&quot;/assets/images/kbai/problem_approach.png&quot;&gt;&lt;img src=&quot;/assets/images/kbai/problem_approach.png&quot; /&gt;&lt;/a&gt;
+    &lt;figcaption&gt;&lt;b&gt;Figure 1&lt;/b&gt; - Problem solving approach using Basic Problem C-07 as an example.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;project-references&quot;&gt;Project References&lt;/h3&gt;
+&lt;p&gt;Joyner, D. B. (2015). Using Human Computation to Acquire Novel Methods for Addressing Visual Analogy Problems on Intelligence Tests. &lt;em&gt;Proceedings ofthe Sixth International Conference on Computational Creativity.&lt;/em&gt; Provo, Utah.&lt;/p&gt;
+
+&lt;h3 id=&quot;project-reports&quot;&gt;Project Reports&lt;/h3&gt;
+&lt;p&gt;See the links below for all three project reports.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/downloads/kbai/Project1_Micatka.pdf&quot; target=&quot;_blank&quot;&gt;Project 1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/downloads/kbai/Project2_Micatka.pdf&quot; target=&quot;_blank&quot;&gt;Project 2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/downloads/kbai/Project3_Micatka.pdf&quot; target=&quot;_blank&quot;&gt;Project 3&lt;/a&gt;&lt;/p&gt;</content><author><name>Marc Micatka</name></author><category term="Projects" /><category term="OMSCS" /><category term="Computer Vision" /><summary type="html">OMSCS 6476 Computer Vision - Spring 2019</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2020-04-13T16:18:25-07:00</published><updated>2020-04-13T16:18:25-07:00</updated><id>http://localhost:4000/jekyll/update/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
 
 &lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
 
@@ -14,4 +202,419 @@
 &lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>Marc Micatka</name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/blog/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-04-18T12:34:30-07:00</published><updated>2019-04-18T12:34:30-07:00</updated><id>http://localhost:4000/blog/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/blog/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>Marc Micatka</name></author><category term="Jekyll" /><category term="update" /><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Splash Page</title><link href="http://localhost:4000/splash-page/" rel="alternate" type="text/html" title="Splash Page" /><published>2016-03-23T08:48:41-07:00</published><updated>2016-03-23T08:48:41-07:00</updated><id>http://localhost:4000/test-splash-page</id><content type="html" xml:base="http://localhost:4000/splash-page/">&lt;div class=&quot;feature__wrapper&quot;&gt;
+
+  
+    &lt;div class=&quot;feature__item--center&quot;&gt;
+      &lt;div class=&quot;archive__item&quot;&gt;
+        
+
+        &lt;div class=&quot;archive__item-body&quot;&gt;
+          
+
+          
+            &lt;div class=&quot;archive__item-excerpt&quot;&gt;
+              &lt;p&gt;Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, &lt;em&gt;proin faucibus&lt;/em&gt; voluptate felis id sollicitudin. Centered with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type=&quot;center&quot;&lt;/code&gt;&lt;/p&gt;
+
+            &lt;/div&gt;
+          
+
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+&lt;/div&gt;
+
+&lt;div class=&quot;feature__wrapper&quot;&gt;
+
+  
+    &lt;div class=&quot;feature__item&quot;&gt;
+      &lt;div class=&quot;archive__item&quot;&gt;
+        
+          &lt;div class=&quot;archive__item-teaser&quot;&gt;
+            &lt;img src=&quot;/assets/images/unsplash-gallery-image-1-th.jpg&quot; alt=&quot;placeholder image 1&quot; /&gt;
+            
+          &lt;/div&gt;
+        
+
+        &lt;div class=&quot;archive__item-body&quot;&gt;
+          
+            &lt;h2 class=&quot;archive__item-title&quot;&gt;Placeholder 1&lt;/h2&gt;
+          
+
+          
+            &lt;div class=&quot;archive__item-excerpt&quot;&gt;
+              &lt;p&gt;This is some sample content that goes here with &lt;strong&gt;Markdown&lt;/strong&gt; formatting.&lt;/p&gt;
+
+            &lt;/div&gt;
+          
+
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+    &lt;div class=&quot;feature__item&quot;&gt;
+      &lt;div class=&quot;archive__item&quot;&gt;
+        
+          &lt;div class=&quot;archive__item-teaser&quot;&gt;
+            &lt;img src=&quot;/assets/images/unsplash-gallery-image-2-th.jpg&quot; alt=&quot;placeholder image 2&quot; /&gt;
+            
+              &lt;span class=&quot;archive__item-caption&quot;&gt;Image courtesy of &lt;a href=&quot;https://unsplash.com/&quot;&gt;Unsplash&lt;/a&gt;
+&lt;/span&gt;
+            
+          &lt;/div&gt;
+        
+
+        &lt;div class=&quot;archive__item-body&quot;&gt;
+          
+            &lt;h2 class=&quot;archive__item-title&quot;&gt;Placeholder 2&lt;/h2&gt;
+          
+
+          
+            &lt;div class=&quot;archive__item-excerpt&quot;&gt;
+              &lt;p&gt;This is some sample content that goes here with &lt;strong&gt;Markdown&lt;/strong&gt; formatting.&lt;/p&gt;
+
+            &lt;/div&gt;
+          
+
+          
+            &lt;p&gt;&lt;a href=&quot;/#test-link&quot; class=&quot;btn btn--primary&quot;&gt;Read More&lt;/a&gt;&lt;/p&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+    &lt;div class=&quot;feature__item&quot;&gt;
+      &lt;div class=&quot;archive__item&quot;&gt;
+        
+          &lt;div class=&quot;archive__item-teaser&quot;&gt;
+            &lt;img src=&quot;/assets/images/unsplash-gallery-image-3-th.jpg&quot; alt=&quot;&quot; /&gt;
+            
+          &lt;/div&gt;
+        
+
+        &lt;div class=&quot;archive__item-body&quot;&gt;
+          
+            &lt;h2 class=&quot;archive__item-title&quot;&gt;Placeholder 3&lt;/h2&gt;
+          
+
+          
+            &lt;div class=&quot;archive__item-excerpt&quot;&gt;
+              &lt;p&gt;This is some sample content that goes here with &lt;strong&gt;Markdown&lt;/strong&gt; formatting.&lt;/p&gt;
+
+            &lt;/div&gt;
+          
+
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+&lt;/div&gt;
+
+&lt;div class=&quot;feature__wrapper&quot;&gt;
+
+  
+    &lt;div class=&quot;feature__item--left&quot;&gt;
+      &lt;div class=&quot;archive__item&quot;&gt;
+        
+          &lt;div class=&quot;archive__item-teaser&quot;&gt;
+            &lt;img src=&quot;/assets/images/unsplash-gallery-image-2-th.jpg&quot; alt=&quot;placeholder image 2&quot; /&gt;
+            
+          &lt;/div&gt;
+        
+
+        &lt;div class=&quot;archive__item-body&quot;&gt;
+          
+            &lt;h2 class=&quot;archive__item-title&quot;&gt;Placeholder Image Left Aligned&lt;/h2&gt;
+          
+
+          
+            &lt;div class=&quot;archive__item-excerpt&quot;&gt;
+              &lt;p&gt;This is some sample content that goes here with &lt;strong&gt;Markdown&lt;/strong&gt; formatting. Left aligned with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type=&quot;left&quot;&lt;/code&gt;&lt;/p&gt;
+
+            &lt;/div&gt;
+          
+
+          
+            &lt;p&gt;&lt;a href=&quot;/#test-link&quot; class=&quot;btn btn--primary&quot;&gt;Read More&lt;/a&gt;&lt;/p&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+&lt;/div&gt;
+
+&lt;div class=&quot;feature__wrapper&quot;&gt;
+
+  
+    &lt;div class=&quot;feature__item--right&quot;&gt;
+      &lt;div class=&quot;archive__item&quot;&gt;
+        
+          &lt;div class=&quot;archive__item-teaser&quot;&gt;
+            &lt;img src=&quot;/assets/images/unsplash-gallery-image-2-th.jpg&quot; alt=&quot;placeholder image 2&quot; /&gt;
+            
+          &lt;/div&gt;
+        
+
+        &lt;div class=&quot;archive__item-body&quot;&gt;
+          
+            &lt;h2 class=&quot;archive__item-title&quot;&gt;Placeholder Image Right Aligned&lt;/h2&gt;
+          
+
+          
+            &lt;div class=&quot;archive__item-excerpt&quot;&gt;
+              &lt;p&gt;This is some sample content that goes here with &lt;strong&gt;Markdown&lt;/strong&gt; formatting. Right aligned with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type=&quot;right&quot;&lt;/code&gt;&lt;/p&gt;
+
+            &lt;/div&gt;
+          
+
+          
+            &lt;p&gt;&lt;a href=&quot;/#test-link&quot; class=&quot;btn btn--primary&quot;&gt;Read More&lt;/a&gt;&lt;/p&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+&lt;/div&gt;
+
+&lt;div class=&quot;feature__wrapper&quot;&gt;
+
+  
+    &lt;div class=&quot;feature__item--center&quot;&gt;
+      &lt;div class=&quot;archive__item&quot;&gt;
+        
+          &lt;div class=&quot;archive__item-teaser&quot;&gt;
+            &lt;img src=&quot;/assets/images/unsplash-gallery-image-2-th.jpg&quot; alt=&quot;placeholder image 2&quot; /&gt;
+            
+          &lt;/div&gt;
+        
+
+        &lt;div class=&quot;archive__item-body&quot;&gt;
+          
+            &lt;h2 class=&quot;archive__item-title&quot;&gt;Placeholder Image Center Aligned&lt;/h2&gt;
+          
+
+          
+            &lt;div class=&quot;archive__item-excerpt&quot;&gt;
+              &lt;p&gt;This is some sample content that goes here with &lt;strong&gt;Markdown&lt;/strong&gt; formatting. Centered with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type=&quot;center&quot;&lt;/code&gt;&lt;/p&gt;
+
+            &lt;/div&gt;
+          
+
+          
+            &lt;p&gt;&lt;a href=&quot;/#test-link&quot; class=&quot;btn btn--primary&quot;&gt;Read More&lt;/a&gt;&lt;/p&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+&lt;/div&gt;</content><author><name>Marc Micatka</name></author><summary type="html">Bacon ipsum dolor sit amet salami ham hock ham, hamburger corned beef short ribs kielbasa biltong t-bone drumstick tri-tip tail sirloin pork chop.</summary></entry><entry><title type="html">Post: Link</title><link href="http://localhost:4000/blog/post-link/" rel="alternate" type="text/html" title="Post: Link" /><published>2010-03-07T00:00:00-08:00</published><updated>2010-03-07T00:00:00-08:00</updated><id>http://localhost:4000/blog/post-link</id><content type="html" xml:base="http://localhost:4000/blog/post-link/">&lt;p&gt;This theme supports &lt;strong&gt;link posts&lt;/strong&gt;, made famous by John Gruber. To use, just add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;link: http://url-you-want-linked&lt;/code&gt; to the post’s YAML front matter and you’re done.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;And this is how a quote looks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Some &lt;a href=&quot;#&quot;&gt;link&lt;/a&gt; can also be shown.&lt;/p&gt;</content><author><name>Marc Micatka</name></author><category term="link" /><category term="Post Formats" /><summary type="html">This theme supports link posts, made famous by John Gruber. To use, just add link: http://url-you-want-linked to the post’s YAML front matter and you’re done.</summary></entry><entry><title type="html">Post: Notice</title><link href="http://localhost:4000/blog/post-notice/" rel="alternate" type="text/html" title="Post: Notice" /><published>2010-02-05T00:00:00-08:00</published><updated>2010-02-05T00:00:00-08:00</updated><id>http://localhost:4000/blog/post-notice</id><content type="html" xml:base="http://localhost:4000/blog/post-notice/">&lt;p&gt;A notice displays information that explains nearby content. Often used to call attention to a particular detail.&lt;/p&gt;
+
+&lt;p&gt;When using Kramdown &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{: .notice}&lt;/code&gt; can be added after a sentence to assign the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.notice&lt;/code&gt; to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt; element.&lt;/p&gt;
+
+&lt;p class=&quot;notice&quot;&gt;&lt;strong&gt;Changes in Service:&lt;/strong&gt; We just updated our &lt;a href=&quot;#&quot;&gt;privacy policy&lt;/a&gt; here to better service our customers. We recommend reviewing the changes.&lt;/p&gt;
+
+&lt;p class=&quot;notice--primary&quot;&gt;&lt;strong&gt;Primary Notice:&lt;/strong&gt; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. &lt;a href=&quot;#&quot;&gt;Praesent libero&lt;/a&gt;. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.&lt;/p&gt;
+
+&lt;p class=&quot;notice--info&quot;&gt;&lt;strong&gt;Info Notice:&lt;/strong&gt; Lorem ipsum dolor sit amet, &lt;a href=&quot;#&quot;&gt;consectetur adipiscing elit&lt;/a&gt;. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.&lt;/p&gt;
+
+&lt;p class=&quot;notice--warning&quot;&gt;&lt;strong&gt;Warning Notice:&lt;/strong&gt; Lorem ipsum dolor sit amet, consectetur adipiscing elit. &lt;a href=&quot;#&quot;&gt;Integer nec odio&lt;/a&gt;. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.&lt;/p&gt;
+
+&lt;p class=&quot;notice--danger&quot;&gt;&lt;strong&gt;Danger Notice:&lt;/strong&gt; Lorem ipsum dolor sit amet, &lt;a href=&quot;#&quot;&gt;consectetur adipiscing&lt;/a&gt; elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.&lt;/p&gt;
+
+&lt;p class=&quot;notice--success&quot;&gt;&lt;strong&gt;Success Notice:&lt;/strong&gt; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at &lt;a href=&quot;#&quot;&gt;nibh elementum&lt;/a&gt; imperdiet.&lt;/p&gt;
+
+&lt;p&gt;Want to wrap several paragraphs or other elements in a notice? Using Liquid to capture the content and then filter it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;markdownify&lt;/code&gt; is a good way to go.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% capture notice-2 %}
+#### New Site Features
+
+* You can now have cover images on blog pages
+* Drafts will now auto-save while writing
+{% endcapture %}
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;notice&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ notice-2 | markdownify }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;notice&quot;&gt;
+  
+&lt;h4 id=&quot;new-site-features&quot;&gt;New Site Features&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You can now have cover images on blog pages&lt;/li&gt;
+  &lt;li&gt;Drafts will now auto-save while writing&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Or you could skip the capture and stick with straight HTML.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;notice&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h4&amp;gt;&lt;/span&gt;Message&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h4&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;A basic message.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;notice&quot;&gt;
+  &lt;h4&gt;Message&lt;/h4&gt;
+  &lt;p&gt;A basic message.&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Marc Micatka</name></author><category term="Post Formats" /><category term="notice" /><summary type="html">A notice displays information that explains nearby content. Often used to call attention to a particular detail.</summary></entry><entry><title type="html">Post: Quote</title><link href="http://localhost:4000/blog/post-quote/" rel="alternate" type="text/html" title="Post: Quote" /><published>2010-02-05T00:00:00-08:00</published><updated>2010-02-05T00:00:00-08:00</updated><id>http://localhost:4000/blog/post-quote</id><content type="html" xml:base="http://localhost:4000/blog/post-quote/">&lt;blockquote&gt;
+  &lt;p&gt;Only one thing is impossible for God: To find any sense in any copyright law on the planet.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;cite&gt;&lt;a href=&quot;http://www.brainyquote.com/quotes/quotes/m/marktwain163473.html&quot;&gt;Mark Twain&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Marc Micatka</name></author><category term="Post Formats" /><category term="quote" /><summary type="html">Only one thing is impossible for God: To find any sense in any copyright law on the planet. Mark Twain</summary></entry><entry><title type="html">Post: Chat</title><link href="http://localhost:4000/blog/post-chat/" rel="alternate" type="text/html" title="Post: Chat" /><published>2010-01-08T00:00:00-08:00</published><updated>2010-01-08T00:00:00-08:00</updated><id>http://localhost:4000/blog/post-chat</id><content type="html" xml:base="http://localhost:4000/blog/post-chat/">&lt;p&gt;Abbott: Strange as it may seem, they give ball players nowadays very peculiar names.&lt;/p&gt;
+
+&lt;p&gt;Costello: Funny names?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Nicknames, nicknames. Now, on the St. Louis team we have Who’s on first, What’s on second, I Don’t Know is on third–&lt;/p&gt;
+
+&lt;p&gt;Costello: That’s what I want to find out. I want you to tell me the names of the fellows on the St. Louis team.&lt;/p&gt;
+
+&lt;p&gt;Abbott: I’m telling you. Who’s on first, What’s on second, I Don’t Know is on third–&lt;/p&gt;
+
+&lt;p&gt;Costello: You know the fellows’ names?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Yes.&lt;/p&gt;
+
+&lt;p&gt;Costello: Well, then who’s playing first?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Yes.&lt;/p&gt;
+
+&lt;p&gt;Costello: I mean the fellow’s name on first base.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Who.&lt;/p&gt;
+
+&lt;p&gt;Costello: The fellow playin’ first base.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Who.&lt;/p&gt;
+
+&lt;p&gt;Costello: The guy on first base.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Who is on first.&lt;/p&gt;
+
+&lt;p&gt;Costello: Well, what are you askin’ me for?&lt;/p&gt;
+
+&lt;p&gt;Abbott: I’m not asking you–I’m telling you. Who is on first.&lt;/p&gt;
+
+&lt;p&gt;Costello: I’m asking you–who’s on first?&lt;/p&gt;
+
+&lt;p&gt;Abbott: That’s the man’s name.&lt;/p&gt;
+
+&lt;p&gt;Costello: That’s who’s name?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Yes.&lt;/p&gt;
+
+&lt;p&gt;Costello: When you pay off the first baseman every month, who gets the money?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Every dollar of it. And why not, the man’s entitled to it.&lt;/p&gt;
+
+&lt;p&gt;Costello: Who is?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Yes.&lt;/p&gt;
+
+&lt;p&gt;Costello: So who gets it?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Why shouldn’t he? Sometimes his wife comes down and collects it.&lt;/p&gt;
+
+&lt;p&gt;Costello: Who’s wife?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Yes. After all, the man earns it.&lt;/p&gt;
+
+&lt;p&gt;Costello: Who does?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Absolutely.&lt;/p&gt;
+
+&lt;p&gt;Costello: Well, all I’m trying to find out is what’s the guy’s name on first base?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Oh, no, no. What is on second base.&lt;/p&gt;
+
+&lt;p&gt;Costello: I’m not asking you who’s on second.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Who’s on first!&lt;/p&gt;
+
+&lt;p&gt;Costello: St. Louis has a good outfield?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Oh, absolutely.&lt;/p&gt;
+
+&lt;p&gt;Costello: The left fielder’s name?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Why.&lt;/p&gt;
+
+&lt;p&gt;Costello: I don’t know, I just thought I’d ask.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Well, I just thought I’d tell you.&lt;/p&gt;
+
+&lt;p&gt;Costello: Then tell me who’s playing left field?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Who’s playing first.&lt;/p&gt;
+
+&lt;p&gt;Costello: Stay out of the infield! The left fielder’s name?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Why.&lt;/p&gt;
+
+&lt;p&gt;Costello: Because.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Oh, he’s center field.&lt;/p&gt;
+
+&lt;p&gt;Costello: Wait a minute. You got a pitcher on this team?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Wouldn’t this be a fine team without a pitcher?&lt;/p&gt;
+
+&lt;p&gt;Costello: Tell me the pitcher’s name.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Tomorrow.&lt;/p&gt;
+
+&lt;p&gt;Costello: Now, when the guy at bat bunts the ball–me being a good catcher–I want to throw the guy out at first base, so I pick up the ball and throw it to who?&lt;/p&gt;
+
+&lt;p&gt;Abbott: Now, that’s he first thing you’ve said right.&lt;/p&gt;
+
+&lt;p&gt;Costello: I DON’T EVEN KNOW WHAT I’M TALKING ABOUT!&lt;/p&gt;
+
+&lt;p&gt;Abbott: Don’t get excited. Take it easy.&lt;/p&gt;
+
+&lt;p&gt;Costello: I throw the ball to first base, whoever it is grabs the ball, so the guy runs to second. Who picks up the ball and throws it to what. What throws it to I don’t know. I don’t know throws it back to tomorrow–a triple play.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Yeah, it could be.&lt;/p&gt;
+
+&lt;p&gt;Costello: Another guy gets up and it’s a long ball to center.&lt;/p&gt;
+
+&lt;p&gt;Abbott: Because.&lt;/p&gt;
+
+&lt;p&gt;Costello: Why? I don’t know. And I don’t care.&lt;/p&gt;
+
+&lt;p&gt;Abbott: What was that?&lt;/p&gt;
+
+&lt;p&gt;Costello: I said, I DON’T CARE!&lt;/p&gt;
+
+&lt;p&gt;Abbott: Oh, that’s our shortstop!&lt;/p&gt;</content><author><name>Marc Micatka</name></author><category term="chat" /><category term="Post Formats" /><summary type="html">Abbott: Strange as it may seem, they give ball players nowadays very peculiar names.</summary></entry><entry><title type="html">Post: Modified Date</title><link href="http://localhost:4000/blog/post-modified/" rel="alternate" type="text/html" title="Post: Modified Date" /><published>2010-01-07T00:00:00-08:00</published><updated>2016-03-09T13:20:02-08:00</updated><id>http://localhost:4000/blog/post-modified</id><content type="html" xml:base="http://localhost:4000/blog/post-modified/">&lt;p&gt;This post has been updated and should show a modified date if used in a layout.&lt;/p&gt;
+
+&lt;p&gt;All children, except one, grow up. They soon know that they will grow up, and the way Wendy knew was this. One day when she was two years old she was playing in a garden, and she plucked another flower and ran with it to her mother. I suppose she must have looked rather delightful, for Mrs. Darling put her hand to her heart and cried, “Oh, why can’t you remain like this for ever!” This was all that passed between them on the subject, but henceforth Wendy knew that she must grow up. You always know after you are two. Two is the beginning of the end.&lt;/p&gt;</content><author><name>Marc Micatka</name></author><category term="Post Formats" /><category term="readability" /><category term="standard" /><summary type="html">This post has been updated and should show a modified date if used in a layout.</summary></entry></feed>
