@@ -2,8 +2,10 @@ main:
   - title: "Posts"
     url: /posts/
   - title: "Travel"
-    url: /travel/
+    url: /tags/#travel
   - title: "Projects"
-    url: /projects/
+    url: /tags/#projects
+  - title: "Photography"
+    url: /photography/
   - title: "About"
     url: /about/
