@@ -1,7 +1,7 @@
 ---
 layout: splash
 title: About
-permalink: /travel/
+permalink: /tags/#travel
 header:
   overlay_image: /assets/images/nepal_full.jpg
 ---

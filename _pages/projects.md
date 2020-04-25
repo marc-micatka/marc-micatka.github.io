@@ -1,7 +1,7 @@
 ---
 layout: splash
 title: About
-permalink: /projects/
+permalink: /tags/#projects
 header:
   overlay_image: /assets/images/nepal_full.jpg
 ---
