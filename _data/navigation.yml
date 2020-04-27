@@ -1,11 +1,11 @@
 main:
-  - title: "Posts"
-    url: /posts/
   - title: "Travel"
-    url: /tags/#travel
+    url: /travel/
   - title: "Projects"
-    url: /tags/#projects
+    url: /projects/
   - title: "Photography"
     url: /photography/
+  - title: "All Posts"
+    url: /posts/
   - title: "About"
     url: /about/
