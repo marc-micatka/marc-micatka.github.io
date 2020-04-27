@@ -5,7 +5,7 @@ header:
   overlay_color: "#000"
   overlay_filter: "0.5"
   overlay_image: /assets/images/nepal_full.jpg
-excerpt: "Some projects. Some travel."
+excerpt: "Some projects. Some travel. Occasional Danger."
 
 feature_row:
   - image_path: assets/images/front_page/nz_front_page.jpg
