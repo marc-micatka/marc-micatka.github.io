@@ -11,7 +11,7 @@ author_profile: true
 
 Hello! My name is Marc Micatka. I am an aspiring computer scientist/roboticists currently working on my Masters in CS at Georgia Tech specializing in Robot Perception and Automation while also traveling around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems whether it's in a class setting, a work setting, or on my own.
 
-I love traveling and being outside and exercising, whether it's in the mountains or on the water. My wife is travel nurse and we are routinely packing up and moving around the country. Currently living in South Lake Tahoe, you can most likely find me in the backpacking or climbing when I'm trying to understand my assignments.
+I love traveling and being outside and exercising, whether it's in the mountains or on the water. My wife is travel nurse and we are routinely packing up and moving around the country. Currently living in South Lake Tahoe while I finish up my graduate program.
 
 Education
 ---------
@@ -74,4 +74,10 @@ Software
 
 Extracurriculars
 ----------------------------------------
+**Crew Team** -  *UMN Crew*
+: *Eden Prarie, Minnesota   May 2014 - September 2014*
+  * Rowed competitively at regional and national competitions throughout my undergraduate years. 
+  * Served as vice president and head of recruitment
+  * Won National Lightweight 4- championship, 2014 NWIRA
 
+**Eagle Scout** -  *Boy Scouts of America*

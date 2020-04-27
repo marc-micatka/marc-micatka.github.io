@@ -44,9 +44,9 @@
         {% endfor %}
       {% endif %}
 
-      {% if author.uri %}
+      {% if author.url %}
         <li>
-          <a href="{{ author.uri }}" itemprop="url">
+          <a href="{{ author.url }}" itemprop="url">
             <i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">{{ site.data.ui-text[site.locale].website_label | default: "Website" }}</span>
           </a>
         </li>
