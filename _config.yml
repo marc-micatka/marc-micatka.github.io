@@ -51,13 +51,17 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-  - jekyll-include-cache
 
 author:
-  name   : "Marc Micatka"
-  avatar : "/assets/images/headshot.jpeg"
-  bio    : "Projects.Travel."
-
+  name      : "Marc Micatka"
+  avatar    : "/assets/images/headshot.jpeg"
+  bio       : "Occasional computer scientist, mechanical engineer, and traveler."
+  location  : "South Lake Tahoe, CA"
+  email     : "marc.micatka@gmail.com"
+  github    : "marc-micatka"
+  linkedin  : "marcmicatka"
+  url       : "marcmicatka.com"
+  
 footer:
   links:
     - label: "LinkedIn"
@@ -66,6 +70,10 @@ footer:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/marc-micatka"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "marc.micatka@gmail.com"
+        
 
 defaults:
   # _posts
@@ -92,3 +100,4 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
