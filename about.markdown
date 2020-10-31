@@ -14,7 +14,7 @@ As an undergrad studying mechanical engineer, I independently developed projects
 
 In my masters program, I have extensive experience with Java for Android app development and Python for computer vision, robotics, and data science applications. See my project pages for more information about my computer science experience through Georgia Tech.
 
-I love traveling and being outside and exercising, whether it's in the mountains or on the water. My wife is travel nurse and we are routinely packing up and moving around the country. Currently living in South Lake Tahoe, you can most likely find me in the backpacking or climbing when I'm not coding.
+I love traveling and being outside and exercising, whether it's in the mountains or on the water. Currently living in Seattle, you can most likely find me in the backpacking or climbing when I'm not coding.
 
 ### Work Experience
 ##### Industrial Engineer II
