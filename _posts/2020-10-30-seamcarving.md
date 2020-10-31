@@ -1,7 +1,7 @@
 ---
 title: "Content Aware Image Resizing"
-excerpt: "OMSCS 6476 Computer Vision - Spring 2019"
-last_modified_at: 2020-04-14
+excerpt: "OMSCS 6475 Computational Photography - Fall 2020"
+last_modified_at: 2020-10-31
 header:
   teaser: "/assets/images/seamcarving/thumbnail.png"
 tags: 

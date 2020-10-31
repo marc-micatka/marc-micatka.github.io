@@ -2,7 +2,7 @@
 title: "Summer in Seattle - 2019"
 excerpt: "Adventures in the Northwest"
 permalink: /washington/
-last_modified_at: 2020-04-14
+last_modified_at: 2020-10-31
 
 header:
   image: "/assets/images/washington/washington_header.jpg"
