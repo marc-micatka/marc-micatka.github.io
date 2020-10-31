@@ -9,9 +9,9 @@ author_profile: true
   <a href="/assets/images/about/marc_washington.jpg"><img src="/assets/images/about/marc_washington.jpg"></a>
 </figure> 
 
-Hello! My name is Marc Micatka. I am an aspiring computer scientist/roboticists currently working on my Masters in CS at Georgia Tech specializing in Robot Perception and Automation while also traveling around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems whether it's in a class setting, a work setting, or on my own.
+Hello! My name is Marc Micatka. I am an aspiring computer scientist/roboticists currently working on my Masters in CS at Georgia Tech specializing in Robot Perception and Automation while also traveling around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
 
-I love traveling and being outside and exercising, whether it's in the mountains or on the water. My wife is travel nurse and we are routinely packing up and moving around the country. Currently living in South Lake Tahoe while I finish up my graduate program.
+I love traveling and being outside and exercising, whether it's in the mountains or on the water. Currently living in Seattle while I finish up my graduate program.
 
 Education
 ---------
@@ -59,13 +59,15 @@ Programming Languages
 
 : **Java:** Experience using Java for Android app development and developing software testing suites using JUnit.  
 
+: **Matlab:** Experience using Matlab for image processing and robotics, path planning, trajectory calculation.  
 
-: Basic knowledge of **C**, **C++**, **Matlab**
+: Basic knowledge of **C**, **C++**
 
 Software  
 
 : **SolidWorks:** Extensive experience using SolidWorks for part design, developing mechanical drawings, and motion analysis for both professional and personal projects.  
 
+: **OnShape:** Since I no longer have access to SolidWorks through school, I have been using OnShape for private projects and use.  
 
 : **Excel:** I know everyone says they're good at Excel, but I'm actually pretty good at Excel. Professional experience designing and deploying macros and Visual Basic Applications to streamline workflows and for data analytics.  
 
