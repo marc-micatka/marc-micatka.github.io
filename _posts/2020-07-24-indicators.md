@@ -1,6 +1,6 @@
 ---
 title: "Stock Indicators for Trading"
-excerpt: "OMSCS 7647 Machine Learning for Trading - Spring 2020"
+excerpt: "OMSCS 7647 Machine Learning for Trading - Summer 2020"
 last_modified_at: 2020-07-14
 header:
   teaser: "/assets/images/indicators/indicators_thumbnail.png"

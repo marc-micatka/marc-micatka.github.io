@@ -149,6 +149,6 @@ As you can see, the individual paths are not continuous in the newly expanded im
     <img src="{{ site.url }}{{ site.baseurl }}//assets/images/seamcarving/funny.png" alt="">
 </figure>
 
-And there you have it! You can have quite a bit of fun with this algorithm. Applying it to something more complicated, like a face, produces a caricature effect where the algorithm removes the unimportant spaces (like your forehead) and leaves you with a carnival-esque drawing. You can also run the removal operation followed by the expand operation. This will tend to amplify *important* features but in a face will leave you looking like a distance, chubby relative. 
+And there you have it! You can have quite a bit of fun with this algorithm. Applying it to something more complicated, like a face, produces a caricature effect where the algorithm removes the unimportant spaces (like your forehead) and leaves you with a carnival-esque drawing. You can also run the removal operation followed by the expand operation. This will tend to amplify *important* features but in a face will leave you looking like a distant, chubby relative. 
 
 
