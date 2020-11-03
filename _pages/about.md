@@ -54,7 +54,7 @@ Technical Experience
 --------------------
 Programming Languages  
 
-: **Python:** Extensive acadmeic experience using Python for computer vision applications, data analysis, and machine learning applications.  
+: **Python:** Extensive academic experience using Python for computer vision applications, data analysis, and machine learning applications.  
 
 
 : **Java:** Academic experience using Java for Android app development and developing software testing suites using JUnit.  
