@@ -9,7 +9,7 @@ author_profile: true
   <a href="/assets/images/about/marc_washington.jpg"><img src="/assets/images/about/marc_washington.jpg"></a>
 </figure> 
 
-Hello! My name is Marc Micatka. I am an aspiring computer scientist/roboticists currently working on my Masters in CS at Georgia Tech specializing in Robot Perception and Automation while also traveling around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
+Hello! My name is Marc Micatka. I am an aspiring computer scientist/roboticists currently working on my Master's in Computer Science at Georgia Tech specializing in Robot Perception and Automation while also traveling around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
 
 I love traveling and being outside and exercising, whether it's in the mountains or on the water. Currently living in Seattle while I finish up my graduate program.
 
@@ -54,18 +54,18 @@ Technical Experience
 --------------------
 Programming Languages  
 
-: **Python:** Extensive experience using Python for computer vision applications, data analysis, and machine learning applications.  
+: **Python:** Extensive acadmeic experience using Python for computer vision applications, data analysis, and machine learning applications.  
 
 
-: **Java:** Experience using Java for Android app development and developing software testing suites using JUnit.  
+: **Java:** Academic experience using Java for Android app development and developing software testing suites using JUnit.  
 
-: **Matlab:** Experience using Matlab for image processing and robotics, path planning, trajectory calculation.  
+: **Matlab:** Academic xperience using Matlab for image processing and robotics, path planning, trajectory calculation.  
 
 : Basic knowledge of **C**, **C++**
 
 Software  
 
-: **SolidWorks:** Extensive experience using SolidWorks for part design, developing mechanical drawings, and motion analysis for both professional and personal projects.  
+: **SolidWorks:** Experience using SolidWorks for part design, developing mechanical drawings, and motion analysis for both professional and personal projects.  
 
 : **OnShape:** Since I no longer have access to SolidWorks through school, I have been using OnShape for private projects and use.  
 
