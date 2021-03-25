@@ -16,7 +16,7 @@ tags:
 ---
 Our travel nursing adventure continues. From Bemidji, Minnesota we accepted a position in Bellevue, Washington outside of Seattle. We loaded up the car and drove to Seattle in April. I had worked in Mount Rainier National Park in college and had some familiarity with the area, but had only spent a few days in Seattle and had only the smallest idea of what life in the Northwest would be. Turns out, it's just as rainy as everyone says.
 
-While in Seattle, I accepted a contract engineering position at the Boeing factory in Everett, Washington. That job cut significantly into my outdoor time but was a valuable professional experience. Enough about work, this post is aobut some of our selected adventures over the summer.
+While in Seattle, I accepted a contract engineering position at the Boeing factory in Everett, Washington. That job cut significantly into my outdoor time but was a valuable professional experience. Enough about work, this post is about some of our selected adventures over the summer.
 
 ### Olympic National Park
 #### March 29, 2019 - April 1, 2019
@@ -54,7 +54,7 @@ The scramble off the snow to the peak was awesome - classic Washington class 3 s
 ### Enchantments Thru Hike (Plus Little Annapurna)
 #### July 6, 2019
 
-My friend, old roommate, and rowing team mate Ross Wise dropped in for a long weekend. While he was here, I figured I should finally try the 19 mile thru hike of the Enchantments. '
+My friend, old roommate, and rowing team mate Ross Wise dropped in for a long weekend. While he was here, I figured I should finally try the 19 mile thru hike of the Enchantments.
 
 The Enchantments are a Washington staple. Permits are required to camp in the interior so the "easiest" option is to just hike through the core in one shot as a long day hike. By long, I mean 19 miles point to point and 6000 feet of elevation gain. Luckily, Ross is always up for a sufferfest and Mary was willing to shuttle us between trailheads.
 
@@ -66,7 +66,7 @@ We started early to beat crowds and because we anticpated taking 12 hours to fin
 
 The first four miles of the trail were a slow inclined approach to Colchuck Lake, a beautiful lake at the foot of Aasgard Pass and Dragontail Peak. We made really good time through this first section then picked around the lake, through a boulder field and up the notorious Aasgard Pass - 1500 feet of gain in about half a mile. It's a staircase of loose dirt and pebbles and if you get there too late in the day, it's sunny the entire way up. We pushed to the top and enjoyed 6 amazing miles of flat hiking though the high elevation alpine lakes - still mostly frozen over. The trail was half snow, but it was a well traveled path through the maze of lakes.
 
-Once you get through the lakes, the last 6-8 miles was a descent back through the woods, mostly uneventful and our feet were growing increasingly sore. We finalyl stumbled out just under 11 hours after starting.
+Once you get through the lakes, the last 6-8 miles was a descent back through the woods, mostly uneventful and our feet were growing increasingly sore. We finally stumbled out just under 11 hours after starting.
 <figure class = "half">
     <a href="/assets/images/washington/enchantments2.jpg"><img src="/assets/images/washington/enchantments2.jpg"></a>
     <a href="/assets/images/washington/enchantments3.jpg">

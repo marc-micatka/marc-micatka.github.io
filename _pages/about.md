@@ -18,7 +18,7 @@ Education
 2019 - 2021 (expected)
 :   **Masters, Computer Science**; Georgia Tech (online)
 
-    *Specialization: Robotic Perceptions and Automation*
+    *Specialization: Robotic Perception and Automation*
 
 2011 - 2014
 :   **BME, Mechanical Engineering**; University of Minnesota - Twin Cities (Minneapolis, MN)
@@ -44,7 +44,7 @@ engineering labor per day in routine lookups and rote spreadsheet work.
 
 **Mechanical Design Intern** -  *Bose Electroforce*
 : *Eden Prarie, Minnesota   May 2014 - September 2014*
-: Worked as a manufacturing engineer in a medical device assembly plant with extensive regulatory and clean room experience. 
+: Worked as a mechanical design intern at Bose - Electroforce, a division of Bose working on high-performance and high-frequency DMA material testing.
   * Worked on high-frequency test equipment performing dynamic mechanical analysis and fatigue testing.
   * Prototyped vision system to allow real-time stress analysis for feedback control.
   * Automated IQ/OQ protocol of equipment using MATLAB, reduced technician labor time from one day to an
