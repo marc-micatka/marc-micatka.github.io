@@ -129,6 +129,24 @@ gallery14:
   - image_path: /assets/images/photography/washington_7.jpg
     url: /assets/images/photography/washington_7.jpg
     title: "Snowking Mountain, Washington"
+
+gallery15:
+  - image_path: /assets/images/photography/tahoe_2.jpg
+    url: /assets/images/photography/tahoe_2.jpg
+    title: "Chipmunk on Railing"
+  - image_path: /assets/images/photography/tahoe_3.jpg
+    url: /assets/images/photography/tahoe_3.jpg
+    title: "Lake Tahoe at Sunrise"
+
+gallery16:
+  - image_path: /assets/images/photography/seattle_3.jpg
+    url: /assets/images/photography/seattle_3.jpg
+    title: "Seattle at Night"
+
+gallery17:
+  - image_path: /assets/images/photography/seattle_2.jpg
+    url: /assets/images/photography/seattle_2.jpg
+    title: "To the Mountain"
 ---
 Here's a collection of pictures I've taken that I'm particularily proud of. 
 Nearly all of these are taken with a Sony A6000.
@@ -147,4 +165,7 @@ Nearly all of these are taken with a Sony A6000.
 {% include gallery id="gallery12"%}
 {% include gallery id="gallery13" layout="half" %}
 {% include gallery id="gallery14"%}
+{% include gallery id="gallery15" layout="half" %}
+{% include gallery id="gallery16"%}
+{% include gallery id="gallery17"%}
 
