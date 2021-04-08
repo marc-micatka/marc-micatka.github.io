@@ -8,26 +8,26 @@ header:
 excerpt: "Some projects. Some travel. Occasional Danger."
 
 feature_row:
-  - image_path: assets/images/front_page/nz_front_page.jpg
-    alt: "Marc in NZ"
-    title: "Oceania Trip Report - Part I"
-    excerpt: "A brief summary of our trip through Australia."
-    url: "oceania"
+  - image_path: /assets/images/front_page/winds3.jpg
+    alt: "Approaching Gannett Peak"
+    title: "Wind River Range"
+    excerpt: "A climbing trip to Wyoming."
+    url: "winds3"
     btn_label: "Read More"
     btn_class: "btn--primary"
 
-  - image_path: /assets/images/front_page/app_play_game.png
+  - image_path: /assets/images/seamcarving/thumbnail.png
     alt: "app play game screen"
-    title: "Building a Android App"
-    excerpt: "Using Android Studio and Java to build a simplistic word find game."
-    url: "boggle"
+    title: "Content Aware Image Resizing"
+    excerpt: "Reducing image size while preserving image content."
+    url: "seamcarving"
     btn_label: "Read More"
     btn_class: "btn--primary"
 
   - image_path: /assets/images/front_page/draw_symbol.png
-    title: "Solving SET: Part 1"
+    title: "Solving SET: Part II"
     excerpt: "Using Python and OpenCV to beat Mary at a card game."
-    url: "set"
+    url: "set2"
     btn_label: "Read More"
     btn_class: "btn--primary"
 
@@ -63,6 +63,15 @@ feature_row3:
     url: "ar"
     btn_label: "Read More"
     btn_class: "btn--primary"
+
+feature_row4:
+  - image_path: /assets/images/front_page/nz.jpg
+    alt: "Mount Cook"
+    title: "New Zealand Adventures"
+    excerpt: "Caravanning through New Zealand, 2019."
+    url: "oceania2"
+    btn_label: "Read More"
+    btn_class: "btn--primary"
 ---
 
 {% include feature_row id="intro" type="center" %}
@@ -73,3 +82,4 @@ feature_row3:
 
 {% include feature_row id="feature_row3"%}
 
+{% include feature_row id="feature_row4" type="right"%}
