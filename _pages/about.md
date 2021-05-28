@@ -9,13 +9,13 @@ author_profile: true
   <a href="/assets/images/about/marc_washington.jpg"><img src="/assets/images/about/marc_washington.jpg"></a>
 </figure> 
 
-Hello! My name is Marc Micatka. I am an aspiring computer scientist/roboticists currently working on my Master's in Computer Science at Georgia Tech specializing in Robot Perception and Automation while also traveling around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
+Hello! My name is Marc Micatka. I am a R&D engineer for Synthetik Applied Technologies working in Seattle on a some interesting mechanical and machine learning challenges. I recently finished my Master's in Computer Science at Georgia Tech specializing in Robot Perception and Automation and am so glad to be done. Although I have to work around the busy schedule of a global pandemic, I also try and find time to travel around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
 
-I love traveling and being outside and exercising, whether it's in the mountains or on the water. Currently living in Seattle while I finish up my graduate program.
+I love traveling and being outside, whether it's in the mountains or in a city. Currently living in Seattle exploring the North Cascades with gusto. 
 
 Education
 ---------
-2019 - 2021 (expected)
+2019 - 2021
 :   **Masters, Computer Science**; Georgia Tech (online)
 
     *Specialization: Robotic Perception and Automation*
