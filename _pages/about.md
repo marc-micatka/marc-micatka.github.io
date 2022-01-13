@@ -9,14 +9,14 @@ author_profile: true
   <a href="/assets/images/about/marc_washington.jpg"><img src="/assets/images/about/marc_washington.jpg"></a>
 </figure> 
 
-Hello! My name is Marc Micatka. I am a R&D engineer for Synthetik Applied Technologies working in Seattle on some interesting mechanical and machine learning challenges. I recently finished my Master's in Computer Science at Georgia Tech specializing in Robot Perception and Automation and am so glad to be done. Although I have to work around the busy schedule of a global pandemic, I also try and find time to travel around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
+Hello! My name is Marc Micatka. I am currently working as a Software Engineer at the Applied Physics Laboratory at the University of Washington working on underwater sonar reconstruction and SLAM. I recently finished my Master's in Computer Science at Georgia Tech specializing in Robot Perception and Automation and am so glad to be done. Although I have to work around the busy schedule of a global pandemic, I also try and find time to travel around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
 
-I love traveling and being outside, whether it's in the mountains or in a city. Currently living in Seattle exploring the North Cascades with gusto. 
+I love traveling and being outside, whether it's in the mountains or in a city. Currently living in Seattle exploring the Cascades with gusto. 
 
 Education
 ---------
 2019 - 2021
-:   **Masters, Computer Science**; Georgia Tech (online)
+:   **Masters, Computer Science**; Georgia Tech
 
     *Specialization: Robotic Perception and Automation*
 
@@ -25,6 +25,13 @@ Education
 
 Experience
 ----------
+**Research and Development Engineer** -    *Synthetik Applied Technologies* 
+: *Seattle, Washington      May 2021 - December 2021*
+:  Employed as a R&D Engineer working on IRD contracts and software/ML projects
+  * Developed software pipelines from ground up to address project and customer needs.
+  * Design and modify ML solutions to complex visual and audio recognition tasks.
+  * Optimize and deploy Azure-based IoT solutions on Nvidia Jetson platforms.
+
 **Industrial Engineer II** -    *Boeing* 
 : *Everett, Washington      April 2019 - September 2019*
 :  Employed as a contract industrial engineer at the Boeing factory in Everett, Washington working on the 777 aircraft.
@@ -42,14 +49,6 @@ engineering labor per day in routine lookups and rote spreadsheet work.
   * Used Solidworks and 3D printers to rapidly deploy fixtures to production area.
   * Led activities to support continuous improvement through Lean and Kaizen events.
 
-**Mechanical Design Intern** -  *Bose Electroforce*
-: *Eden Prarie, Minnesota   May 2014 - September 2014*
-: Worked as a mechanical design intern at Bose - Electroforce, a division of Bose working on high-performance and high-frequency DMA material testing.
-  * Worked on high-frequency test equipment performing dynamic mechanical analysis and fatigue testing.
-  * Prototyped vision system to allow real-time stress analysis for feedback control.
-  * Automated IQ/OQ protocol of equipment using MATLAB, reduced technician labor time from one day to an
-hour.
-
 Technical Experience
 --------------------
 Programming Languages  
@@ -61,7 +60,7 @@ Programming Languages
 
 : **Matlab:** Academic xperience using Matlab for image processing and robotics, path planning, trajectory calculation.  
 
-: Basic knowledge of **C**, **C++**
+: Basic knowledge of **C**, **C++**, **ROS**
 
 Software  
 
