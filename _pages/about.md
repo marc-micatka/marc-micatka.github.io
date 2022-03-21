@@ -25,6 +25,9 @@ Education
 
 Experience
 ----------
+**Software Engineer** -    *Applied Physics Lab, University of Washington* 
+: *Seattle, Washington      January 2022 - Current*
+
 **Research and Development Engineer** -    *Synthetik Applied Technologies* 
 : *Seattle, Washington      May 2021 - December 2021*
 :  Employed as a R&D Engineer working on IRD contracts and software/ML projects
