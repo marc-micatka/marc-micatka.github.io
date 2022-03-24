@@ -9,7 +9,7 @@ author_profile: true
   <a href="/assets/images/about/marc_washington.jpg"><img src="/assets/images/about/marc_washington.jpg"></a>
 </figure> 
 
-Hello! My name is Marc Micatka. I am currently working as a Software Engineer at the Applied Physics Laboratory at the University of Washington working on underwater sonar reconstruction and SLAM. I recently finished my Master's in Computer Science at Georgia Tech specializing in Robot Perception and Automation and am so glad to be done. Although I have to work around the busy schedule of a global pandemic, I also try and find time to travel around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
+Hello! My name is Marc Micatka. I am currently working as a Software Engineer at the Applied Physics Laboratory at the University of Washington. I recently finished my Master's in Computer Science at Georgia Tech specializing in Robot Perception and Automation and am so glad to be done. Although I have to work around the busy schedule of a global pandemic, I also try and find time to travel around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.
 
 I love traveling and being outside, whether it's in the mountains or in a city. Currently living in Seattle exploring the Cascades with gusto. 
 
