@@ -32,6 +32,9 @@ Here's our route:
 
 <p align="center"><iframe style="align-center" width="100%" height="500" src="https://caltopo.com/m/UT5FH" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
+Full resolution pictures are hosted 
+<a href="https://flic.kr/s/aHBqjA49JT">here</a>
+
 ### Day 1 - Cascade Pass Trailhead to Kool-Aid Lake
 Our morning starts in heavy fog and the sound of other hikers busily covering themselves in deet and packing bags. 
 We were initially a concerned with the sheer volume of folks in the lot! But it turned out that they were almost all day hiking Boston Basin or another trail in the North Cascades and when we turned off a tiny, unmarked dirt trail onto the traverse the crowds disappeared.
