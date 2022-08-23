@@ -9,23 +9,28 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Using Motion History Images as a Horrible Way to Identify Activities - Refreshingly Dangerous</title>
-<meta name="description" content="OMSCS 6476 Computer Vision - Spring 2019 ">
+<!-- begin _includes/seo.html --><title>Motion History Images for Activity Identification - Refreshingly Dangerous</title>
+<meta name="description" content="OMSCS 6476 Computer Vision - Spring 2019">
 
 
   <meta name="author" content="Marc Micatka">
+  
+  <meta property="article:author" content="Marc Micatka">
+  
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Refreshingly Dangerous">
-<meta property="og:title" content="Using Motion History Images as a Horrible Way to Identify Activities">
+<meta property="og:title" content="Motion History Images for Activity Identification">
 <meta property="og:url" content="http://localhost:4000/mhi/">
 
 
-  <meta property="og:description" content="OMSCS 6476 Computer Vision - Spring 2019 ">
+  <meta property="og:description" content="OMSCS 6476 Computer Vision - Spring 2019">
 
 
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/mhi/mhi_thumbnail.png">
 
 
 
@@ -61,10 +66,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,27 +83,23 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
 
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
 
 <!-- end custom head snippets -->
 
@@ -103,7 +107,6 @@
 
   <body class="layout--single">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -127,20 +130,20 @@
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/posts/">Posts</a>
-            </li><li class="masthead__menu-item">
               <a href="/travel/">Travel</a>
             </li><li class="masthead__menu-item">
               <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/photography/">Photography</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts/">All Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/about/">About</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
           <span class="visually-hidden">Toggle search</span>
-          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
-            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
-          </svg>
+          <i class="fas fa-search"></i>
         </button>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -181,7 +184,7 @@
     
     
       <div class="author__bio" itemprop="description">
-        <p>Projects.Travel.</p>
+        <p>Occasional computer scientist, mechanical engineer, and traveler.</p>
 
       </div>
     
@@ -190,7 +193,42 @@
   <div class="author__urls-wrapper">
     <ul class="author__urls social-icons">
       
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seattle, WA</span>
+        </li>
+      
 
+      
+
+      
+        <li>
+          <a href="marcmicatka.com" itemprop="url">
+            <i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span>
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="mailto:marc.micatka@gmail.com">
+            <meta itemprop="email" content="marc.micatka@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/marcmicatka" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
+          </a>
+        </li>
       
 
       
@@ -202,17 +240,11 @@
       
 
       
-
-      
-
-      
-
-      
-
-      
-
-      
-
+        <li>
+          <a href="https://github.com/marc-micatka" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
       
 
       
@@ -258,7 +290,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Using Motion History Images as a Horrible Way to Identify Activities">
+    <meta itemprop="headline" content="Motion History Images for Activity Identification">
     <meta itemprop="description" content="OMSCS 6476 Computer Vision - Spring 2019">
     <meta itemprop="datePublished" content="2020-04-14T00:00:00-07:00">
     <meta itemprop="dateModified" content="2020-04-14T00:00:00-07:00">
@@ -266,7 +298,7 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Using Motion History Images as a Horrible Way to Identify Activities
+          <h1 id="page-title" class="page__title" itemprop="headline">Motion History Images for Activity Identification
 </h1>
           
         </header>
@@ -274,101 +306,163 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>I took Knowledge-Based Artifical Intelligence Fall 2019 and throughly enjoyed the class projects and the ability to frontload all the course content as this class overlapped with our five week trip through Oceania.
-In addition to <em>many</em> ethics essays, the class grade was mostly based on a cummulative project using Python and Pillow to solve <a href="https://en.wikipedia.org/wiki/Raven%27s_Progressive_Matrices" target="_blank">Raven’s Progressive Matrices.</a> These were Professor David Joyner’s version of RMPs because of copyright issues, but the concept was the same.</p>
+        <p>I took <em>CS 6476 - Computer Vision</em> in the spring of 2019 as my first course through Georgia Tech’s online Computer Science masters program. Difficult, time-consuming, and rewarding, I learned a whole lot and got some cool projects out of the semester. I chose to implement Motion History Images for activity recognition for the final project. Here’s a rundown of how and why it works.</p>
 
-<h3 id="ravens-progressive-matices">Raven’s Progressive Matices</h3>
-<p>Raven’s Progressive Matrices (RPM) are visual analogy tests used to measure abstract reasoning and fluid intelligence. Originally developed by John Raven in 1936, the test consists of 60 non-verbal pattern-matching and visual analogy questions. 2x2 or 3x3 image matrices are presented with one item missing. The task,as shown in <strong>Figure 1</strong>, is to select the visually analogous answer that best completes the matrix.</p>
+<h3 id="motion-history-images">Motion History Images</h3>
+<p>Activity recognition and classification from a video is a challenging problem in computer vision. Recognition often requires context clues and additional information on the subject matter that push the classifier outside the strict bounds of standard computer vision techniques. The commercial and industrial applications for activity recognition are abundant – from gesture-controlled devices to tracking and surveillance systems. For humans, this task is trivial. Often, a single frame of a video is enough to make an accurate guess as to the action being performed. For machines, this is more challenging. One technique that can achieve semi-accurate results on video is to use motion history images with a trained classifier to evaluate videos of actions.</p>
 
 <figure class="half">
-    <a href="/assets/images/kbai/basicB09.png"><img src="/assets/images/kbai/basicB09.png" /></a>
-    <a href="/assets/images/kbai/basicE08.png"><img src="/assets/images/kbai/basicE08.png" /></a>
-    <figcaption><b>Figure 1</b> - Raven's Matrix for a simple 2x2 problem and a more complicated 3x3 problem.</figcaption>
+    <a href="/assets/images/mhi/activity_example.png"><img src="/assets/images/mhi/activity_example.png" /></a>
+<a href="/assets/images/mhi/boxing_mhi.png"><img src="/assets/images/mhi/boxing_mhi.png" /></a>
+    <figcaption><b>Figure 1</b> - Single frame examples of activities from database (labels have been added by the author). An example of how MHI can generate variable images for the same action.</figcaption>
 </figure>
 
-<h3 id="project-1">Project 1</h3>
-<p>For Project 1, the problems were 2x2 and the transformation were often basic – a simple geometric transformation of the original image. After the images are loaded, the algorithm computes various transformations between A and B and between A and C, giving each transformation a similarity score (mean square error) between the transformed image and A.</p>
+<p>Motion history images are a static description of a temporal action. They encode how an object or a subject move through time –both where the subject is moving and when the action takes place. By training a classifier with a database of actions, we can generate useful generalizations about what gestures look like. Once we have our classifying network, we can generate labels for new data based on an evaluation of the new motion history image.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="n">sigma_exp</span> <span class="o">=</span> <span class="mf">.5</span>
-    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">size</span>
-    <span class="n">MSE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">MSE</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">sigma_exp</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+<h3 id="overview">Overview</h3>
+<p>There are two main steps to building a classifier using motion history images. The first step is to train your classifier with a database of videos demonstrating the actions that you wish to recognize. This classifier will be trained on six activities – boxing, clapping, waving, walking, jogging, and running.
+The second step is testing new videos and categorizing their actions. This classifier will be tested using a pre-built database of testing videos. The database includes six activities and different variations of the subject (changing the subjects clothing, zoom level, background, and lighting).</p>
+
+<h3 id="training">Training</h3>
+<p>Training videos for the six actions were selected and the actions were sorted and labelled. Each video was assessed to find the proper start and end frame for the action. For example – the running video has an empty scene for the first few frames before the runner comes into view. This empty scene is not part of the motion and should not be included in the MHI for that action.</p>
+
+<h5 id="process-and-threshold-image">Process and Threshold Image</h5>
+<p>For every relevant frame in the training video, the frame is blurred using a Gaussian kernel, and subtracted from the previous frame. This subtracted image is then thresholded using adaptive Gaussian thresholding to remove the threshold parameter θ as a variable that must be tuned. This binary image \(B_t(x,y)\) is defined as:</p>
+
+\[B_t(x,y) = \begin{cases} 1 &amp; |I_t(x,y)-I_{t-1}(x,y)|\geq \theta \\ 0 &amp; otherwise \end{cases}\]
+
+<h5 id="motion-history-and-motion-energy-images">Motion History and Motion Energy Images</h5>
+<p>The MHI is a collection of binary images with the value \(I_t(x,y)\) degraded over time. This will result in an image with motion trails – areas of greater and lesser intensity depending on how recently the motion occurred.
+The MEI is a binarization of the MHI that is added to increase the robustness of the classifier.</p>
+
+\[M_{\tau}(x,y,t) = \begin{cases} \tau &amp; B_t(x,y)=1 \\ max(M_{\tau}(x,y,t-1)-1,0) &amp; B_t(x,y)=0 \end{cases}\]
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_mhi</span><span class="p">(</span><span class="n">binary_images</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+    <span class="s">"""
+    Generates a motion history image based on array of binary images.
+    Args:
+        binary_images (list): List of binary images
+        tau (float): Threshold value
+    Returns:
+        m_t (np array): Motion history image
+    """</span>
+    <span class="n">m_t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">binary_images</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">binary_images</span><span class="p">)):</span>
+        <span class="n">sub_img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">m_t</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m_t</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">m_t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">binary_images</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">sub_img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">m_t</span>
 </code></pre></div></div>
-<p>The algorithm calculates all metrics in <em>Table 1</em> for each suggested answer. It then compares these proposed matrices with the base transformation matrices <em>Th</em> and <em>Tv</em> and the best match is then chosen from the possible answers.</p>
-
-<p><em>Table 1 - Transformations used in Project 1</em></p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left"><strong>Transformation</strong></th>
-      <th style="text-align: center"><strong>Description</strong></th>
-      <th style="text-align: right"><strong>Weight</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">Identity</td>
-      <td style="text-align: center">Compare A and B directly</td>
-      <td style="text-align: right">1.00</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Reflection: X</td>
-      <td style="text-align: center">Reflect B across X-axis</td>
-      <td style="text-align: right">0.50</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Reflection: Y</td>
-      <td style="text-align: center">Reflect B across Y-axis</td>
-      <td style="text-align: right">0.50</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Rotation: 90</td>
-      <td style="text-align: center">Rotate B 90 degrees</td>
-      <td style="text-align: right">0.25</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Rotation: 180</td>
-      <td style="text-align: center">Rotate B 180 degrees</td>
-      <td style="text-align: right">0.25</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Histogram Comparison</td>
-      <td style="text-align: center">Compare the ratio of white/black pixels</td>
-      <td style="text-align: right">0.25</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>With access to only rudimentary image transformation operations (no access to OpenCV!), I tried to find easy transformations and metrics that could mimic more human-esque qualities. Humans can easily count objects in frame but it’s more difficult to separate images into distinct blobs and count the blobs. Instead of implementing blob detection, I used the ratio of white and black pixels between images. This gives a good approximation of when shapes are being added or removed while requiring almost no additional coding or computation time.</p>
-
-<h3 id="project-2-and-3">Project 2 and 3</h3>
-
-<p>For project 2 and 3, the agent is asked to solve 3x3 matrices that involve more complicated transformations.</p>
-
-<p>The final agent attempts to follow the same approach as the agent designed in Project 1. First, different affine transformations are calculated for horizontal and vertical figures. This includes direct transformations like A to B but also indirect, like A to C. The direct and indirect transformations are computed for D to F, E to F, E to H, and B to H. The transformation that returns the highest similarity score is chosen along with the direction that resulted in that score (direct versus indirect, horizontal or vertical).
-The agent then calculates the similarity between the H/F or C/G and choices 1 - 6 using only the transformation chosen in earlier steps. The option that returns the highest similarity match over a threshold value is chosen as the answer. If no answer scores over the threshold, the agent will revert to simpler weighted voting method applied in Project 1.
-Basic Problem C-07 (<strong>Figure 2</strong>) will be used as an example. Initially, A will be compared to B and will return the highest similarity value and the transformation that returns this score. This is repeated for the other comparison images. For C-07, <em>Horizontal, Indirect</em>, returns the highest score for <em>Y-Axis Mirror</em> across all transformations and all images. The agent would then only assess image G and the answers 1-6 for this transformation.</p>
-
-<figure class="half">
-    <a href="/assets/images/kbai/basicC07.png"><img src="/assets/images/kbai/basicC07.png" /></a>
-    <a href="/assets/images/kbai/problem_approach.png"><img src="/assets/images/kbai/problem_approach.png" /></a>
-    <figcaption><b>Figure 1</b> - Problem solving approach using Basic Problem C-07 as an example.</figcaption>
+<figure class="align-center">
+    <a href="/assets/images/mhi/mhi_activities.png"><img src="/assets/images/mhi/mhi_activities.png" /></a>
+    <figcaption><b>Figure 2</b> - Motion history image generated from activites.</figcaption>
 </figure>
 
-<h3 id="project-references">Project References</h3>
-<p>Joyner, D. B. (2015). Using Human Computation to Acquire Novel Methods for Addressing Visual Analogy Problems on Intelligence Tests. <em>Proceedings ofthe Sixth International Conference on Computational Creativity.</em> Provo, Utah.</p>
+<h5 id="motion-history-and-motion-energy-images-1">Motion History and Motion Energy Images</h5>
+<p>Once we have calculated the MHI and the MHE, we need to describe the image with a metric that will allow us to compute how similar a new and uncategorized input MHI/MEI is to our training images. In this classifier, we calculate Hu moments of the images because they are computationally inexpensive as well as translation and scale invariant. Because actions performed by humans typically take place on a plane, we do not worry about rotational invariance. Taking a grayscale image \(I_t(x,y)\) as our input, we first calculate our raw moments. Because this is a computer science course, we will calculate the Hu moments ourselves instead of using the built-in OpenCV functions:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_hu_moments</span><span class="p">(</span><span class="n">image_in</span><span class="p">):</span>
+    <span class="s">"""
+    Sources: 
+    https://en.wikipedia.org/wiki/Image_moment
+    https://www.learnopencv.com/shape-matching-using-hu-moments-c-python/
+    """</span>
+    <span class="n">h</span><span class="p">,</span><span class="n">w</span> <span class="o">=</span> <span class="n">image_in</span><span class="p">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mgrid</span><span class="p">[:</span><span class="n">h</span><span class="p">,:</span><span class="n">w</span><span class="p">]</span>
+    <span class="n">m00</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">image_in</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">m00</span><span class="p">:</span>
+        <span class="n">m00</span> <span class="o">=</span> <span class="mf">1e-10</span>
+    <span class="n">m01</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">image_in</span><span class="p">)</span>
+    <span class="n">m10</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">image_in</span><span class="p">)</span>
+    <span class="n">x_bar</span> <span class="o">=</span> <span class="n">m10</span><span class="o">/</span><span class="n">m00</span>
+    <span class="n">y_bar</span> <span class="o">=</span> <span class="n">m01</span><span class="o">/</span><span class="n">m00</span>
+
+    <span class="c1">#Calculate Moments
+</span>    <span class="n">moments</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">scale_inv</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mu_pq</span> <span class="o">=</span><span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">p</span><span class="p">,</span><span class="n">q</span> <span class="ow">in</span> <span class="n">mu_pq</span><span class="p">:</span>
+        <span class="c1">#Calculate Central Moment
+</span>        <span class="n">mom</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_bar</span><span class="p">)</span><span class="o">**</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_bar</span><span class="p">)</span><span class="o">**</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">image_in</span><span class="p">)</span>
+        <span class="n">moments</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">mom</span><span class="p">)</span>
+        <span class="c1">#Calculate Scale Invariant Moment
+</span>        <span class="n">scale_inv_mom</span> <span class="o">=</span> <span class="n">mom</span> <span class="o">/</span> <span class="n">m00</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="n">q</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">scale_inv</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">scale_inv_mom</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">moments</span><span class="p">,</span> <span class="n">scale_inv</span>
+</code></pre></div></div>
+
+<h5 id="model-training">Model Training</h5>
+<p>Three different methods for classification were tested. The simplest method is the k-nearest neighbor (KNN) evaluation. This model takes labelled training data and will generate predictions based on the distance from the testing point to the trained points. The variable k is chosen by the user and represents the number of nearest neighbors to consider. The smaller the value of k, the more influence noise and poor training example will have on the output. The larger the value of k, the less distinct the boundary between classes will be. The other two methods used were support vector machines (SVM) and random forest classifiers. These classification methods are more advanced feature fitting tools that are included with the <em>sklearn</em> toolkit in Python.</p>
+
+<h3 id="testing">Testing</h3>
+<h5 id="results">Results</h5>
+<p>A set of test videos, twelve of each action, were reserved from the training dataset.These videos were processed in the same manner as the testing videos and were then classified using the K-Nearest Neighbor, SVM, and Random Forest classifier. Different parameter values of tau were tested and the results are shown in <strong>Figure 2</strong>. The Random Tree classifier performs very robustly across a range of tau values. The random tree classifier was tested using various combinations of Hu moments to determine what feature vector would be the most accurate. The results of this test are show in <strong>Figure 2</strong>.</p>
+<figure class="half">
+    <a href="/assets/images/mhi/grid_search.png"><img src="/assets/images/mhi/grid_search.png" /></a>
+<a href="/assets/images/mhi/feature_vector.png"><img src="/assets/images/mhi/feature_vector.png" /></a>
+    <figcaption><b>Figure 2</b> - Performance of different classifiers. RF with different feature vectors.</figcaption>
+</figure>
+<p>A test video was also made with multiple actions. A sliding window of 20 frames was used to calculate the
+MHI and was then processed using a random tree classifier. The video was then annotated with the predicted action as well as the prediction probability and the MHI used in the classifier.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ux76p2-zn6o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p><br /><br />
+Using just the MHI and MHI scale invariant vector, the classifier was 77% accurate. Using this feature vector, the confusion plot in <strong>Figure 3</strong> was produced.</p>
+
+<figure style="width: 450px" class="align-right">
+  <a href="/assets/images/mhi/confusion_matrix.png"><img src="/assets/images/mhi/confusion_matrix.png" /></a>
+  <figcaption><b>Figure 3</b> - Normalized confusion matrix.</figcaption>
+</figure>
+
+<h5 id="results-analysis">Results Analysis</h5>
+<p>K-Nearest Neighbors is a good middle ground classifier that will consistently product results quickly. The accuracy of KNN is highly dependent on the feature descriptor (MHI or MEI, scale invariant or non-invariant) and the combination of feature descriptors used in the classifier. While KNN can achieve high-
+accuracy results, it starts to break down when you add additional feature descriptors. These descriptors (scale invariant Hu moments) are critical in increasing the robustness of the classifier to new videos of potentially different resolutions or zoom levels.</p>
+
+<p>Support Vector Machines were tested because the results of <em>Recognition of Human Actions (2005)</em> found the highest accuracy with a SVM. I was unable to replicate their results as the SVM consistently performed worse in every tested situation.</p>
+
+<p>The random tree classifier was the most robust to different feature descriptors and different tau values. Because of this, the final confusion matrix and video analysis were done using a random tree classifier.</p>
+
+<h5 id="future-work-and-recommendations-for-improvement">Future Work and Recommendations for Improvement</h5>
+<p>Motion history images provide a good starting point for basic activity evaluations. When the action is distinct and the video can be robustly processed to isolate the subject, this method can provide semi-accurate results. There are a few challenges to using MHI for recognition. The first challenge is processing images with varying lighting conditions. This is a persistent computer vision challenge and can be addressed robustly using adaptive Gaussian thresholding.</p>
+
+<p>Another challenge is isolating the subject from the background and isolating the body parts of the subject that we are interested in from the rest of the subject. Performing image subtraction is a non-robust but very simple way to try and achieve this. Unfortunately, this method fails if the subject starts to move within the frame. In <strong>Figure 4</strong>, the same boxing activity is shown. In the first MHI, the subject stood very still and only moved their hands. In the second, the subject moved side to side, creating a much different MHI. One solution (a version of which is described in [6]) is to use a filter to track body parts and use the motion of those body parts as the basis for generating the MHI. This is a much more complex and computationally expensive method to implement and still relies on robust recognition of body parts.</p>
+
+<p>For practical applications that demand robust recognition in non-idealized circumstances, motion
+history images will fail and are not an appropriate choice. This is because the recognition and
+prediction portion of the algorithm depends on the subject performing the action in exactly the
+trained manner. The authors of [4] have this same contention. If I train a classifier on the action
+‘Boxing’ which straight throws, and then the subject proceeds to perform a couple of bouncy
+side jabs followed by an uppercut, my classifier will fail. If I train a classifier on ‘Handwaving’
+and then my subject waves with just one hand, my classifier will fail.</p>
+
+<p>Because of the nature of the classification, you cannot choose to just increase your training set to include more and more examples of the varieties of activities without sacrificing accuracy. As you add new actions, or new examples of old actions, you being to blur the lines between the actions and reduce overall accuracy.</p>
+
+<p>Current state-of-the-art classifiers use more advanced machine learning techniques such as neural networks to generate more accurate and robust results. Activity recognition using motion history images relies on Hu moments. Hu moments may be robust to scale and rotation (rotation invariance is not discussed in this report) but foundationally they are shape descriptors. If the shape of the MHI is not calculated correctly (bad lighting conditions, subject deviating from strict training motions…) then the Hu moments will be meaningless.</p>
+
+<p>It is recommended that future work in activity recognition and classification rely on more
+advanced approaches – either using machine learning techniques to more robustly identify an action or on additional pre-processing techniques such as particle filtering as discussed above.</p>
 
 <h3 id="project-reports">Project Reports</h3>
-<p>See the links below for all three project reports.</p>
+<h3 id="final-presentation-video">Final Presentation (video)</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JT_RFQzDMPY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 
-<p><a href="/downloads/kbai/Project1_Micatka.pdf" target="_blank">Project 1</a></p>
+<p>See the links below for project reports.</p>
 
-<p><a href="/downloads/kbai/Project2_Micatka.pdf" target="_blank">Project 2</a></p>
+<p><a href="/downloads/mhi/Activity Recognition using Motion History Images.pdf" target="_blank">Activity Recognition using Motion History Images</a></p>
 
-<p><a href="/downloads/kbai/Project3_Micatka.pdf" target="_blank">Project 3</a></p>
+<p><a href="/downloads/mhi/presentation.pdf" target="_blank">Powerpoint Presentation</a></p>
+
+<h4 id="project-references">Project References</h4>
+<p>[1] I. Laptev and B. Caputo, “Recognition of Human Actions,” 18 January 2005. [Online].</p>
+
+<p>[2] Open Source Computer Vision, 22 December 2017. [Online]. Available: https://docs.opencv.org/3.4.0/d7/d4d/tutorial_py_thresholding.html.</p>
+
+<p>[3] M.-K. Hu, “Visual Pattern Recognition by Moment Invariants,” IRE Transactions on Information Theory, pp.179-187, 1962.</p>
+
+<p>[4] G. Gerig, “Lecture: Shape Analysis Moment Invariants,” University of Utah, 2010.</p>
+
+<p>[5] G. V. A. G. V. M. B. T. O. G. M. B. P. P. R. W. V. D. J. V. A. P. D. C. M. B. M. P. Fabian Pedregosa, “Scikit-learn: Machine Learning in Python,” Journal of Machine Learning Research, vol. 12, pp. 2825-2830, 2011.</p>
+
+<p>[6] T. L. Ivan Laptev, “Local Descriptors for Spatio-Temporal Recognition,” in SCVMA, Prague, 2004.</p>
+
+<p>[7] A. F. Bobick and J. W. Davis, “An Appearance-based Representation of Action,” in International Conference on Pattern Recognition, 1996.</p>
 
         
       </section>
@@ -380,23 +474,15 @@ Basic Problem C-07 (<strong>Figure 2</strong>) will be used as an example. Initi
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/tags/#computer-vision" class="page__taxonomy-item" rel="tag">Computer Vision</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/#omscs" class="page__taxonomy-item" rel="tag">OMSCS</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/#projects" class="page__taxonomy-item" rel="tag">Projects</a>
     
     </span>
@@ -415,11 +501,12 @@ Basic Problem C-07 (<strong>Figure 2</strong>) will be used as an example. Initi
       
   <nav class="pagination">
     
-      <a href="/kbai/" class="pagination--pager" title="An AI Agent for Solving Raven’s Progressive Matrices
+      <a href="/boggle/" class="pagination--pager" title="Building an Android App
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/set/" class="pagination--pager" title="Solving the Game of SET: Part I
+">Next</a>
     
   </nav>
 
@@ -442,18 +529,29 @@ Basic Problem C-07 (<strong>Figure 2</strong>) will be used as an example. Initi
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
       <div class="archive__item-teaser">
-        <img src="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg" alt="">
+        <img src="https://drive.google.com/uc?id=1p3EsdC_fDbeRi10jBEZr24UFZcrDkWDD" alt="">
       </div>
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/kbai/" rel="permalink">An AI Agent for Solving Raven’s Progressive Matrices
+        <a href="/ptarmigan/" rel="permalink">North Cascades - Ptarmigan Loop
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
+
+
+      <p class="archive__item-excerpt" itemprop="description">High peaks and bushwacking.
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -465,53 +563,100 @@ Basic Problem C-07 (<strong>Figure 2</strong>) will be used as an example. Initi
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+      <div class="archive__item-teaser">
+        <img src="/assets/images/rainier/thumbnail.jpg" alt="">
+      </div>
+    
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/jekyll/update/welcome-to-jekyll/" rel="permalink">Welcome to Jekyll!
+        <a href="/rainier/" rel="permalink">Skiing Camp Muir
 </a>
       
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
-  </article>
-</div>
-
         
-          
 
 
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/blog/welcome-to-jekyll/" rel="permalink">Welcome to Jekyll!
-</a>
-      
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
-  </article>
-</div>
-
-        
-          
 
 
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/splash-page/" rel="permalink">Splash Page
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">Bacon ipsum dolor sit amet salami ham hock ham, hamburger corned beef short ribs kielbasa biltong t-bone drumstick tri-tip tail sirloin pork chop.
+      <p class="archive__item-excerpt" itemprop="description">Ross shreds, Marc…manages.
 </p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/2020/thumbnail.jpg" alt="">
+      </div>
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/2020_travel/" rel="permalink">2020 - A Retrospective
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Life and adventures during a global pandemic
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/stabilization/thumbnail.png" alt="">
+      </div>
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/stabilization/" rel="permalink">Auto-Directed L1 Video Stabilization
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6475 Computational Photography - Fall 2020
+</p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -556,19 +701,22 @@ Basic Problem C-07 (<strong>Figure 2</strong>) will be used as an example. Initi
           <li><a href="https://github.com/marc-micatka" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
         
       
+        
+          <li><a href="marc.micatka@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
     
 
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2022 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
@@ -585,3 +733,13 @@ Basic Problem C-07 (<strong>Figure 2</strong>) will be used as an example. Initi
 
   </body>
 </html>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

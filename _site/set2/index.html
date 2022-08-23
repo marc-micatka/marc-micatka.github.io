@@ -1,0 +1,710 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Solving the Game of SET: Part II - Refreshingly Dangerous</title>
+<meta name="description" content="A slight improvement.">
+
+
+  <meta name="author" content="Marc Micatka">
+  
+  <meta property="article:author" content="Marc Micatka">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Refreshingly Dangerous">
+<meta property="og:title" content="Solving the Game of SET: Part II">
+<meta property="og:url" content="http://localhost:4000/set2/">
+
+
+  <meta property="og:description" content="A slight improvement.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/set/set_thumbnail2.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-04-17T00:00:00-07:00">
+
+
+
+  <meta property="article:modified_time" content="2020-04-14T00:00:00-07:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/set2/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Refreshingly Dangerous
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/travel/">Travel</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/photography/">Photography</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts/">All Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/headshot.jpeg" alt="Marc Micatka" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Marc Micatka</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Occasional computer scientist, mechanical engineer, and traveler.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seattle, WA</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="marcmicatka.com" itemprop="url">
+            <i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span>
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="mailto:marc.micatka@gmail.com">
+            <meta itemprop="email" content="marc.micatka@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/marcmicatka" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/marc-micatka" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Solving the Game of SET: Part II">
+    <meta itemprop="description" content="A slight improvement.">
+    <meta itemprop="datePublished" content="2020-04-17T00:00:00-07:00">
+    <meta itemprop="dateModified" content="2020-04-14T00:00:00-07:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Solving the Game of SET: Part II
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h4 id="recap---part-i">Recap - Part I</h4>
+<p>Be sure to read through <a href="/set/" target="_blank">Part I</a> for some background on my initial solution.
+We left off with a really amazing program that can solve a game of set on a static image.</p>
+
+<p>Unfortunately, when I ran the solution on a live video, you can see a few flaws in my solution:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3HQy8-wSRLc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<h4 id="issues-to-address">Issues to Address</h4>
+
+<p>Here’s what I’ll try and fix in Part II:</p>
+<ol>
+  <li>Fix solution jitters in live stream
+    <ul>
+      <li>Applying the static image solution to a live sream naively results in a ton of jumping around because the solution is not sorted based on location.</li>
+    </ul>
+  </li>
+  <li>More robust fill detection
+    <ul>
+      <li>Use the corner of the card as a reference value to determine what zero-fill looks like.</li>
+    </ul>
+  </li>
+  <li>Apply solution when change is detected
+    <ul>
+      <li>This one might not be important, but it more accurately reflects on humans perceive the game and recognize change. We’ll try to only apply our solution when the board has changed, not on every single frame. This should also help eliminate solution jitters.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="1-fixing-card-locations">1. Fixing Card Locations</h4>
+<p>The first step in fixing these jitters are to sort the card array by <em>(x,y)</em> location. Currently the array is left un-sorted (or rather it’s sorted by size of the card) which leaves the final sort pretty random. This doesn’t affect the solution technically, because the game isn’t dependent on card location. On still images, it doesn’t matter but it does affect how the solution gets displayed in a live-feed. Videos are always trickier than still images…</p>
+
+<p>First, we fix the card location like so:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_cards</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">card_array</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">card_parameters</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">card</span><span class="p">.</span><span class="n">number</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">fill</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">color</span><span class="p">])</span>
+        <span class="n">info</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">card</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">number</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">fill</span><span class="p">,</span> <span class="n">card</span><span class="p">.</span><span class="n">color</span><span class="p">])</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+    <span class="n">iidx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">info</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">info</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">card_info</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+</code></pre></div></div>
+<p>This method is pretty arbitrary but it works really well and is very simple.</p>
+
+<figure class="align-right">
+    <a href="/assets/images/set/hash_or_empty.jpg"><img src="/assets/images/set/hash_or_empty.jpg" /></a>
+    <figcaption>We compare the two patches outlined in black.</figcaption>
+</figure>
+
+<h4 id="2-more-robust-fill-detection">2. More Robust Fill Detection</h4>
+<p>The next issue I found was my method for determining symbol fill wasn’t as great or robust as I thought. Some of the jumping around in the solution is because my analysis of the cards is jumping around. My original method for fill analysis was to run an edge detector on the fill and if we found edges then we knew it was hash filled.
+Unfortunately, this doesn’t work well or robustly with low-quality webcam images because the resolution isn’t fine enough to distinguish between the hash lines. I found that my original method of comparing the euclidean distance between a patch at the center of the symbol and a patch in the corner of the card worked much better.
+As you can tell, the green is particularily tricky because the camera gives things quite a bit of green tinge already.</p>
+
+<p>I’ve found a 8x8 patch works well - here’s a snippet:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_fill</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">normalize_patch</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">warp</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">fill_patch</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">symbol_img</span><span class="p">[</span><span class="n">h_min</span><span class="p">:</span><span class="n">h_max</span><span class="p">,</span> <span class="n">w_min</span><span class="p">:</span><span class="n">w_max</span><span class="p">]</span>
+
+    <span class="n">normal_mean</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">normalize_patch</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">patch_mean</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">fill_patch</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">mse</span><span class="p">(</span><span class="n">normal_mean</span><span class="p">,</span> <span class="n">patch_mean</span><span class="p">)</span>
+    <span class="n">sym_edge</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">Canny</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">fill_patch</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="n">fill_cnt</span> <span class="o">=</span> <span class="p">(</span><span class="n">sym_edge</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">).</span><span class="nb">sum</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="p">.</span><span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">fill_cnt</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">edged</span> <span class="o">=</span> <span class="n">sym_edge</span>
+
+    <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">fill_str</span> <span class="o">=</span> <span class="s">'Solid'</span>
+
+    <span class="k">elif</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">distance</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">fill_str</span> <span class="o">=</span> <span class="s">'Empty'</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">fill_str</span> <span class="o">=</span> <span class="s">'Hash'</span>
+</code></pre></div></div>
+<h4 id="3-robust-to-live-video-streams">3. Robust to Live Video Streams</h4>
+<p>The final things I did to create a more robust solution is specific to video feeds.
+We can eliminate a lot of noise in our feed by averaging frames in our feed using cv2.accumlateWeighted().</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cv2</span><span class="p">.</span><span class="n">accumulateWeighted</span><span class="p">(</span><span class="n">next_img</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="p">.</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">convertScaleAbs</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+<p>I also check for motion in the frame by subtracting the images in subsequent frames and thresholding the result. If the frames are identical, the result will be a purely black frame. If there are any differences, we will see white pixels. We can check for motion easily just by adding up our white pixels and setting a threshold value. In addition, we’ll maintain a buffer so we need to see motion for <em>n</em> frames in a row. We can use the <em>pop</em> method of <em>python</em> lists to make this easy.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">diff</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">old_frame</span><span class="p">)</span>
+<span class="n">thresh_diff</span> <span class="o">=</span> <span class="n">threshold_img</span><span class="p">(</span><span class="n">bw_filter</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span>
+<span class="n">thresh_buffer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">thresh_diff</span><span class="p">.</span><span class="nb">sum</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">thresh_buffer</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">buffer_size</span><span class="p">:</span>
+    <span class="n">thresh_buffer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">thresh_diff</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">thresh_buffer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">thresh_diff</span><span class="p">)</span>
+    <span class="n">thresh_buffer</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">thresh_buffer</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">5e-4</span><span class="p">):</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">motion</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">scene_processed</span><span class="p">:</span>
+    <span class="n">scene</span> <span class="o">=</span> <span class="n">ProcessScene</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">scene</span><span class="p">.</span><span class="n">process</span><span class="p">()</span>
+    <span class="n">game</span> <span class="o">=</span> <span class="n">PlayGame</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="p">[</span><span class="n">scene</span><span class="p">])</span>
+    <span class="n">game</span><span class="p">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">scene_res</span> <span class="o">=</span> <span class="n">game</span><span class="p">.</span><span class="n">draw_solution</span><span class="p">()</span>
+    <span class="n">scene_processed</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">motion</span> <span class="ow">and</span> <span class="n">scene_processed</span><span class="p">:</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="s">"Card Count: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">scene</span><span class="p">.</span><span class="n">card_count</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="s">"Motion Detected..."</span>
+    <span class="n">scene_processed</span> <span class="o">=</span> <span class="bp">False</span>   
+</code></pre></div></div>
+
+<p>This helps keep the scene from being processed until something changes. It also locks our view in place - so the solution doesn’t jump around.</p>
+
+<p>Here’s an entire deck being played through:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RRehjuOSfcw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>Overall it works really well. The hardest part is translating the camera image to the the cards that I’m supposed to pick up (given that my video is flipped!). It’s not the easiest to watch because the cards just disappear as the screen doesn’t update when there is too much motion. As you can see in the very first set, the algo still has some trouble with hashed cards, I might have to figure out how to make that a bit more robust.</p>
+
+<p>The code can be found <a href="https://github.com/marc-micatka/Set-Solver" target="_blank">here</a></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#computer-vision" class="page__taxonomy-item" rel="tag">Computer Vision</a><span class="sep">, </span>
+    
+      <a href="/tags/#projects" class="page__taxonomy-item" rel="tag">Projects</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-04-14">April 14, 2020</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tracking/" class="pagination--pager" title="Particle Filters and Mitt Romney
+">Previous</a>
+    
+    
+      <a href="/omscs/" class="pagination--pager" title="OMSCS Program Overview
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://drive.google.com/uc?id=1p3EsdC_fDbeRi10jBEZr24UFZcrDkWDD" alt="">
+      </div>
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/ptarmigan/" rel="permalink">North Cascades - Ptarmigan Loop
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">High peaks and bushwacking.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/rainier/thumbnail.jpg" alt="">
+      </div>
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/rainier/" rel="permalink">Skiing Camp Muir
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Ross shreds, Marc…manages.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/2020/thumbnail.jpg" alt="">
+      </div>
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/2020_travel/" rel="permalink">2020 - A Retrospective
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Life and adventures during a global pandemic
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/stabilization/thumbnail.png" alt="">
+      </div>
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/stabilization/" rel="permalink">Auto-Directed L1 Video Stabilization
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6475 Computational Photography - Fall 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://linkedin.com/marcmicatka" rel="nofollow noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://github.com/marc-micatka" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="marc.micatka@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+    
+
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

@@ -10,10 +10,11 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Posts by Tag - Refreshingly Dangerous</title>
-<meta name="description" content="Projects. Travel. ">
+<meta name="description" content="Projects. Travel.">
 
 
   <meta name="author" content="Marc Micatka">
+  
 
 
 <meta property="og:type" content="website">
@@ -23,7 +24,7 @@
 <meta property="og:url" content="http://localhost:4000/tags/">
 
 
-  <meta property="og:description" content="Projects. Travel. ">
+  <meta property="og:description" content="Projects. Travel.">
 
 
 
@@ -57,10 +58,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,27 +75,23 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
 
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
 
 <!-- end custom head snippets -->
 
@@ -99,7 +99,6 @@
 
   <body class="layout--tags">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -123,20 +122,20 @@
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/posts/">Posts</a>
-            </li><li class="masthead__menu-item">
               <a href="/travel/">Travel</a>
             </li><li class="masthead__menu-item">
               <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/photography/">Photography</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts/">All Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/about/">About</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
           <span class="visually-hidden">Toggle search</span>
-          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
-            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
-          </svg>
+          <i class="fas fa-search"></i>
         </button>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -177,7 +176,7 @@
     
     
       <div class="author__bio" itemprop="description">
-        <p>Projects.Travel.</p>
+        <p>Occasional computer scientist, mechanical engineer, and traveler.</p>
 
       </div>
     
@@ -186,7 +185,42 @@
   <div class="author__urls-wrapper">
     <ul class="author__urls social-icons">
       
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seattle, WA</span>
+        </li>
+      
 
+      
+
+      
+        <li>
+          <a href="marcmicatka.com" itemprop="url">
+            <i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span>
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="mailto:marc.micatka@gmail.com">
+            <meta itemprop="email" content="marc.micatka@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/marcmicatka" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
+          </a>
+        </li>
       
 
       
@@ -198,17 +232,11 @@
       
 
       
-
-      
-
-      
-
-      
-
-      
-
-      
-
+        <li>
+          <a href="https://github.com/marc-micatka" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
       
 
       
@@ -255,6 +283,7 @@
 
   <div class="archive">
     
+         
       <h1 id="page-title" class="page__title">Posts by Tag</h1>
     
     
@@ -265,102 +294,6 @@
 
 <ul class="taxonomy__index">
   
-    
-      
-        <li>
-          <a href="#post-formats">
-            <strong>Post Formats</strong> <span class="taxonomy__count">5</span>
-          </a>
-        </li>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
     
       
     
@@ -377,27 +310,59 @@
       
         <li>
           <a href="#projects">
-            <strong>Projects</strong> <span class="taxonomy__count">2</span>
+            <strong>Projects</strong> <span class="taxonomy__count">12</span>
+          </a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+        <li>
+          <a href="#trip-reports">
+            <strong>Trip Reports</strong> <span class="taxonomy__count">11</span>
           </a>
         </li>
       
     
       
         <li>
-          <a href="#omscs">
-            <strong>OMSCS</strong> <span class="taxonomy__count">2</span>
+          <a href="#travel">
+            <strong>Travel</strong> <span class="taxonomy__count">11</span>
           </a>
         </li>
-      
-    
       
     
       
         <li>
-          <a href="#computer-vision">
-            <strong>Computer Vision</strong> <span class="taxonomy__count">2</span>
+          <a href="#photos">
+            <strong>Photos</strong> <span class="taxonomy__count">11</span>
           </a>
         </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
       
     
   
@@ -405,67 +370,199 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
         <li>
-          <a href="#readability">
-            <strong>readability</strong> <span class="taxonomy__count">1</span>
+          <a href="#omscs">
+            <strong>OMSCS</strong> <span class="taxonomy__count">10</span>
           </a>
         </li>
       
     
       
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
         <li>
-          <a href="#standard">
-            <strong>standard</strong> <span class="taxonomy__count">1</span>
+          <a href="#computer-vision">
+            <strong>Computer Vision</strong> <span class="taxonomy__count">8</span>
           </a>
         </li>
       
     
       
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
         <li>
-          <a href="#chat">
-            <strong>chat</strong> <span class="taxonomy__count">1</span>
+          <a href="#backpacking">
+            <strong>Backpacking</strong> <span class="taxonomy__count">7</span>
           </a>
         </li>
       
     
       
-        <li>
-          <a href="#notice">
-            <strong>notice</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
+    
       
     
       
-        <li>
-          <a href="#quote">
-            <strong>quote</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
+    
       
     
       
-        <li>
-          <a href="#link">
-            <strong>link</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
+    
       
     
       
-        <li>
-          <a href="#jekyll">
-            <strong>Jekyll</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
+    
+  
+    
       
     
       
-        <li>
-          <a href="#update">
-            <strong>update</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
       
     
       
@@ -475,225 +572,85 @@
       
         <li>
           <a href="#ai">
-            <strong>AI</strong> <span class="taxonomy__count">1</span>
+            <strong>AI</strong> <span class="taxonomy__count">3</span>
           </a>
         </li>
       
     
       
     
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="#australia">
+            <strong>Australia</strong> <span class="taxonomy__count">1</span>
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a href="#new-zealand">
+            <strong>New Zealand</strong> <span class="taxonomy__count">1</span>
+          </a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="#android">
+            <strong>Android</strong> <span class="taxonomy__count">1</span>
+          </a>
+        </li>
+      
+    
   
 </ul>
 
 
-  
-    
-      <section id="post-formats" class="taxonomy__section">
-        <h2 class="archive__subtitle">Post Formats</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://github.com">Post: Link
-</a> <a href="/blog/post-link/" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">This theme supports link posts, made famous by John Gruber. To use, just add link: http://url-you-want-linked to the post’s YAML front matter and you’re done.
-
-</p>
-  </article>
-</div>
-
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/blog/post-quote/" rel="permalink">Post: Quote
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-  Only one thing is impossible for God: To find any sense in any copyright law on the planet.
-
-
-
-  Mark Twain
-
-</p>
-  </article>
-</div>
-
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/blog/post-notice/" rel="permalink">Post: Notice
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">A notice displays information that explains nearby content. Often used to call attention to a particular detail.
-
-</p>
-  </article>
-</div>
-
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/blog/post-chat/" rel="permalink">Post: Chat
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">Abbott: Strange as it may seem, they give ball players nowadays very peculiar names.
-
-</p>
-  </article>
-</div>
-
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/blog/post-modified/" rel="permalink">Post: Modified Date
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">This post has been updated and should show a modified date if used in a layout.
-
-</p>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
   
     
   
@@ -719,15 +676,26 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/mhi/" rel="permalink">Using Motion History Images as a Horrible Way to Identify Activities
+        <a href="/stabilization/" rel="permalink">Auto-Directed L1 Video Stabilization
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6475 Computational Photography - Fall 2020
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -739,15 +707,336 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/seamcarving/" rel="permalink">Content Aware Image Resizing
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6475 Computational Photography - Fall 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/indicators/" rel="permalink">Stock Indicators for Trading
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7647 Machine Learning for Trading - Summer 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/autotrader/" rel="permalink">Trading with Machine Learning
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7647 Machine Learning for Trading - Summer 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/omscs/" rel="permalink">OMSCS Program Overview
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Marc’s path to a CS Master’s
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/set2/" rel="permalink">Solving the Game of SET: Part II
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">A slight improvement.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/tracking/" rel="permalink">Particle Filters and Mitt Romney
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/set/" rel="permalink">Solving the Game of SET: Part I
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">…or how to finally beat your wife in this dumb card game.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/mhi/" rel="permalink">Motion History Images for Activity Identification
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/boggle/" rel="permalink">Building an Android App
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Boggle, please don’t sue me.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/ar/" rel="permalink">OpenCV and Augmented Reality
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
       
         <a href="/kbai/" rel="permalink">An AI Agent for Solving Raven’s Progressive Matrices
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -755,6 +1044,1101 @@
         </div>
         <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
       </section>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+      <section id="trip-reports" class="taxonomy__section">
+        <h2 class="archive__subtitle">Trip Reports</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/ptarmigan/" rel="permalink">North Cascades - Ptarmigan Loop
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">High peaks and bushwacking.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/rainier/" rel="permalink">Skiing Camp Muir
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Ross shreds, Marc…manages.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/2020_travel/" rel="permalink">2020 - A Retrospective
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Life and adventures during a global pandemic
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds3/" rel="permalink">Wind River Range - 2020 (Part 1)
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Back for More. Again. Part 1.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/washington/" rel="permalink">Summer in Seattle - 2019
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Adventures in the Northwest
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/oceania2/" rel="permalink">Oceania - Part II
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">New Zealand - October and November, 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/oceania/" rel="permalink">Oceania - Part I
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Australia - October and November, 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/laos/" rel="permalink">Laos, Briefly
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">An accident, an evacuation, and some good samaritans.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/nepal/" rel="permalink">Everest Base Camp - 2018
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Missing flights and hiking to Everest Base Camp.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds2/" rel="permalink">Wind River Range - 2016
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Back for more.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds/" rel="permalink">Wind River Range - 2015
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Backpacking in Wyoming
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+      </section>
+    
+  
+    
+      <section id="travel" class="taxonomy__section">
+        <h2 class="archive__subtitle">Travel</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/ptarmigan/" rel="permalink">North Cascades - Ptarmigan Loop
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">High peaks and bushwacking.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/rainier/" rel="permalink">Skiing Camp Muir
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Ross shreds, Marc…manages.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/2020_travel/" rel="permalink">2020 - A Retrospective
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Life and adventures during a global pandemic
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds3/" rel="permalink">Wind River Range - 2020 (Part 1)
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Back for More. Again. Part 1.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/washington/" rel="permalink">Summer in Seattle - 2019
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Adventures in the Northwest
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/oceania2/" rel="permalink">Oceania - Part II
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">New Zealand - October and November, 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/oceania/" rel="permalink">Oceania - Part I
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Australia - October and November, 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/laos/" rel="permalink">Laos, Briefly
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">An accident, an evacuation, and some good samaritans.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/nepal/" rel="permalink">Everest Base Camp - 2018
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Missing flights and hiking to Everest Base Camp.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds2/" rel="permalink">Wind River Range - 2016
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Back for more.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds/" rel="permalink">Wind River Range - 2015
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Backpacking in Wyoming
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+      </section>
+    
+  
+    
+      <section id="photos" class="taxonomy__section">
+        <h2 class="archive__subtitle">Photos</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/ptarmigan/" rel="permalink">North Cascades - Ptarmigan Loop
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">High peaks and bushwacking.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/rainier/" rel="permalink">Skiing Camp Muir
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Ross shreds, Marc…manages.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/2020_travel/" rel="permalink">2020 - A Retrospective
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Life and adventures during a global pandemic
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds3/" rel="permalink">Wind River Range - 2020 (Part 1)
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Back for More. Again. Part 1.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/washington/" rel="permalink">Summer in Seattle - 2019
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Adventures in the Northwest
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/oceania2/" rel="permalink">Oceania - Part II
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">New Zealand - October and November, 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/oceania/" rel="permalink">Oceania - Part I
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Australia - October and November, 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/laos/" rel="permalink">Laos, Briefly
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">An accident, an evacuation, and some good samaritans.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/nepal/" rel="permalink">Everest Base Camp - 2018
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Missing flights and hiking to Everest Base Camp.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds2/" rel="permalink">Wind River Range - 2016
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Back for more.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds/" rel="permalink">Wind River Range - 2015
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Backpacking in Wyoming
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+      </section>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
     
   
     
@@ -769,15 +2153,26 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/mhi/" rel="permalink">Using Motion History Images as a Horrible Way to Identify Activities
+        <a href="/stabilization/" rel="permalink">Auto-Directed L1 Video Stabilization
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6475 Computational Photography - Fall 2020
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -789,15 +2184,274 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/seamcarving/" rel="permalink">Content Aware Image Resizing
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6475 Computational Photography - Fall 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/indicators/" rel="permalink">Stock Indicators for Trading
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7647 Machine Learning for Trading - Summer 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/autotrader/" rel="permalink">Trading with Machine Learning
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7647 Machine Learning for Trading - Summer 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/omscs/" rel="permalink">OMSCS Program Overview
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Marc’s path to a CS Master’s
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/tracking/" rel="permalink">Particle Filters and Mitt Romney
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/mhi/" rel="permalink">Motion History Images for Activity Identification
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/boggle/" rel="permalink">Building an Android App
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Boggle, please don’t sue me.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/ar/" rel="permalink">OpenCV and Augmented Reality
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
       
         <a href="/kbai/" rel="permalink">An AI Agent for Solving Raven’s Progressive Matrices
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -805,6 +2459,54 @@
         </div>
         <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
       </section>
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
     
   
     
@@ -821,15 +2523,26 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/mhi/" rel="permalink">Using Motion History Images as a Horrible Way to Identify Activities
+        <a href="/stabilization/" rel="permalink">Auto-Directed L1 Video Stabilization
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6475 Computational Photography - Fall 2020
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -841,15 +2554,212 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/seamcarving/" rel="permalink">Content Aware Image Resizing
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6475 Computational Photography - Fall 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/set2/" rel="permalink">Solving the Game of SET: Part II
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">A slight improvement.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/tracking/" rel="permalink">Particle Filters and Mitt Romney
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/set/" rel="permalink">Solving the Game of SET: Part I
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">…or how to finally beat your wife in this dumb card game.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/mhi/" rel="permalink">Motion History Images for Activity Identification
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/ar/" rel="permalink">OpenCV and Augmented Reality
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 6476 Computer Vision - Spring 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
       
         <a href="/kbai/" rel="permalink">An AI Agent for Solving Raven’s Progressive Matrices
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -859,13 +2769,19 @@
       </section>
     
   
+    
+  
 
   
     
   
     
-      <section id="readability" class="taxonomy__section">
-        <h2 class="archive__subtitle">readability</h2>
+  
+    
+  
+    
+      <section id="backpacking" class="taxonomy__section">
+        <h2 class="archive__subtitle">Backpacking</h2>
         <div class="entries-list">
           
             
@@ -875,29 +2791,29 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/blog/post-modified/" rel="permalink">Post: Modified Date
+        <a href="/ptarmigan/" rel="permalink">North Cascades - Ptarmigan Loop
 </a>
       
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">This post has been updated and should show a modified date if used in a layout.
+        
 
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">High peaks and bushwacking.
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="standard" class="taxonomy__section">
-        <h2 class="archive__subtitle">standard</h2>
-        <div class="entries-list">
           
             
 
@@ -906,29 +2822,29 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/blog/post-modified/" rel="permalink">Post: Modified Date
+        <a href="/rainier/" rel="permalink">Skiing Camp Muir
 </a>
       
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">This post has been updated and should show a modified date if used in a layout.
+        
 
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Ross shreds, Marc…manages.
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="chat" class="taxonomy__section">
-        <h2 class="archive__subtitle">chat</h2>
-        <div class="entries-list">
           
             
 
@@ -937,29 +2853,29 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/blog/post-chat/" rel="permalink">Post: Chat
+        <a href="/winds3/" rel="permalink">Wind River Range - 2020 (Part 1)
 </a>
       
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">Abbott: Strange as it may seem, they give ball players nowadays very peculiar names.
+        
 
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Back for More. Again. Part 1.
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="notice" class="taxonomy__section">
-        <h2 class="archive__subtitle">notice</h2>
-        <div class="entries-list">
           
             
 
@@ -968,29 +2884,29 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/blog/post-notice/" rel="permalink">Post: Notice
+        <a href="/washington/" rel="permalink">Summer in Seattle - 2019
 </a>
       
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">A notice displays information that explains nearby content. Often used to call attention to a particular detail.
+        
 
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Adventures in the Northwest
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="quote" class="taxonomy__section">
-        <h2 class="archive__subtitle">quote</h2>
-        <div class="entries-list">
           
             
 
@@ -999,34 +2915,29 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/blog/post-quote/" rel="permalink">Post: Quote
+        <a href="/nepal/" rel="permalink">Everest Base Camp - 2018
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-  Only one thing is impossible for God: To find any sense in any copyright law on the planet.
 
 
-
-  Mark Twain
-
+      <p class="archive__item-excerpt" itemprop="description">Missing flights and hiking to Everest Base Camp.
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="link" class="taxonomy__section">
-        <h2 class="archive__subtitle">link</h2>
-        <div class="entries-list">
           
             
 
@@ -1035,45 +2946,57 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://github.com">Post: Link
-</a> <a href="/blog/post-link/" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">This theme supports link posts, made famous by John Gruber. To use, just add link: http://url-you-want-linked to the post’s YAML front matter and you’re done.
-
-</p>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="jekyll" class="taxonomy__section">
-        <h2 class="archive__subtitle">Jekyll</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title" itemprop="headline">
+    
       
-        <a href="/blog/welcome-to-jekyll/" rel="permalink">Welcome to Jekyll!
+        <a href="/winds2/" rel="permalink">Wind River Range - 2016
 </a>
       
+        
+
+
     </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Back for more.
+</p>
+      
+
     
-    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/winds/" rel="permalink">Wind River Range - 2015
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Backpacking in Wyoming
+</p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -1084,32 +3007,103 @@
     
   
     
-      <section id="update" class="taxonomy__section">
-        <h2 class="archive__subtitle">update</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+  
     
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/blog/welcome-to-jekyll/" rel="permalink">Welcome to Jekyll!
-</a>
-      
-    </h2>
+  
     
-    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
-  </article>
-</div>
+  
+    
+  
+    
+  
+    
+  
+    
+  
 
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
     
   
     
@@ -1128,15 +3122,88 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    
     <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/indicators/" rel="permalink">Stock Indicators for Trading
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7647 Machine Learning for Trading - Summer 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/autotrader/" rel="permalink">Trading with Machine Learning
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7647 Machine Learning for Trading - Summer 2020
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
       
         <a href="/kbai/" rel="permalink">An AI Agent for Solving Raven’s Progressive Matrices
 </a>
       
+        
+
+
     </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
+
+
+      <p class="archive__item-excerpt" itemprop="description">OMSCS 7637 KBAI - Fall 2019
 </p>
+      
+
+    
+
+    
   </article>
 </div>
 
@@ -1148,10 +3215,178 @@
   
     
   
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <section id="australia" class="taxonomy__section">
+        <h2 class="archive__subtitle">Australia</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/oceania/" rel="permalink">Oceania - Part I
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Australia - October and November, 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+      </section>
+    
+  
+    
+      <section id="new-zealand" class="taxonomy__section">
+        <h2 class="archive__subtitle">New Zealand</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/oceania2/" rel="permalink">Oceania - Part II
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">New Zealand - October and November, 2019
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+      </section>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <section id="android" class="taxonomy__section">
+        <h2 class="archive__subtitle">Android</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    <h2 class="archive__item-title" itemprop="headline">
+    
+      
+        <a href="/boggle/" rel="permalink">Building an Android App
+</a>
+      
+        
+
+
+    </h2>
+
+
+      <p class="archive__item-excerpt" itemprop="description">Boggle, please don’t sue me.
+</p>
+      
+
+    
+
+    
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+      </section>
+    
+  
 
 
   </div>
 </div>
+
     </div>
 
     
@@ -1186,19 +3421,22 @@
           <li><a href="https://github.com/marc-micatka" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
         
       
+        
+          <li><a href="marc.micatka@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
     
 
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2022 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
@@ -1215,3 +3453,13 @@
 
   </body>
 </html>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

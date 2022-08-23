@@ -10,10 +10,11 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Marc Micatka - Refreshingly Dangerous</title>
-<meta name="description" content="Some projects. Some travel. ">
+<meta name="description" content="Some projects. Some travel. Occasional Danger.">
 
 
   <meta name="author" content="Marc Micatka">
+  
 
 
 <meta property="og:type" content="website">
@@ -23,7 +24,7 @@
 <meta property="og:url" content="http://localhost:4000/">
 
 
-  <meta property="og:description" content="Some projects. Some travel. ">
+  <meta property="og:description" content="Some projects. Some travel. Occasional Danger.">
 
 
 
@@ -59,10 +60,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,27 +77,23 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
 
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
 
 <!-- end custom head snippets -->
 
@@ -101,7 +101,6 @@
 
   <body class="layout--splash">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -125,20 +124,20 @@
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/posts/">Posts</a>
-            </li><li class="masthead__menu-item">
               <a href="/travel/">Travel</a>
             </li><li class="masthead__menu-item">
               <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/photography/">Photography</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts/">All Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/about/">About</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
           <span class="visually-hidden">Toggle search</span>
-          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
-            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
-          </svg>
+          <i class="fas fa-search"></i>
         </button>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -174,10 +173,12 @@
         
       </h1>
       
-        <p class="page__lead">Some projects. Some travel.
+        <p class="page__lead">Some projects. Some travel. Occasional Danger.
 </p>
       
       
+
+
       
       
     </div>
@@ -190,7 +191,7 @@
 <div id="main" role="main">
   <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Marc Micatka">
-    <meta itemprop="description" content="Some projects. Some travel.">
+    <meta itemprop="description" content="Some projects. Some travel. Occasional Danger.">
     
     
 
@@ -209,25 +210,25 @@
       <div class="archive__item">
         
           <div class="archive__item-teaser">
-            <img src="/assets/images/nz_front_page.jpg" alt="Marc in NZ" />
+            <img src="/assets/images/front_page/winds3.jpg" alt="Approaching Gannett Peak" />
             
           </div>
         
 
         <div class="archive__item-body">
           
-            <h2 class="archive__item-title">Oceania Trip Report</h2>
+            <h2 class="archive__item-title">Wind River Range</h2>
           
 
           
             <div class="archive__item-excerpt">
-              <p>A brief summary of our trip through Australia and New Zealand.</p>
+              <p>A climbing trip to Wyoming.</p>
 
             </div>
           
 
           
-            <p><a href="/about" class="btn btn--primary">Read More</a></p>
+            <p><a href="/winds3" class="btn btn--primary">Read More</a></p>
           
         </div>
       </div>
@@ -237,25 +238,25 @@
       <div class="archive__item">
         
           <div class="archive__item-teaser">
-            <img src="/assets/images/unsplash-gallery-image-2-th.jpg" alt="placeholder image 2" />
+            <img src="/assets/images/seamcarving/thumbnail.png" alt="app play game screen" />
             
           </div>
         
 
         <div class="archive__item-body">
           
-            <h2 class="archive__item-title">Placeholder 2</h2>
+            <h2 class="archive__item-title">Content Aware Image Resizing</h2>
           
 
           
             <div class="archive__item-excerpt">
-              <p>This is some sample content that goes here with <strong>Markdown</strong> formatting.</p>
+              <p>Reducing image size while preserving image content.</p>
 
             </div>
           
 
           
-            <p><a href="/#test-link" class="btn btn--primary">Read More</a></p>
+            <p><a href="/seamcarving" class="btn btn--primary">Read More</a></p>
           
         </div>
       </div>
@@ -265,23 +266,25 @@
       <div class="archive__item">
         
           <div class="archive__item-teaser">
-            <img src="/assets/images/unsplash-gallery-image-3-th.jpg" alt="" />
+            <img src="/assets/images/front_page/draw_symbol.png" alt="" />
             
           </div>
         
 
         <div class="archive__item-body">
           
-            <h2 class="archive__item-title">Placeholder 3</h2>
+            <h2 class="archive__item-title">Solving SET: Part II</h2>
           
 
           
             <div class="archive__item-excerpt">
-              <p>This is some sample content that goes here with <strong>Markdown</strong> formatting.</p>
+              <p>Using Python and OpenCV to beat Mary at a card game.</p>
 
             </div>
           
 
+          
+            <p><a href="/set2" class="btn btn--primary">Read More</a></p>
           
         </div>
       </div>
@@ -297,25 +300,115 @@
       <div class="archive__item">
         
           <div class="archive__item-teaser">
-            <img src="/assets/images/unsplash-gallery-image-2-th.jpg" alt="placeholder image 2" />
+            <img src="/assets/images/front_page/snow_lake.jpg" alt="Snow Lake" />
             
           </div>
         
 
         <div class="archive__item-body">
           
-            <h2 class="archive__item-title">Placeholder Image Left Aligned</h2>
+            <h2 class="archive__item-title">Summer in Washington</h2>
           
 
           
             <div class="archive__item-excerpt">
-              <p>This is some sample content that goes here with <strong>Markdown</strong> formatting. Left aligned with <code class="language-plaintext highlighter-rouge">type="left"</code></p>
+              <p>Some outdoor adventures in the PNW.</p>
 
             </div>
           
 
           
-            <p><a href="/#test-link" class="btn btn--primary">Read More</a></p>
+            <p><a href="/washington" class="btn btn--primary">Read More</a></p>
+          
+        </div>
+      </div>
+    </div>
+  
+
+</div>
+
+<div class="feature__wrapper">
+
+  
+    <div class="feature__item">
+      <div class="archive__item">
+        
+          <div class="archive__item-teaser">
+            <img src="/assets/images/front_page/romney_hand.png" alt="bounding_box_romney" />
+            
+          </div>
+        
+
+        <div class="archive__item-body">
+          
+            <h2 class="archive__item-title">Particle Filters and Mitt Romney</h2>
+          
+
+          
+            <div class="archive__item-excerpt">
+              <p>Implementing a particle filter for object tracking.</p>
+
+            </div>
+          
+
+          
+            <p><a href="/tracking" class="btn btn--primary">Read More</a></p>
+          
+        </div>
+      </div>
+    </div>
+  
+    <div class="feature__item">
+      <div class="archive__item">
+        
+          <div class="archive__item-teaser">
+            <img src="/assets/images/front_page/nepal.jpg" alt="Khumbu Valley" />
+            
+          </div>
+        
+
+        <div class="archive__item-body">
+          
+            <h2 class="archive__item-title">Nepal Trip Report</h2>
+          
+
+          
+            <div class="archive__item-excerpt">
+              <p>Missing flights and hiking to Everest Base Camp.</p>
+
+            </div>
+          
+
+          
+            <p><a href="/nepal" class="btn btn--primary">Read More</a></p>
+          
+        </div>
+      </div>
+    </div>
+  
+    <div class="feature__item">
+      <div class="archive__item">
+        
+          <div class="archive__item-teaser">
+            <img src="/assets/images/front_page/ar_front.png" alt="ad on brick wall" />
+            
+          </div>
+        
+
+        <div class="archive__item-body">
+          
+            <h2 class="archive__item-title">OpenCV and Augmented Reality</h2>
+          
+
+          
+            <div class="archive__item-excerpt">
+              <p>Introduction to AR, template matching, and perspective geometry.</p>
+
+            </div>
+          
+
+          
+            <p><a href="/ar" class="btn btn--primary">Read More</a></p>
           
         </div>
       </div>
@@ -331,25 +424,25 @@
       <div class="archive__item">
         
           <div class="archive__item-teaser">
-            <img src="/assets/images/unsplash-gallery-image-2-th.jpg" alt="placeholder image 2" />
+            <img src="/assets/images/front_page/nz.jpg" alt="Mount Cook" />
             
           </div>
         
 
         <div class="archive__item-body">
           
-            <h2 class="archive__item-title">Placeholder Image Right Aligned</h2>
+            <h2 class="archive__item-title">New Zealand Adventures</h2>
           
 
           
             <div class="archive__item-excerpt">
-              <p>This is some sample content that goes here with <strong>Markdown</strong> formatting. Right aligned with <code class="language-plaintext highlighter-rouge">type="right"</code></p>
+              <p>Caravanning through New Zealand, 2019.</p>
 
             </div>
           
 
           
-            <p><a href="/#test-link" class="btn btn--primary">Read More</a></p>
+            <p><a href="/oceania2" class="btn btn--primary">Read More</a></p>
           
         </div>
       </div>
@@ -357,41 +450,6 @@
   
 
 </div>
-
-<div class="feature__wrapper">
-
-  
-    <div class="feature__item--center">
-      <div class="archive__item">
-        
-          <div class="archive__item-teaser">
-            <img src="/assets/images/unsplash-gallery-image-2-th.jpg" alt="placeholder image 2" />
-            
-          </div>
-        
-
-        <div class="archive__item-body">
-          
-            <h2 class="archive__item-title">Placeholder Image Center Aligned</h2>
-          
-
-          
-            <div class="archive__item-excerpt">
-              <p>This is some sample content that goes here with <strong>Markdown</strong> formatting. Centered with <code class="language-plaintext highlighter-rouge">type="center"</code></p>
-
-            </div>
-          
-
-          
-            <p><a href="/#test-link" class="btn btn--primary">Read More</a></p>
-          
-        </div>
-      </div>
-    </div>
-  
-
-</div>
-
 
     </section>
   </article>
@@ -431,19 +489,22 @@
           <li><a href="https://github.com/marc-micatka" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
         
       
+        
+          <li><a href="marc.micatka@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
     
 
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2022 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
@@ -460,3 +521,13 @@
 
   </body>
 </html>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

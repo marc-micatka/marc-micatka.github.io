@@ -10,10 +10,11 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>About - Refreshingly Dangerous</title>
-<meta name="description" content="Projects. Travel. ">
+<meta name="description" content="Projects. Travel.">
 
 
   <meta name="author" content="Marc Micatka">
+  
 
 
 <meta property="og:type" content="website">
@@ -23,7 +24,7 @@
 <meta property="og:url" content="http://localhost:4000/about/">
 
 
-  <meta property="og:description" content="Projects. Travel. ">
+  <meta property="og:description" content="Projects. Travel.">
 
 
 
@@ -59,10 +60,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Refreshingly Dangerous Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,35 +77,30 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
 
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
 
 <!-- end custom head snippets -->
 
   </head>
 
-  <body class="layout--splash">
+  <body class="layout--single">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -125,20 +124,20 @@
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/posts/">Posts</a>
-            </li><li class="masthead__menu-item">
               <a href="/travel/">Travel</a>
             </li><li class="masthead__menu-item">
               <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/photography/">Photography</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts/">All Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/about/">About</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
           <span class="visually-hidden">Toggle search</span>
-          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
-            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
-          </svg>
+          <i class="fas fa-search"></i>
         </button>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -175,6 +174,8 @@
       </h1>
       
       
+
+
       
       
     </div>
@@ -184,27 +185,266 @@
 
 
 
+
+
 <div id="main" role="main">
-  <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/headshot.jpeg" alt="Marc Micatka" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Marc Micatka</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Occasional computer scientist, mechanical engineer, and traveler.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seattle, WA</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="marcmicatka.com" itemprop="url">
+            <i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span>
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="mailto:marc.micatka@gmail.com">
+            <meta itemprop="email" content="marc.micatka@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/marcmicatka" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/marc-micatka" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="About">
     
     
     
 
-    <section class="page__content" itemprop="text">
-      <p>Hello! My name is Marc Micatka - I am an aspiring computer scientist/roboticists currently working on my Masters in CS at Georgia Tech specializing in Robot Perception and Automation while also traveling around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems whether it’s in a class setting, a work setting, or on my own.</p>
+    <div class="page__inner-wrap">
+      
 
-<p>At work, I enjoy tackling automation projects to reduce labor. I have written Excel/VBA macros to collate, analyze, and display data from disparate sources in dashboards. I have also written inspection software using Cognex VisionPro, Python/OpenCV, and Visual Studios to aid operators with inspection procedures.</p>
+      <section class="page__content" itemprop="text">
+        
+        <figure style="width: 300px" class="align-right">
+  <a href="/assets/images/about/marc_washington.jpg"><img src="/assets/images/about/marc_washington.jpg" /></a>
+</figure>
 
-<p>As an undergrad studying mechanical engineer, I independently developed projects ranging from an Arduino controlled skittle sorting robot to a labor reduction program written in Matlab and C++ that automated a significant portion of an assembly process for Bose Corporation. I have been a valuable team member in many projects, including designing and developing a device to automatically calibrate a nuclear pressure transmitter.Along the way, I gained familiarity with C++, MATLAB, Creo, ANSYS, and SolidWorks.</p>
+<p>Hello! My name is Marc Micatka. I am currently working as a Software Engineer at the Applied Physics Laboratory at the University of Washington. I recently finished my Master’s in Computer Science at Georgia Tech specializing in Robot Perception and Automation and am so glad to be done. Although I have to work around the busy schedule of a global pandemic, I also try and find time to travel around the country and world with my lovely wife. I enjoy finding efficient and practical solutions to problems in a class setting, a work setting, or on my own.</p>
 
-<p>In my masters program, I have extensive experience with Java for Android app development and Python for computer vision, robotics, and data science applications. See my project pages for more information about my computer science experience through Georgia Tech.</p>
+<p>I love traveling and being outside, whether it’s in the mountains or in a city. Currently living in Seattle exploring the Cascades with gusto.</p>
 
-<p>I love traveling and being outside and exercising, whether it’s in the mountains or on the water. My wife is travel nurse and we are routinely packing up and moving around the country. Currently living in South Lake Tahoe, you can most likely find me in the backpacking or climbing when I’m not coding.</p>
+<h2 id="education">Education</h2>
+<dl>
+  <dt>2019 - 2021</dt>
+  <dd><strong>Masters, Computer Science</strong>; Georgia Tech
+
+    <p><em>Specialization: Robotic Perception and Automation</em></p>
+  </dd>
+  <dt>2011 - 2014</dt>
+  <dd><strong>BME, Mechanical Engineering</strong>; University of Minnesota - Twin Cities (Minneapolis, MN)</dd>
+</dl>
+
+<h2 id="experience">Experience</h2>
+<dl>
+  <dt><strong>Software Engineer</strong> -    <em>Applied Physics Lab, University of Washington</em></dt>
+  <dd><em>Seattle, Washington      January 2022 - Current</em></dd>
+  <dt><strong>Research and Development Engineer</strong> -    <em>Synthetik Applied Technologies</em></dt>
+  <dd><em>Seattle, Washington      May 2021 - December 2021</em></dd>
+  <dd>Employed as a R&amp;D Engineer working on IRD contracts and software/ML projects
+    <ul>
+      <li>Developed software pipelines from ground up to address project and customer needs.</li>
+      <li>Design and modify ML solutions to complex visual and audio recognition tasks.</li>
+      <li>Optimize and deploy Azure-based IoT solutions on Nvidia Jetson platforms.</li>
+    </ul>
+  </dd>
+  <dt><strong>Industrial Engineer II</strong> -    <em>Boeing</em></dt>
+  <dd><em>Everett, Washington      April 2019 - September 2019</em></dd>
+  <dd>Employed as a contract industrial engineer at the Boeing factory in Everett, Washington working on the 777 aircraft.
+    <ul>
+      <li>Experience with large scale manufacturing optimizations.</li>
+      <li>Analyzed build plans for airplane fuselages to optimize job scheduling.</li>
+      <li>Collected and analyzed job performance data through time studies and job observations to identify and improve assembly processes.</li>
+    </ul>
+  </dd>
+  <dt><strong>Manufacturing Engineer II</strong> - <em>Boston Scientific</em></dt>
+  <dd><em>Maple Grove, Minnesota   January 2015 - December 2017</em></dd>
+  <dd>Worked as a manufacturing engineer in a medical device assembly plant with extensive regulatory and clean room experience.
+    <ul>
+      <li>Developed machine vision inspection system for high-volume production lines, saved $1 million in scrap and
+labor waste.</li>
+      <li>Programmed Excel VBA tools to automate daily run charting and meetings. Saved several hours of
+engineering labor per day in routine lookups and rote spreadsheet work.</li>
+      <li>Used Solidworks and 3D printers to rapidly deploy fixtures to production area.</li>
+      <li>Led activities to support continuous improvement through Lean and Kaizen events.</li>
+    </ul>
+  </dd>
+</dl>
+
+<h2 id="technical-experience">Technical Experience</h2>
+<dl>
+  <dt>Programming Languages</dt>
+  <dd>
+    <p><strong>Python:</strong> Extensive academic experience using Python for computer vision applications, data analysis, and machine learning applications.</p>
+  </dd>
+  <dd>
+    <p><strong>Java:</strong> Academic experience using Java for Android app development and developing software testing suites using JUnit.</p>
+  </dd>
+  <dd>
+    <p><strong>Matlab:</strong> Academic xperience using Matlab for image processing and robotics, path planning, trajectory calculation.</p>
+  </dd>
+  <dd>
+    <p>Basic knowledge of <strong>C</strong>, <strong>C++</strong>, <strong>ROS</strong></p>
+  </dd>
+  <dt>Software</dt>
+  <dd>
+    <p><strong>SolidWorks:</strong> Experience using SolidWorks for part design, developing mechanical drawings, and motion analysis for both professional and personal projects.</p>
+  </dd>
+  <dd>
+    <p><strong>OnShape:</strong> Since I no longer have access to SolidWorks through school, I have been using OnShape for private projects and use.</p>
+  </dd>
+  <dd>
+    <p><strong>Excel:</strong> I know everyone says they’re good at Excel, but I’m actually pretty good at Excel. Professional experience designing and deploying macros and Visual Basic Applications to streamline workflows and for data analytics.</p>
+  </dd>
+  <dd>
+    <p><strong>Cognex VisionPro:</strong> Professional experience designing visual inspection software for high-volume manufacturing lines.</p>
+  </dd>
+</dl>
+
+<h2 id="extracurriculars">Extracurriculars</h2>
+<dl>
+  <dt><strong>Crew Team</strong> -  <em>UMN Crew</em></dt>
+  <dd><em>Eden Prarie, Minnesota   May 2014 - September 2014</em>
+    <ul>
+      <li>Rowed competitively at regional and national competitions throughout my undergraduate years.</li>
+      <li>Served as vice president and head of recruitment</li>
+      <li>Won National Lightweight 4- championship, 2014 NWIRA</li>
+    </ul>
+  </dd>
+</dl>
+
+<p><strong>Eagle Scout</strong> -  <em>Boy Scouts of America</em></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
 
 
-    </section>
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
   </article>
+
+  
+  
 </div>
 
     </div>
@@ -241,19 +481,22 @@
           <li><a href="https://github.com/marc-micatka" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
         
       
+        
+          <li><a href="marc.micatka@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
     
 
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2022 Refreshingly Dangerous. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
@@ -270,3 +513,13 @@
 
   </body>
 </html>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
