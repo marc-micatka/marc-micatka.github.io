@@ -135,5 +135,5 @@ var store = [{
         "excerpt":"Many moons ago, I read this article about the thrilling and beautiful Ptarmigan Traverse - a high route through the rugged terrain of the North Cascades, a mix of glacier and rock and trail travel. I was sold and began scheming to do it one day. Ross is a pretty...","categories": [],
         "tags": ["Trip Reports","Travel","Photos","Backpacking"],
         "url": "/ptarmigan/",
-        "teaser": "https://drive.google.com/uc?id=1p3EsdC_fDbeRi10jBEZr24UFZcrDkWDD"
+        "teaser": "https://farm66.staticflickr.com/65535/52306070656_b55f97890b.jpg"
       }]

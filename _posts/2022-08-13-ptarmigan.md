@@ -5,8 +5,8 @@ permalink: /ptarmigan/
 last_modified_at: 2022-08-22
 
 header:
-  image: "https://drive.google.com/uc?id=1bbqeCX-a84DHREcdwvjRZrD6rJH7hKGB"
-  teaser: "https://drive.google.com/uc?id=1p3EsdC_fDbeRi10jBEZr24UFZcrDkWDD"
+  image: "https://farm66.staticflickr.com/65535/52305347102_acc7ac022b.jpg"
+  teaser: "https://farm66.staticflickr.com/65535/52306070656_b55f97890b.jpg"
   
 tags:
   - Trip Reports
@@ -39,19 +39,19 @@ From here on out we would see seven people total the next 5 days.
 
 We made quick time through the fog and down the trail to Kool-Aid. 
 <figure>
-    <a><img src="https://drive.google.com/uc?id=1HT13LN7U3R05Y4D9O1gB-5qZwsR3px1Q"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306585814_a0feec4e99.jpg"></a>
     <figcaption>Ross pushing through the fog.</figcaption>
 </figure>
 
 We set up the tent and Ross promptly crawled inside to take a nap! Ross had had a busy few days! After he woke up, we scrambled up nearby Magic Mountain.
 <figure>
-    <a><img src="https://drive.google.com/uc?id=1mt9XDWnWPWWdOEmntl8bEQVKjX43aPWD"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306070916_c409856e3a.jpg"></a>
     <figcaption>Ross trying to figure out how or why anyone would try and climb the massive and intimidating Johannesburg Mountain.</figcaption>
 </figure>
 
 In the afternoon we scrambled up nearby Magic Mountain for some classic Cascade views and climbing.
 <figure>
-    <a><img src="https://drive.google.com/uc?id=1w7zu7G-PeM_UzV1WNZQ0iNLa6G40yE4K"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306599960_3115744d34.jpg"></a>
     <figcaption>Happy to finally be on some semi-solid rock on the summit ridge.</figcaption>
 </figure>
 
@@ -59,7 +59,7 @@ That evening, we were visited by a BEAUTIFUL mountain goat. Honestly, folks, thi
 Anyway, we seemed to develop a pretty good rapport.
 
 <figure>
-    <a><img src="https://drive.google.com/uc?id=10jOpE-38e8cTT4BLN9L9R09eL3cq71a0"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306584769_706c87d155.jpg"></a>
     <figcaption>Try to not get distracted by those delts.</figcaption>
 </figure>
 
@@ -69,21 +69,21 @@ The evening turned out to be truly spectacular. Although Mount Formidable, true 
 The next morning we woke up to blue skies and packed up with glee - excited to dive deeper into the wilderness. 
 The trail crosses a loose scree field and then up a narrow and improbable track through a cliff band called the "Red Ledges". 
 <figure>
-    <a><img src="https://drive.google.com/uc?id=189yK35IQ_3yMrgwckZUUgVs57f6xRkUh"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306585229_e4627769d3.jpg"></a>
     <figcaption>We were aiming for that skinny red strip through the cliff.</figcaption>
 </figure>
 We roped up for the glacier under Formidable before crossing the pass into a massive basin above Flat Creek. 
 The basin is a massive horseshoe and you can see the camp you're aiming for nearly all day.
 
 <figure class="half" >
-    <a><img src="https://drive.google.com/uc?id=1qQVppgFpvPue-YyKSxQZiyhlVrql5S2G"></a>
-    <a><img src="https://drive.google.com/uc?id=1-c72qG-EtN6hx4q70SzXmX_BefAnEjAT"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306599005_85348ab0a2.jpg"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306531343_74c4bea7a1.jpg"></a>
     <figcaption>No slipping allowed.</figcaption>
 </figure>
 
 <figure class="half" >
-    <a><img src="https://drive.google.com/uc?id=1VQqHGwka-8DqU94USz6qV50MciIHI8f2"></a>
-    <a><img src="https://drive.google.com/uc?id=1HhU9_mixxF7FJpo4dZrbUdOcfgmhgmzZ"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52305347152_226b48969b.jpg"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306599745_7ed348e074.jpg"></a>
 </figure>
 
 ### Day 3 - Yang Yang Lake to White Rock Lakes
@@ -91,7 +91,7 @@ This stretch is unreal and has got to be one of the most scenic 5 miles I've eve
 We left Yang Yang Lakes headed back up to the ridge, immediately gaining about 1000ft of elevation directly out of camp.
 
 <figure>
-    <a><img src="https://drive.google.com/uc?id=1znZBDN7SZK47RXd5-1gYjeDdegVQOUaE"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306584839_d370eecba0.jpg"></a>
     <figcaption>Ross calls this one "Lost Millenial".</figcaption>
 </figure>
 
@@ -99,8 +99,8 @@ Once you gain the ridge, you get to drop all that elevation again! Down the snow
 To exit, you need to climb straight up to a pass between Spire and Old Guard, staying well clear of the gaping crevasses on either side.
 
 <figure class="half" >
-    <a><img src="https://drive.google.com/uc?id=1wvPo-uQ4pCdAbM5cMi1OadhcDsaMTxxC"></a>
-    <a><img src="https://drive.google.com/uc?id=1SNi0cqdH4cfbJyqWaehRptraXRcMsDG-"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306585784_dc0b0d38de.jpg"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306531713_e24a5d9615.jpg"></a>
     <figcaption>Doing my best to look excited for a 1000 vertical feet on steep, soft snow.</figcaption>
 </figure>
 
@@ -108,25 +108,25 @@ From the saddle, it's a pretty comfortable snow crossing to a ridge above South 
 you just need to navigate mere 600 vertical feet of snow and rocks to get to a picturesque camp at White Rock Lakes.
 
 <figure class="half" >
-    <a><img src="https://drive.google.com/uc?id=1iltMeq8FxlgyyWgXA7qBE4y8315OHZMa"></a>
-    <a><img src="https://drive.google.com/uc?id=1OiAQVUR9IK-BJ2S9Q3MyDNgZg7ONUflS"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306584899_87ce0b5d2d.jpg"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52305346427_0f00330d16.jpg"></a>
     <figcaption>Beautiful basin across the glacier.</figcaption>
 </figure>
 
 <figure >
-    <a><img src="https://drive.google.com/uc?id=1ThO46D1EMPqNDVX0StttA5QlnZmvGUhC"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306599490_13924de97d.jpg"></a>
     <figcaption>Dropping into White Rock Lakes.</figcaption>
 </figure>
 
 <figure >
-    <a><img src="https://drive.google.com/uc?id=1N4wn3tBRv5ZrzyTxSi85o9jejVSuSBx9"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306531403_e0e9ba2472.jpg"></a>
     <figcaption>Near the top of German Helmet Butte.</figcaption>
 </figure>
 
 
     
 <figure>
-    <a><img src="https://drive.google.com/uc?id=1wxQ-DI9ohLbXpS7PsNEFWBurwjg7GVEq"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306070626_edea83cdc1.jpg"></a>
     <figcaption>Ridges on Dome Peak from German Helmet Butte.</figcaption>
 </figure>
 
@@ -141,30 +141,30 @@ This, naturally, would be an understatement.
 In the morning, we left camp headed north, back over the pass. 
 
 <figure>
-    <a><img src="https://drive.google.com/uc?id=1_Hv82ULtQGRqlepmAev0zg2aHU7PMrk6"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306584929_84bba2dcc3.jpg"></a>
     <figcaption>Crossing the outlet of White Rock Lakes.</figcaption>
 </figure>
 
 At the saddle with Le Conte, we crossed the glacier and summited Old Guard Peak.
 
 <figure class="half" >
-    <a><img src="https://drive.google.com/uc?id=1nhpV9vhfxZTAfNZlBmkTblivpcJjgZoI"></a>
-    <a><img src="https://drive.google.com/uc?id=1eo8DAqa3rRnhjVlc4gAOHAg7daJpxvnJ"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306531108_27cbae3317.jpg"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52305346592_845f11e8b3.jpg"></a>
     <figcaption>Summit of Old Guard Peak.</figcaption>
 </figure>
 
 We made quick time back over Le Conte and quickly dropped into the right drainage.
 The initial 1000 feet down were easy, no trees, boulder hopping across trickling streams fed from snowmelt.
 <figure>
-    <a><img src="https://drive.google.com/uc?id=1ZiLNoqlbwyO3dNydXOO3gLNo91EqXWLx"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306070296_ab17ba551c.jpg"></a>
     <figcaption>Through the mountain meadows, heading down.</figcaption>
 </figure>
 
 Once we hit trees, it quickly became impossible to plan more than a few feet in advance. We hit a cliffband overlooking a waterfall and circled around where we hit...steep trees.
 These trees were improbably clinging to a 45 degree slope, trucks curved sharply towards the sun. After we both slipped down the hill and caught ourselves on trees, we decided that we needed to use the rope to safely lower.
 <figure class="half">
-    <a><img src="https://drive.google.com/uc?id=1A8Nes8BIbjJMpiWJ4jgqiHEDbJB-oJ5d"></a>
-    <a><img src="https://drive.google.com/uc?id=1s2zK3GxSYOPD8rypFHOr_2ga5QWmqfJH"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306070356_de9ffe101d.jpg"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306585204_e879cd7810.jpg"></a>
     <figcaption>Starting down.</figcaption>
 </figure>
 
@@ -174,8 +174,8 @@ Once we navigated the trees, we had some heinous bushwacking along the river to 
 In the morning, we continued our way out along the creek, navigating nasty, overgrown bushes often complete with nettles and thorns.
 
 <figure class="half">
-    <a><img src="https://drive.google.com/uc?id=1cYqna8ODwA701-3VRkEycck5Yi6a6UqC"></a>
-    <a><img src="https://drive.google.com/uc?id=1q1d5E0uJrKcenglzza-WpXGaqib_PAU-"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52305346292_15fcdc8847.jpg"></a>
+    <a><img src="https://farm66.staticflickr.com/65535/52306599605_68759fef10.jpg"></a>
     <figcaption>Like this, for 10 miles.</figcaption>
 </figure>
 
