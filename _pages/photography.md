@@ -7,145 +7,145 @@ author_profile: true
 tags:
   - photography
 gallery1:
-  - image_path: https://farm66.staticflickr.com/65535/52306786993_2488486461.jpg
-    url: https://farm66.staticflickr.com/65535/52306786993_2488486461.jpg
+  - image_path: https://live.staticflickr.com/65535/52306786993_14c8375d12_o.jpg
+    url: https://live.staticflickr.com/65535/52306786993_14c8375d12_o.jpg
     title: "Tea plantation in Malayasia"
-  - image_path: https://farm66.staticflickr.com/65535/52306323301_ec3410a97c.jpg
-    url: https://farm66.staticflickr.com/65535/52306323301_ec3410a97c.jpg
+  - image_path: https://live.staticflickr.com/65535/52306323301_05c3d51701_o.jpg
+    url: https://live.staticflickr.com/65535/52306323301_05c3d51701_o.jpg
     title: "Minneapolis at night."
-  - image_path: https://farm66.staticflickr.com/65535/52306840274_54073cdba3.jpg
-    url: https://farm66.staticflickr.com/65535/52306840274_54073cdba3.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840274_40f35ce2dd_o.jpg
+    url: https://live.staticflickr.com/65535/52306840274_40f35ce2dd_o.jpg
     title: "Wind River Range, Wyoming"
 
 gallery2:
-  - image_path: https://farm66.staticflickr.com/65535/52306786808_5f68d8a0ca.jpg
-    url: https://farm66.staticflickr.com/65535/52306786808_5f68d8a0ca.jpg
+  - image_path: https://live.staticflickr.com/65535/52306786808_c0e46c3b3e_o.jpg
+    url: https://live.staticflickr.com/65535/52306786808_c0e46c3b3e_o.jpg
     title: "Wind River Range, Wyoming"
 
 gallery3:
-  - image_path: https://farm66.staticflickr.com/65535/52306840564_9f5e97e540.jpg
-    url: https://farm66.staticflickr.com/65535/52306840564_9f5e97e540.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840564_4074fe118e_o.jpg
+    url: https://live.staticflickr.com/65535/52306840564_4074fe118e_o.jpg
     title: "Dark skies over City of Rocks, Idaho"
-  - image_path: https://farm66.staticflickr.com/65535/52306787138_94192142fc.jpg
-    url: https://farm66.staticflickr.com/65535/52306787138_94192142fc.jpg
+  - image_path: https://live.staticflickr.com/65535/52306787138_0df6c13057_o.jpg
+    url: https://live.staticflickr.com/65535/52306787138_0df6c13057_o.jpg
     title: "Trail to Mount Sneffels, CO"
 
 gallery4:
-  - image_path: https://farm66.staticflickr.com/65535/52305600862_849ffbc3f1.jpg
-    url: https://farm66.staticflickr.com/65535/52305600862_849ffbc3f1.jpg
+  - image_path: https://live.staticflickr.com/65535/52305600862_3eacc2c1b1_o.jpg
+    url: https://live.staticflickr.com/65535/52305600862_3eacc2c1b1_o.jpg
     title: "Mount Fyffe, New Zealand"
-  - image_path: https://farm66.staticflickr.com/65535/52305601332_0eb5279c7d.jpg
-    url: https://farm66.staticflickr.com/65535/52305601332_0eb5279c7d.jpg
+  - image_path: https://live.staticflickr.com/65535/52305601332_575251bf01_o.jpg
+    url: https://live.staticflickr.com/65535/52305601332_575251bf01_o.jpg
     title: "Mount Baker, Washington"
-  - image_path: https://farm66.staticflickr.com/65535/52305601047_2e75d847ab.jpg
-    url: https://farm66.staticflickr.com/65535/52305601047_2e75d847ab.jpg
+  - image_path: https://live.staticflickr.com/65535/52305601047_b58649a38b_o.jpg
+    url: https://live.staticflickr.com/65535/52305601047_b58649a38b_o.jpg
     title: "Enchantments, Washington"
 
 gallery5:
-  - image_path: https://farm66.staticflickr.com/65535/52306852265_6127135d11.jpg
-    url: https://farm66.staticflickr.com/65535/52306852265_6127135d11.jpg
+  - image_path: https://live.staticflickr.com/65535/52306852265_deeba90ee6_o.jpg
+    url: https://live.staticflickr.com/65535/52306852265_deeba90ee6_o.jpg
     title: "Milford Sound, New Zealand"
-  - image_path: https://farm66.staticflickr.com/65535/52305601082_430ef96bfd.jpg
-    url: https://farm66.staticflickr.com/65535/52305601082_430ef96bfd.jpg
+  - image_path: https://live.staticflickr.com/65535/52305601082_1c9856e894_o.jpg
+    url: https://live.staticflickr.com/65535/52305601082_1c9856e894_o.jpg
     title: "Milford Sound, New Zealand"
 
 gallery6:
-  - image_path: https://farm66.staticflickr.com/65535/52306840359_8966f1a573.jpg
-    url: https://farm66.staticflickr.com/65535/52306840359_8966f1a573.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840359_50fa66af75_o.jpg
+    url: https://live.staticflickr.com/65535/52306840359_50fa66af75_o.jpg
     title: "Joshua Tree National Park"
 
 gallery7:
-  - image_path: https://farm66.staticflickr.com/65535/52305600787_b3b71df285.jpg
-    url: https://farm66.staticflickr.com/65535/52305600787_b3b71df285.jpg
+  - image_path: https://live.staticflickr.com/65535/52305600787_5b8c03b168_o.jpg
+    url: https://live.staticflickr.com/65535/52305600787_5b8c03b168_o.jpg
     title: "Seattle, Washington"
-  - image_path: https://farm66.staticflickr.com/65535/52306840104_afc108c104.jpg
-    url: https://farm66.staticflickr.com/65535/52306840104_afc108c104.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840104_cb0fcc2c5e_o.jpg
+    url: https://live.staticflickr.com/65535/52306840104_cb0fcc2c5e_o.jpg
     title: "The Chief, Squamish, BC"
-  - image_path: https://farm66.staticflickr.com/65535/52306323006_f0d0b704ff.jpg
-    url: https://farm66.staticflickr.com/65535/52306323006_f0d0b704ff.jpg
+  - image_path: https://live.staticflickr.com/65535/52306323006_84ac0339a2_o.jpg
+    url: https://live.staticflickr.com/65535/52306323006_84ac0339a2_o.jpg
     title: "Enchantments, Washington"
 
 gallery8:
-  - image_path: https://farm66.staticflickr.com/65535/52305601277_be0f3d2b04.jpg
-    url: https://farm66.staticflickr.com/65535/52305601277_be0f3d2b04.jpg
+  - image_path: https://live.staticflickr.com/65535/52305601277_e7be9b5005_o.jpg
+    url: https://live.staticflickr.com/65535/52305601277_e7be9b5005_o.jpg
     title: "Seals off the coast of Tasmania"
 
 gallery9:
-  - image_path: https://farm66.staticflickr.com/65535/52306851785_61932c194c.jpg
-    url: https://farm66.staticflickr.com/65535/52306851785_61932c194c.jpg
+  - image_path: https://live.staticflickr.com/65535/52306851785_4d8cfd2849_o.jpg
+    url: https://live.staticflickr.com/65535/52306851785_4d8cfd2849_o.jpg
     title: "Nepal"
-  - image_path: https://farm66.staticflickr.com/65535/52306323336_7ab2b4a7ed.jpg
-    url: https://farm66.staticflickr.com/65535/52306323336_7ab2b4a7ed.jpg
+  - image_path: https://live.staticflickr.com/65535/52306323336_9ca4913fd5_o.jpg
+    url: https://live.staticflickr.com/65535/52306323336_9ca4913fd5_o.jpg
     title: "Nepal"
-  - image_path: https://farm66.staticflickr.com/65535/52306851840_cd90890739.jpg
-    url: https://farm66.staticflickr.com/65535/52306851840_cd90890739.jpg
+  - image_path: https://live.staticflickr.com/65535/52306851840_d96e3fca99_o.jpg
+    url: https://live.staticflickr.com/65535/52306851840_d96e3fca99_o.jpg
     title: "Nepal"
-  - image_path: https://farm66.staticflickr.com/65535/52306323611_495c949afe.jpg
-    url: https://farm66.staticflickr.com/65535/52306323611_495c949afe.jpg
+  - image_path: https://live.staticflickr.com/65535/52306323611_56d0ce9356_o.jpg
+    url: https://live.staticflickr.com/65535/52306323611_56d0ce9356_o.jpg
     title: "Namche Bazaar"
-  - image_path: https://farm66.staticflickr.com/65535/52306840724_81bed12d96.jpg
-    url: https://farm66.staticflickr.com/65535/52306840724_81bed12d96.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840724_734825898f_o.jpg
+    url: https://live.staticflickr.com/65535/52306840724_734825898f_o.jpg
     title: "Sunrise over Namche Bazaar"
-  - image_path: https://farm66.staticflickr.com/65535/52306840714_587c8e50d2.jpg
-    url: https://farm66.staticflickr.com/65535/52306840714_587c8e50d2.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840714_1ef5cacf30_o.jpg
+    url: https://live.staticflickr.com/65535/52306840714_1ef5cacf30_o.jpg
     title: "Nepal"
 
 gallery10:
-  - image_path: https://farm66.staticflickr.com/65535/52306840514_1fa9d51deb.jpg
-    url: https://farm66.staticflickr.com/65535/52306840514_1fa9d51deb.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840514_31682afed6_o.jpg
+    url: https://live.staticflickr.com/65535/52306840514_31682afed6_o.jpg
     title: "North Cascades National Park"
-  - image_path: https://farm66.staticflickr.com/65535/52306840479_8210c7a8bc.jpg
-    url: https://farm66.staticflickr.com/65535/52306840479_8210c7a8bc.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840479_e2fb53d9ee_o.jpg
+    url: https://live.staticflickr.com/65535/52306840479_e2fb53d9ee_o.jpg
     title: "Snow Lake, Washington"
 
 gallery11:
-  - image_path: https://farm66.staticflickr.com/65535/52305601287_bc303d1dc4.jpg
-    url: https://farm66.staticflickr.com/65535/52305601287_bc303d1dc4.jpg
+  - image_path: https://live.staticflickr.com/65535/52305601287_baf24cdc4e_o.jpg
+    url: https://live.staticflickr.com/65535/52305601287_baf24cdc4e_o.jpg
     title: "Sunbursts over Lake Hawea"
-  - image_path: https://farm66.staticflickr.com/65535/52305601162_ccf621f100.jpg
-    url: https://farm66.staticflickr.com/65535/52305601162_ccf621f100.jpg
+  - image_path: https://live.staticflickr.com/65535/52305601162_45c67f3332_o.jpg
+    url: https://live.staticflickr.com/65535/52305601162_45c67f3332_o.jpg
     title: "Khombu Valley, Nepal"
 
 gallery12:
-  - image_path: https://farm66.staticflickr.com/65535/52306787223_8c88046273.jpg
-    url: https://farm66.staticflickr.com/65535/52306787223_8c88046273.jpg
+  - image_path: https://live.staticflickr.com/65535/52306787223_c2b0fe2d3c_o.jpg
+    url: https://live.staticflickr.com/65535/52306787223_c2b0fe2d3c_o.jpg
     title: "Sunsets in Nepal"
-  - image_path: https://farm66.staticflickr.com/65535/52305600822_370cde967c.jpg
-    url: https://farm66.staticflickr.com/65535/52305600822_370cde967c.jpg
+  - image_path: https://live.staticflickr.com/65535/52305600822_77d24f1a6a_o.jpg
+    url: https://live.staticflickr.com/65535/52305600822_77d24f1a6a_o.jpg
     title: "Roadside views in New Zealand"
-  - image_path: https://farm66.staticflickr.com/65535/52306852165_39968c241b.jpg
-    url: https://farm66.staticflickr.com/65535/52306852165_39968c241b.jpg
+  - image_path: https://live.staticflickr.com/65535/52306852165_b9b55448de_o.jpg
+    url: https://live.staticflickr.com/65535/52306852165_b9b55448de_o.jpg
     title: "North Cascades National Park"
 
 gallery13:
-  - image_path: https://farm66.staticflickr.com/65535/52306852135_2209685e76.jpg
-    url: https://farm66.staticflickr.com/65535/52306852135_2209685e76.jpg
+  - image_path: https://live.staticflickr.com/65535/52306852135_f0e590ff41_o.jpg
+    url: https://live.staticflickr.com/65535/52306852135_f0e590ff41_o.jpg
     title: "Washington sunsets"
-  - image_path: https://farm66.staticflickr.com/65535/52306840759_c4d18ca3e2.jpg
-    url: https://farm66.staticflickr.com/65535/52306840759_c4d18ca3e2.jpg
+  - image_path: https://live.staticflickr.com/65535/52306840759_5af0559bd9_o.jpg
+    url: https://live.staticflickr.com/65535/52306840759_5af0559bd9_o.jpg
     title: "Wind River Range, Wyoming"
 
 gallery14:
-  - image_path: https://farm66.staticflickr.com/65535/52306323516_cdab907d01.jpg
-    url: https://farm66.staticflickr.com/65535/52306323516_cdab907d01.jpg
+  - image_path: https://live.staticflickr.com/65535/52306323516_f2fe11984b_o.jpg
+    url: https://live.staticflickr.com/65535/52306323516_f2fe11984b_o.jpg
     title: "Snowking Mountain, Washington"
 
 gallery15:
-  - image_path: https://farm66.staticflickr.com/65535/52306323696_54fa042d94.jpg
-    url: https://farm66.staticflickr.com/65535/52306323696_54fa042d94.jpg
+  - image_path: https://live.staticflickr.com/65535/52306323696_05110f611e_o.jpg
+    url: https://live.staticflickr.com/65535/52306323696_05110f611e_o.jpg
     title: "Chipmunk on Railing"
-  - image_path: https://farm66.staticflickr.com/65535/52306323736_728b4a8a28.jpg
-    url: https://farm66.staticflickr.com/65535/52306323736_728b4a8a28.jpg
+  - image_path: https://live.staticflickr.com/65535/52306323736_a76b9915a0_o.jpg
+    url: https://live.staticflickr.com/65535/52306323736_a76b9915a0_o.jpg
     title: "Lake Tahoe at Sunrise"
 
 gallery16:
-  - image_path: https://farm66.staticflickr.com/65535/52306786743_2d9c29b76f.jpg
-    url: https://farm66.staticflickr.com/65535/52306786743_2d9c29b76f.jpg
+  - image_path: https://live.staticflickr.com/65535/52306786743_fb763a5eab_o.jpg
+    url: https://live.staticflickr.com/65535/52306786743_fb763a5eab_o.jpg
     title: "Seattle at Night"
 
 gallery17:
-  - image_path: https://farm66.staticflickr.com/65535/52306787313_805537f5b7.jpg
-    url: https://farm66.staticflickr.com/65535/52306787313_805537f5b7.jpg
+  - image_path: https://live.staticflickr.com/65535/52306787313_b8ab67b573_o.jpg
+    url: https://live.staticflickr.com/65535/52306787313_b8ab67b573_o.jpg
     title: "To the Mountain"
 ---
 Here's a collection of pictures I've taken that I'm particularily proud of. 
