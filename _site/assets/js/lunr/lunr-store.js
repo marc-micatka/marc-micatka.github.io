@@ -3,13 +3,13 @@ var store = [{
         "excerpt":"Planning I first read about the Wind River Range in an Adventure Alan trip report and was instantly attracted to its remoteness, difficulty, and beauty. I invited Ross Wise and Dan Bakke, roommates and rowing team mates, to come along for a planned through-hike of the Winds - about 80...","categories": [],
         "tags": ["Trip Reports","Travel","Photos","Backpacking"],
         "url": "/winds/",
-        "teaser": "/assets/images/winds/winds_thumbnail.jpg"
+        "teaser": "https://live.staticflickr.com/65535/52307250360_f9193c8731_o.jpg"
       },{
         "title": "Wind River Range - 2016",
         "excerpt":"Round 2 Preparation We were back in the Winds for another attempt at the Winds River High Route (based on Adventure Alan’s trip. For this try, we invited a ringer along, Charles Nolt, hiker extraordinaire with an uncanny ability to spot rock cairns in a talus field. We also decided...","categories": [],
         "tags": ["Trip Reports","Travel","Photos","Backpacking"],
         "url": "/winds2/",
-        "teaser": "/assets/images/winds2/winds2_thumbnail.jpg"
+        "teaser": "https://live.staticflickr.com/65535/52307185138_02e5e7291d_o.jpg"
       },{
         "title": "Everest Base Camp - 2018",
         "excerpt":"NYC to Kathmandu to Nagarkot My brother got married in New York City in September of 2018. After the wedding, we flew from NYC to Kathmandu for our trek to Everest Base Camp. We flew directly from my brother’s wedding in NYC to Kathmandu. After a three legs and 30...","categories": [],
@@ -111,7 +111,7 @@ var store = [{
         "excerpt":"They said it couldn’t be done! In the summer of 2020, Ross and I went back to the Winds for a third helping of getting whipped by thin air and rugged terrain. This time we dialed back our backpacking goals and dialed up our climbing goals. Ross had recently left...","categories": [],
         "tags": ["Trip Reports","Travel","Photos","Backpacking"],
         "url": "/winds3/",
-        "teaser": "/assets/images/winds3/thumbnail.jpg"
+        "teaser": "https://live.staticflickr.com/65535/52307186058_67f7474d47_o.jpg"
       },{
         "title": "Auto-Directed L1 Video Stabilization",
         "excerpt":"The final for CS 6475 focused on implementing a paper and trying to achieve similar results to the authors’ using our own images. We had a choice of five or six papers and I chose to try to implement Auto-Directed Video Stabilization with Robust L1 Optimal Camera Paths. This paper...","categories": [],
