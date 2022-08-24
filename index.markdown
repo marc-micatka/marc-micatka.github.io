@@ -8,11 +8,11 @@ header:
 excerpt: "Some projects. Some travel. Occasional Danger."
 
 feature_row:
-  - image_path: /assets/images/front_page/winds3.jpg
-    alt: "Approaching Gannett Peak"
-    title: "Wind River Range"
-    excerpt: "A climbing trip to Wyoming."
-    url: "winds3"
+  - image_path: /assets/images/ptarmigan/thumbnail_big.jpg
+    alt: "On the ridge."
+    title: "Ptarmigan Loop"
+    excerpt: "Some light mountaineering in the North Cascades."
+    url: "ptarmigan"
     btn_label: "Read More"
     btn_class: "btn--primary"
 
