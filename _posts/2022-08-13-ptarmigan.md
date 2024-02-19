@@ -37,7 +37,7 @@ Full resolution pictures are hosted
 
 ### Day 1 - Cascade Pass Trailhead to Kool-Aid Lake
 Our morning starts in heavy fog and the sound of other hikers busily covering themselves in deet and packing bags. 
-We were initially a concerned with the sheer volume of folks in the lot! But it turned out that they were almost all day hiking Boston Basin or another trail in the North Cascades and when we turned off a tiny, unmarked dirt trail onto the traverse the crowds disappeared.
+We were initially a concerned with the sheer volume of folks in the lot! But it turned out that they were almost all day hiking Boston Basin or another trail in the North Cascades and when we turned off onto a tiny, unmarked dirt trail onto the traverse the crowds disappeared.
 From here on out we would see seven people total the next 5 days.
 
 We made quick time through the fog and down the trail to Kool-Aid. 
@@ -135,7 +135,7 @@ you just need to navigate mere 600 vertical feet of snow and rocks to get to a p
 
 ### Day 4 - White Rock Lakes to Some Random Spot along Drop Creek
 Our original plan had been to double back and exit out the South Cascade River trail coming down the South Cascade Glacier.
-This is quite notorious has the 5 people we met were all a bit taken aback. The trail has been unmaintained for years and is brushy and overgrown, horrendous to navigate.
+This is quite notorious as all 5 people we met were all a bit taken aback. The trail has been unmaintained for years and is brushy and overgrown, horrendous to navigate.
 On day 3, we scrambled near the summit of German Helmet Butte and there we found a wonderful and kind North Cascades guru, Kevin, who had been in the area for 10+ days and seemed to know the ins and outs of all the ridges and drainages.
 He suggested that instead of the river trail, we drop into High Log Creek to Drop Creek, hitting the river trail at an angle and cutting off many miles of bushwacking. 
 Insanely, Ross and I both quickly agreed to this plan. Kevin sounded as confident as Ross and I were unconfident, describing only one short section of "steep trees".

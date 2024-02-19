@@ -136,4 +136,16 @@ var store = [{
         "tags": ["Trip Reports","Travel","Photos","Backpacking"],
         "url": "/ptarmigan/",
         "teaser": "https://farm66.staticflickr.com/65535/52306070656_b55f97890b.jpg"
+      },{
+        "title": "An AI Agent for Solving Raven's Progressive Matrices",
+        "excerpt":"PREAMBLE Unforunate preamble here! If you are a CURRENT/FUTURE/PROSPECTIVE student at GA Tech, PLEASE DON’T EMAIL ME LOOKING FOR TIPS OR CODE IMPLEMENTATION! I won’t give you any and I’ve already had to evicerate a ton of the content in a lot of my pages because of the…interest…students have shown...","categories": [],
+        "tags": ["Projects","OMSCS","AI","Computer Vision"],
+        "url": "/lamp/",
+        "teaser": "/assets/images/kbai/ravens_thumbnail.png"
+      },{
+        "title": "Wind River Range - 2020 (Part 1)",
+        "excerpt":"They said it couldn’t be done! In the summer of 2020, Ross and I went back to the Winds for a third helping of getting whipped by thin air and rugged terrain. This time we dialed back our backpacking goals and dialed up our climbing goals. Ross had recently left...","categories": [],
+        "tags": ["Trip Reports","Travel","Photos","Backpacking"],
+        "url": "/winds3/",
+        "teaser": "https://live.staticflickr.com/65535/52307186058_67f7474d47_o.jpg"
       }]
