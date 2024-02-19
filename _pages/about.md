@@ -56,12 +56,12 @@ Technical Experience
 --------------------
 Programming Languages  
 
-: **Python:** Extensive academic experience using Python for computer vision applications, data analysis, and machine learning applications.  
+: **Python:** Extensive academic and professional experience using Python for computer vision applications, data analysis, and machine learning applications.  
 
 
 : **Java:** Academic experience using Java for Android app development and developing software testing suites using JUnit.  
 
-: **Matlab:** Academic xperience using Matlab for image processing and robotics, path planning, trajectory calculation.  
+: **Matlab:** Academic experience using Matlab for image processing and robotics, path planning, trajectory calculation.  
 
 : Basic knowledge of **C**, **C++**, **ROS**
 
@@ -82,6 +82,6 @@ Extracurriculars
 : *Eden Prarie, Minnesota   May 2014 - September 2014*
   * Rowed competitively at regional and national competitions throughout my undergraduate years. 
   * Served as vice president and head of recruitment
-  * Won National Lightweight 4- championship, 2014 NWIRA
+  * Won National Lightweight 4 championship, 2014 NWIRA
 
 **Eagle Scout** -  *Boy Scouts of America*
