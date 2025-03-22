@@ -23,7 +23,7 @@ search: true
 
 # Build settings
 markdown: kramdown
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+remote_theme: "mmistakes/minimal-mistakes@4.26.2"
 
 # Outputting
 permalink: /:categories/:title/
@@ -63,7 +63,7 @@ author:
   github    : "marc-micatka"
   linkedin  : "marcmicatka"
   url       : "marcmicatka.com"
-  
+
 footer:
   links:
     - label: "LinkedIn"
@@ -75,7 +75,7 @@ footer:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "marc.micatka@gmail.com"
-        
+
 
 defaults:
   # _posts
@@ -103,5 +103,3 @@ tag_archive:
   type: liquid
   path: /tags/
 
-
-theme: jekyll-theme-minimal
