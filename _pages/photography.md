@@ -63,7 +63,7 @@ gallery7:
     title: "The Chief, Squamish, BC"
   - image_path: https://live.staticflickr.com/65535/52306323006_84ac0339a2_o.jpg
     url: https://live.staticflickr.com/65535/52306323006_84ac0339a2_o.jpg
-    title: "Enchantments, Washington"
+    title: "Wind River Range, Wyoming"
 
 gallery8:
   - image_path: https://live.staticflickr.com/65535/52305601277_e7be9b5005_o.jpg
@@ -147,8 +147,16 @@ gallery17:
   - image_path: https://live.staticflickr.com/65535/52306787313_b8ab67b573_o.jpg
     url: https://live.staticflickr.com/65535/52306787313_b8ab67b573_o.jpg
     title: "To the Mountain"
+
+gallery18:
+  - image_path: https://live.staticflickr.com/65535/52306323696_05110f611e_o.jpg
+    url: https://live.staticflickr.com/65535/52306323696_05110f611e_o.jpg
+    title: "Chipmunk on Railing"
+  - image_path: https://live.staticflickr.com/65535/52306323736_a76b9915a0_o.jpg
+    url: https://live.staticflickr.com/65535/52306323736_a76b9915a0_o.jpg
+    title: "Lake Tahoe at Sunrise"
 ---
-Here's a collection of pictures I've taken that I'm particularily proud of. 
+Here's a collection of pictures I've taken that I'm particularily proud of.
 Nearly all of these are taken with a Sony A6000.
 
 {% include gallery id="gallery1"%}
