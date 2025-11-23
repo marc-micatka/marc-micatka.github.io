@@ -1,1 +1,12 @@
 .history/*
+
+# Jekyll files and folders
+_site/**
+.jekyll-cache/
+.sass-cache/
+
+# Dependency lock file (auto-generated)
+Gemfile.lock
+
+# Any backup files created by editors
+*~
