@@ -19,7 +19,7 @@ feature_row:
 
   - image_path: "https://live.staticflickr.com/65535/54939846942_cd6c746784_z.jpg"
     alt: "app play game screen"
-    title: "Homemade Friendship Lamp"
+    title: "Friendship Lamp"
     excerpt: "Making a wifi connected friendship lamp."
     url: "lamp"
     btn_label: "Read More"
