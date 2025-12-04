@@ -13,7 +13,7 @@ feature_row:
     alt: "On the ridge."
     title: "Bailey Range Traverse"
     excerpt: "Mountaineering through the biomes in the Olympics."
-    url: "olympics"
+    url: "bailey_range"
     btn_label: "Read More"
     btn_class: "btn--primary"
 
