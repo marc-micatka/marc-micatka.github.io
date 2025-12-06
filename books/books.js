@@ -3,14 +3,12 @@
 // ===========================================
 
 const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=1749726170&single=true&output=csv';
-const GOOGLE_BOOKS_API_KEY = '';
 
     // ===========================================
     // GLOBAL VARIABLES
     // ===========================================
     
     let allBooks = [];
-    let enrichedData = {};
     
     // ===========================================
     // TAB NAVIGATION
@@ -275,9 +273,7 @@ const GOOGLE_BOOKS_API_KEY = '';
     
     function createBookRow(book, index) {
         const row = document.createElement('tr');
-        
-        const enriched = enrichedData[book.title] || {};
-        
+                
         // Title cell
         const titleCell = document.createElement('td');
         titleCell.className = 'title-cell';
@@ -300,9 +296,7 @@ const GOOGLE_BOOKS_API_KEY = '';
         const genreCell = document.createElement('td');
         genreCell.className = 'genre-cell';
         genreCell.textContent = book.genre;
-        if (enriched.categories) {
-            genreCell.innerHTML += `<span class="enriched-badge">${enriched.categories}</span>`;
-        }
+
         row.appendChild(genreCell);
         
         // Rating cell
@@ -332,56 +326,6 @@ const GOOGLE_BOOKS_API_KEY = '';
         notesCell.textContent = book.notes || '-';
         row.appendChild(notesCell);
         
-        // Actions cell
-        const actionsCell = document.createElement('td');
-        if (!enriched.cover) {
-            const btn = document.createElement('button');
-            btn.className = 'enrich-btn';
-            btn.textContent = 'Enrich';
-            btn.onclick = () => enrichBook(index);
-            actionsCell.appendChild(btn);
-        } else {
-            actionsCell.textContent = '✓';
-            actionsCell.style.textAlign = 'center';
-            actionsCell.style.color = '#27ae60';
-        }
-        row.appendChild(actionsCell);
-        
         return row;
     }
     
-    // ===========================================
-    // GOOGLE BOOKS API ENRICHMENT
-    // ===========================================
-    
-    async function enrichBook(index) {
-        const book = allBooks[index];
-        
-        const query = encodeURIComponent(`${book.title} ${book.author}`);
-        const apiKey = GOOGLE_BOOKS_API_KEY ? `&key=${GOOGLE_BOOKS_API_KEY}` : '';
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${query}${apiKey}`;
-        
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            if (data.items && data.items.length > 0) {
-                const bookData = data.items[0].volumeInfo;
-                
-                enrichedData[book.title] = {
-                    cover: bookData.imageLinks?.thumbnail || bookData.imageLinks?.smallThumbnail,
-                    categories: bookData.categories?.join(', '),
-                    description: bookData.description,
-                    publisher: bookData.publisher,
-                    publishedDate: bookData.publishedDate
-                };
-                
-                displayBooks();
-            } else {
-                alert('No results found for this book on Google Books.');
-            }
-        } catch (error) {
-            console.error('Error fetching from Google Books:', error);
-            alert('Error fetching book details. Check console for details.');
-        }
-    }

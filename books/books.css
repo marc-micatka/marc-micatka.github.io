@@ -187,19 +187,6 @@
     max-width: 400px;
 }
 
-.enrich-btn {
-    padding: 4px 8px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.enrich-btn:hover {
-    background: #2980b9;
-}
 
 .enriched-badge {
     display: inline-block;
