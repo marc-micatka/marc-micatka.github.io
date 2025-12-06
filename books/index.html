@@ -1,0 +1,149 @@
+---
+layout: default
+title: Reading List
+---
+
+<!-- PapaParse library for CSV parsing -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+<link rel="stylesheet" href="{{ '/books/books.css' | relative_url }}">
+<script src="{{ '/books/books.js' | relative_url }}"></script>
+<link rel="stylesheet" href="{{ '/books/books.css' | relative_url }}">
+
+<div class="book-container">
+    <h1 class="page-title">📚 Books 📚</h1>
+    
+    <!-- Tab Navigation -->
+    <div class="book-tabs">
+        <button class="tab-btn active" onclick="switchTab('library')">Library</button>
+        <button class="tab-btn" onclick="switchTab('stats')">Statistics</button>
+        <button class="tab-btn" onclick="switchTab('about')">About</button>
+    </div>
+    
+    <!-- Library Tab -->
+    <div id="library-tab" class="tab-content active">
+        
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <label>Search</label>
+                <input type="text" id="searchInput" placeholder="Search title or author...">
+            </div>
+            <div class="filter-group">
+                <label>Genre</label>
+                <select id="genreFilter">
+                    <option value="">All Genres</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Year</label>
+                <select id="yearFilter">
+                    <option value="">All Years</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Min Rating</label>
+                <select id="ratingFilter">
+                    <option value="">Any Rating</option>
+                    <option value="9">9+</option>
+                    <option value="8">8+</option>
+                    <option value="7">7+</option>
+                    <option value="6">6+</option>
+                    <option value="5">5+</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Sort By</label>
+                <select id="sortBy">
+                    <option value="date-desc">Date (Newest)</option>
+                    <option value="date-asc">Date (Oldest)</option>
+                    <option value="rating-desc">Rating (High to Low)</option>
+                    <option value="rating-asc">Rating (Low to High)</option>
+                    <option value="title">Title (A-Z)</option>
+                    <option value="pages-desc">Pages (Most)</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Loading/error messages -->
+        <div id="message"></div>
+        
+        <!-- Books display -->
+        <div class="books-table-container">
+            <table class="books-table" id="booksTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Genre</th>
+                        <th>Rating</th>
+                        <th>Finished</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="booksTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Statistics Tab -->
+    <div id="stats-tab" class="tab-content">
+        <!-- Statistics cards -->
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Books</h3>
+                <div class="value" id="totalBooks">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pages Read</h3>
+                <div class="value" id="totalPages">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Average Rating</h3>
+                <div class="value" id="avgRating">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Books This Year</h3>
+                <div class="value" id="booksThisYear">-</div>
+            </div>
+        </div>
+        
+        <!-- Charts -->
+        <div class="charts">
+            <div class="chart-container">
+                <h3>Books Read Per Year</h3>
+                <div class="year-chart" id="yearChart"></div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Reading Statistics</h3>
+                <div id="statsDetails"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- About Tab -->
+    <div id="about-tab" class="tab-content">
+        <div style="padding: 20px; line-height: 1.8;">
+            <h2 style="margin-bottom: 20px;">About This Reading Tracker</h2>
+            <p style="margin-bottom: 15px;">
+                I've been tracking every book I've read since 2015. This page visualizes that data 
+                and helps me explore my reading habits over time.
+            </p>
+            <p style="margin-bottom: 15px;">
+                <strong>Features:</strong>
+            </p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li>Browse my complete reading history</li>
+                <li>Filter by genre, year, and rating</li>
+                <li>View detailed statistics about my reading</li>
+                <li>Enrich books with covers and categories from Google Books</li>
+            </ul>
+            <p>
+                <strong>Data Source:</strong> This page pulls live data from my Google Sheets reading log.
+            </p>
+        </div>
+    </div>
+</div>
