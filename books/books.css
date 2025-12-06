@@ -1,4 +1,3 @@
-
 /* Tab Navigation Styles */
 .book-tabs {
     display: flex;
@@ -112,6 +111,37 @@
     font-size: 14px;
 }
 
+/* Search Clear Button Styles */
+.filters .search-wrapper {
+    position: relative;
+    /* Ensure the input takes up the space intended for the filter group */
+    display: flex; 
+    align-items: center;
+}
+
+.filters .search-wrapper input {
+    /* Push the input text away from the new clear button */
+    padding-right: 35px; 
+}
+
+.filters .clear-search-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    color: #999;
+    padding: 0;
+    visibility: hidden; /* Start hidden, controlled by JS */
+    transition: color 0.1s;
+}
+
+.filters .clear-search-btn:hover {
+    color: #333;
+}
+
 /* Books Table */
 .books-table-container {
     overflow-x: auto;
@@ -146,8 +176,14 @@
     vertical-align: top;
 }
 
+/* Zebra Striping: Light background for odd rows */
+.books-table tbody tr:nth-child(odd) {
+    background: #fcfcfc;
+}
+
 .books-table tbody tr:hover {
-    background: #f8f9fa;
+    /* Slightly darker hover for better contrast against alternating stripes */
+    background: #f0f0f0; 
 }
 
 .books-table .title-cell {

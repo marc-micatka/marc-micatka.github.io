@@ -3,7 +3,6 @@ layout: default
 title: Reading List
 ---
 
-<!-- PapaParse library for CSV parsing -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
 <link rel="stylesheet" href="{{ '/books/books.css' | relative_url }}">
@@ -13,22 +12,22 @@ title: Reading List
 <div class="book-container">
     <h1 class="page-title">📚 Books 📚</h1>
     
-    <!-- Tab Navigation -->
     <div class="book-tabs">
         <button class="tab-btn active" onclick="switchTab('library')">Library</button>
         <button class="tab-btn" onclick="switchTab('stats')">Statistics</button>
         <button class="tab-btn" onclick="switchTab('about')">About</button>
     </div>
     
-    <!-- Library Tab -->
     <div id="library-tab" class="tab-content active">
         
-        <!-- Filters -->
         <div class="filters">
             <div class="filter-group">
                 <label>Search</label>
-                <input type="text" id="searchInput" placeholder="Search title or author...">
-            </div>
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="Search title or author...">
+                    <button id="clearSearchBtn" class="clear-search-btn" aria-label="Clear search text" type="button">✖</button>
+                </div>
+                </div>
             <div class="filter-group">
                 <label>Genre</label>
                 <select id="genreFilter">
@@ -65,10 +64,8 @@ title: Reading List
             </div>
         </div>
         
-        <!-- Loading/error messages -->
         <div id="message"></div>
         
-        <!-- Books display -->
         <div class="books-table-container">
             <table class="books-table" id="booksTable">
                 <thead>
@@ -87,9 +84,7 @@ title: Reading List
         </div>
     </div>
     
-    <!-- Statistics Tab -->
     <div id="stats-tab" class="tab-content">
-        <!-- Statistics cards -->
         <div class="stats">
             <div class="stat-card">
                 <h3>Total Books</h3>
@@ -109,7 +104,6 @@ title: Reading List
             </div>
         </div>
         
-        <!-- Charts -->
         <div class="charts">
             <div class="chart-container">
                 <h3>Books Read Per Year</h3>
@@ -123,7 +117,6 @@ title: Reading List
         </div>
     </div>
     
-    <!-- About Tab -->
     <div id="about-tab" class="tab-content">
         <div style="padding: 20px; line-height: 1.8;">
             <h2 style="margin-bottom: 20px;">About This Reading Tracker</h2>
@@ -138,7 +131,6 @@ title: Reading List
                 <li>Browse my complete reading history</li>
                 <li>Filter by genre, year, and rating</li>
                 <li>View detailed statistics about my reading</li>
-                <li>Enrich books with covers and categories from Google Books</li>
             </ul>
             <p>
                 <strong>Data Source:</strong> This page pulls live data from my Google Sheets reading log.

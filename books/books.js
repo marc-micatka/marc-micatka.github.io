@@ -44,7 +44,7 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
     
     document.addEventListener('DOMContentLoaded', function() {
         loadBooksData();
-        setupEventListeners();
+        // setupEventListeners is called AFTER data load and filter population
     });
     
     // ===========================================
@@ -85,7 +85,7 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
                 messageDiv.innerHTML = '';
                 updateStatistics();
                 populateFilters();
-                displayBooks();
+                setupEventListeners(); // Call setupEventListeners after populating
             },
             error: function(error) {
                 console.error('Fetch error:', error);
@@ -195,17 +195,51 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
             yearSelect.appendChild(option);
         });
     }
+
+    // ===========================================
+    // SEARCH & CLEAR BUTTON HANDLER (NEW)
+    // ===========================================
+    
+    function updateSearchAndClearButton() {
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearchBtn');
+        
+        // 1. Toggle visibility of the clear button
+        if (searchInput.value.length > 0) {
+            clearBtn.style.visibility = 'visible';
+        } else {
+            clearBtn.style.visibility = 'hidden';
+        }
+        
+        // 2. Trigger filtering
+        displayBooks(); 
+    }
     
     // ===========================================
-    // EVENT LISTENERS
+    // EVENT LISTENERS (UPDATED)
     // ===========================================
     
     function setupEventListeners() {
-        document.getElementById('searchInput').addEventListener('input', displayBooks);
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearchBtn');
+        
+        // Listen for input changes (typing)
+        searchInput.addEventListener('input', updateSearchAndClearButton);
+        
+        // Listen for clear button click
+        clearBtn.addEventListener('click', function() {
+            searchInput.value = ''; // Clear the input
+            updateSearchAndClearButton(); // Hide the button and trigger displayBooks
+        });
+        
+        // Existing listeners
         document.getElementById('genreFilter').addEventListener('change', displayBooks);
         document.getElementById('yearFilter').addEventListener('change', displayBooks);
         document.getElementById('ratingFilter').addEventListener('change', displayBooks);
         document.getElementById('sortBy').addEventListener('change', displayBooks);
+
+        // Initial check for clear button visibility and initial display
+        updateSearchAndClearButton();
     }
     
 // ===========================================
@@ -266,8 +300,9 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
         const tbody = document.getElementById('booksTableBody');
         tbody.innerHTML = '';
         
+        // Note: Colspan is 7 based on index.html columns
         if (filteredBooks.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #999; padding: 50px;">No books found matching your filters.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #999; padding: 50px;">No books found matching your filters.</td></tr>';
             return;
         }
         
@@ -337,4 +372,3 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
         
         return row;
     }
-    
