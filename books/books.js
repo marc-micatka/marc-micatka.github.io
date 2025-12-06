@@ -208,21 +208,29 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
         document.getElementById('sortBy').addEventListener('change', displayBooks);
     }
     
-    // ===========================================
+// ===========================================
     // DISPLAY BOOKS
     // ===========================================
     
     function displayBooks() {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        // Safe check for the search input element
+        const searchInput = document.getElementById('searchInput');
+        if (!searchInput) return;
+
+        const searchTerm = searchInput.value.toLowerCase().trim(); // Added trim() to clean whitespace
         const genreFilter = document.getElementById('genreFilter').value;
         const yearFilter = document.getElementById('yearFilter').value;
         const ratingFilter = parseFloat(document.getElementById('ratingFilter').value) || 0;
         const sortBy = document.getElementById('sortBy').value;
         
         let filteredBooks = allBooks.filter(book => {
+            // FIX: Convert title/author to String() to prevent crashes on numbers (e.g., book title "1984")
+            const titleSafe = String(book.title || '').toLowerCase();
+            const authorSafe = String(book.author || '').toLowerCase();
+
             const matchesSearch = !searchTerm || 
-                book.title.toLowerCase().includes(searchTerm) || 
-                book.author.toLowerCase().includes(searchTerm);
+                titleSafe.includes(searchTerm) || 
+                authorSafe.includes(searchTerm);
             
             const matchesGenre = !genreFilter || book.genre === genreFilter;
             
@@ -233,6 +241,8 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
             
             return matchesSearch && matchesGenre && matchesYear && matchesRating;
         });
+        
+        // ... (Rest of the sorting logic remains the same) ...
         
         filteredBooks.sort((a, b) => {
             switch(sortBy) {
@@ -245,7 +255,7 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
                 case 'rating-asc':
                     return a.rating - b.rating;
                 case 'title':
-                    return a.title.localeCompare(b.title);
+                    return String(a.title).localeCompare(String(b.title)); // Added String() safety here too
                 case 'pages-desc':
                     return b.pages - a.pages;
                 default:
@@ -266,7 +276,6 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
             tbody.appendChild(row);
         });
     }
-    
     // ===========================================
     // CREATE BOOK ROW
     // ===========================================
