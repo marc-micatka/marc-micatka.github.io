@@ -18,7 +18,6 @@ let sortDirection = 'desc';
 document.addEventListener('DOMContentLoaded', function() {
     loadBooksData();
     console.log("Reading List page loaded.");
-    setupModalListeners();
 });
 
 
@@ -32,34 +31,6 @@ function setupEventListeners() {
     // Listen for input changes (typing)
     searchInput.addEventListener('input', renderBooksTable);
     renderBooksTable();
-}
-
-// ===========================================
-// MODAL SETUP
-// ===========================================
-function setupModalListeners() {
-    // Close modal when clicking on X or outside the modal
-    window.onclick = function(event) {
-        const modal = document.getElementById('reviewModal');
-        if (event.target === modal) {
-            closeModal();
-        }
-    }
-}
-
-function showReview(reviewText, bookTitle) {
-    const modal = document.getElementById('reviewModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    
-    modalTitle.textContent = bookTitle;
-    modalBody.textContent = reviewText;
-    modal.style.display = 'block';
-}
-
-function closeModal() {
-    const modal = document.getElementById('reviewModal');
-    modal.style.display = 'none';
 }
 
 // ===========================================
@@ -217,7 +188,6 @@ function renderBooksTable() {
                         <th class="sortable ${sortColumn === 'finishDate' ? 'sort-' + sortDirection : ''}" onclick="sortTable('finishDate')">Finish Date</th>
                         <th class="sortable ${sortColumn === 'rating' ? 'sort-' + sortDirection : ''}" onclick="sortTable('rating')">Rating</th>
                         <th class="sortable ${sortColumn === 'audiobook' ? 'sort-' + sortDirection : ''}" onclick="sortTable('audiobook')">Audiobook?</th>
-                        <th>Review</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -231,10 +201,6 @@ function renderBooksTable() {
             ? '<span class="checkmark">✓</span>' 
             : '';
         
-        // Review column: show button if review exists
-        const reviewCell = (book.review && book.review.toString().trim() !== '') 
-            ? `<button class="review-btn" onclick="showReview(\`${escapeHtml(book.review).replace(/`/g, '\\`')}\`, \`${escapeHtml(book.title).replace(/`/g, '\\`')}\`)">View</button>` 
-            : '';
         
         tableHTML += `
             <tr>
@@ -245,7 +211,6 @@ function renderBooksTable() {
                 <td>${escapeHtml(book.finishDate)}</td>
                 <td>${book.rating || '-'}</td>
                 <td>${formatCell}</td>
-                <td>${reviewCell}</td>
             </tr>
         `;
     });
@@ -253,17 +218,6 @@ function renderBooksTable() {
     tableHTML += `
                 </tbody>
             </table>
-        </div>
-        
-        <!-- Modal for displaying reviews -->
-        <div id="reviewModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 id="modalTitle">Review</h2>
-                    <span class="close" onclick="closeModal()">&times;</span>
-                </div>
-                <div class="modal-body" id="modalBody"></div>
-            </div>
         </div>
     `;
     
