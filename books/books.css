@@ -1,37 +1,189 @@
-/* Tab Navigation Styles */
+/* Basic container styling */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* Tab bar styling */
 .tabs {
     display: flex;
-    gap: 5px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
 }
 
+/* Tab button styling */
 .tab-btn {
-    padding: 12px 24px;
-    background: none;
-    border: none;
-    border-bottom: 3px solid transparent;
+    padding: 10px 15px;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
     font-size: 16px;
-    color: #666;
-    transition: all 0.3s;
+    outline: none;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px 5px 0 0;
 }
 
-.tab-btn:hover {
-    color: #333;
-    background: #f8f9fa;
+.tab-btn:hover:not(.active) {
+    background-color: #eee;
 }
 
+/* Active tab styling */
 .tab-btn.active {
-    color: #667eea;
-    border-bottom-color: #667eea;
-    font-weight: 600;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid white; /* visually connects the tab to the content area */
+    background-color: #fff;
+    font-weight: bold;
+    color: #007bff; /* Highlight color */
 }
 
+/* Content area styling */
 .tab-content {
-    display: none;
+    padding: 10px 0;
+    display: none; /* Hidden by default */
 }
 
+/* Show active content */
 .tab-content.active {
     display: block;
+}
+
+/* Loading state styling */
+.loading {
+    padding: 20px;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Table container with fixed header */
+.table-container {
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    position: relative;
+}
+
+/* Table styling */
+.books-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.books-table thead {
+    position: sticky !important;
+    top: 0 !important;
+    background-color: #f8f9fa !important;
+    z-index: 100 !important;
+}
+
+.books-table thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.books-table tbody {
+    display: block;
+    max-height: calc(600px - 50px);
+    overflow-y: auto;
+}
+
+.books-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.books-table th {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    background-color: #f8f9fa !important;
+    position: sticky;
+    top: 0;
+}
+
+.books-table th:hover {
+    background-color: #e9ecef;
+}
+
+.books-table th.sortable::after {
+    content: ' ↕';
+    color: #999;
+}
+
+.books-table th.sort-asc::after {
+    content: ' ↑';
+    color: #007bff;
+}
+
+.books-table th.sort-desc::after {
+    content: ' ↓';
+    color: #007bff;
+}
+
+.books-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.books-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Column width distribution */
+.books-table th:nth-child(1), /* Title */
+.books-table td:nth-child(1) {
+    width: 25%;
+}
+
+.books-table th:nth-child(2), /* Author */
+.books-table td:nth-child(2) {
+    width: 20%;
+}
+
+.books-table th:nth-child(3), /* Pages */
+.books-table td:nth-child(3) {
+    width: 8%;
+    text-align: center;
+}
+
+.books-table th:nth-child(4), /* Genre */
+.books-table td:nth-child(4) {
+    width: 15%;
+}
+
+.books-table th:nth-child(5), /* Finish Date */
+.books-table td:nth-child(5) {
+    width: 12%;
+}
+
+.books-table th:nth-child(6), /* Rating */
+.books-table td:nth-child(6) {
+    width: 8%;
+    text-align: center;
+}
+
+.books-table th:nth-child(7), /* Format */
+.books-table td:nth-child(7) {
+    width: 12%;
 }

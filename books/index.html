@@ -10,8 +10,9 @@ title: Reading List
 <script src="{{ '/books/books.js' | relative_url }}"></script>
 <link rel="stylesheet" href="{{ '/books/books.css' | relative_url }}">
 
-<div class="container">
-    <h1>Books</h1>
+<div class="container" id="books-data">
+    <h1>📚 Books 📚</h1>
+
 
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
@@ -20,15 +21,13 @@ title: Reading List
     </div>
 
     <div id="overview" class="tab-content active">
-        <div class="loading">Overview content will go here</div>
     </div>
 
     <div id="statistics" class="tab-content">
-        <div class="loading">Statistics and charts will go here</div>
     </div>
 
     <div id="all-data" class="tab-content">
-        <div class="loading">All data will go here</div>
+        <div id="message"></div>
     </div>
 
     <div class="footer">

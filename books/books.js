@@ -1,31 +1,224 @@
 // ===========================================
-// TAB NAVIGATION
+// CONFIGURATION
 // ===========================================
-function switchTab(tabName) {
-    // Hide all tabs
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
+
+const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=1749726170&single=true&output=csv';
+
+// ===========================================
+// GLOBAL VARIABLES
+// ===========================================
+    
+let allBooks = [];
+let sortColumn = null;
+let sortDirection = 'asc';
+
+
+// ===========================================
+// INITIALIZE APP
+// ===========================================
+document.addEventListener('DOMContentLoaded', function() {
+    loadBooksData();
+});
+
+
+// ===========================================
+// TAB Switching
+// ===========================================
+/**
+ * Handles switching between tabs in the reading list view.
+ *
+ * @param {string} tabId The ID of the tab content to show (e.g., 'overview', 'statistics').
+ */
+function switchTab(tabId) {
+    // 1. Get all tab content elements and buttons
+    const tabContents = document.querySelectorAll('.tab-content');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+
+    // 2. Hide all tab content
+    tabContents.forEach(content => {
+        content.classList.remove('active');
     });
-    
-    // Remove active class from all buttons
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
+
+    // 3. Deactivate all tab buttons
+    tabButtons.forEach(button => {
+        button.classList.remove('active');
     });
+
+    // 4. Show the selected tab content
+    const activeContent = document.getElementById(tabId);
+    if (activeContent) {
+        activeContent.classList.add('active');
+    }
+
+    // 5. Activate the clicked button
+    const activeButton = document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
+    if (activeButton) {
+        activeButton.classList.add('active');
+    }
+    console.log(`Switched to tab: ${tabId}`);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Reading List page loaded.");
+});
+
+// ===========================================
+// DATA LOADING
+// ===========================================
+function loadBooksData() {
+    const messageDiv = document.getElementById('message');
+    messageDiv.innerHTML = '<div class="loading">Loading your books...</div>';
     
-    // Show selected tab (remove the '-tab' suffix)
-    document.getElementById(tabName).classList.add('active');
+    Papa.parse(GOOGLE_SHEETS_CSV_URL, {
+        download: true,
+        header: true,
+        dynamicTyping: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+            if (results.errors.length > 0) {
+                console.error('Parse errors:', results.errors);
+                messageDiv.innerHTML = '<div class="error">Error parsing CSV. Check console for details.</div>';
+                return;
+            }
+            
+            allBooks = results.data.map(book => ({
+                title: book.Title || book.title || '',
+                author: book.Author || book.author || '',
+                pages: parseInt(book.Page || book.pages || book.Pages) || 0,
+                genre: book.Genre || book.genre || '',
+                finishDate: book['Finish Date'] || book.finishDate || book['Finish date'] || '',
+                rating: parseFloat(book['Rating'] || book.rating || book.Rating) || 0,
+                format: book['Format'] || book.format || book.Format || '',
+                review: book['Review'] || book.Review || book.review || ''
+            }));
+            
+            messageDiv.innerHTML = '';
+            renderBooksTable();
+        },
+        error: function(error) {
+            console.error('Fetch error:', error);
+            messageDiv.innerHTML = '<div class="error">Error loading CSV. Make sure the Google Sheets link is public and published as CSV.</div>';
+        }
+    });
+}
+
+// ===========================================
+// TABLE RENDERING
+// ===========================================
+function renderBooksTable() {
+    const container = document.getElementById('all-data');
     
-    // Add active class to clicked button
-    event.target.classList.add('active');
-    
-    // Update stats/charts if switching to stats tab
-    if (tabName === 'statistics' && typeof allBooks !== 'undefined' && allBooks.length > 0) {
-        // updateStatistics();
-        // renderYearChart();
+    if (allBooks.length === 0) {
+        container.innerHTML = '<p>No books data available.</p>';
+        return;
     }
     
-    if (tabName === 'overview' && typeof allBooks !== 'undefined' && allBooks.length > 0) {
-        // updateStatistics();
-        // renderYearChart();
+    // Sort books if a column is selected
+    let displayBooks = [...allBooks];
+    if (sortColumn) {
+        displayBooks.sort((a, b) => {
+            let aVal = a[sortColumn];
+            let bVal = b[sortColumn];
+            
+            // Handle dates specially
+            if (sortColumn === 'finishDate') {
+                const dateA = parseDate(aVal);
+                const dateB = parseDate(bVal);
+                
+                if (!dateA && !dateB) return 0;
+                if (!dateA) return sortDirection === 'asc' ? 1 : -1;
+                if (!dateB) return sortDirection === 'asc' ? -1 : 1;
+                
+                return sortDirection === 'asc' ? dateA - dateB : dateB - dateA;
+            }
+            
+            // Handle different data types
+            if (typeof aVal === 'number' && typeof bVal === 'number') {
+                return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+            }
+            
+            // String comparison
+            aVal = String(aVal || '').toLowerCase();
+            bVal = String(bVal || '').toLowerCase();
+            
+            if (sortDirection === 'asc') {
+                return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+            } else {
+                return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+            }
+        });
     }
+    
+    // Build table HTML
+    let tableHTML = `
+        <div class="table-container">
+            <table class="books-table">
+                <thead>
+                    <tr>
+                        <th class="sortable ${sortColumn === 'title' ? 'sort-' + sortDirection : ''}" onclick="sortTable('title')">Title</th>
+                        <th class="sortable ${sortColumn === 'author' ? 'sort-' + sortDirection : ''}" onclick="sortTable('author')">Author</th>
+                        <th class="sortable ${sortColumn === 'pages' ? 'sort-' + sortDirection : ''}" onclick="sortTable('pages')">Pages</th>
+                        <th class="sortable ${sortColumn === 'genre' ? 'sort-' + sortDirection : ''}" onclick="sortTable('genre')">Genre</th>
+                        <th class="sortable ${sortColumn === 'finishDate' ? 'sort-' + sortDirection : ''}" onclick="sortTable('finishDate')">Finish Date</th>
+                        <th class="sortable ${sortColumn === 'rating' ? 'sort-' + sortDirection : ''}" onclick="sortTable('rating')">Rating</th>
+                        <th class="sortable ${sortColumn === 'format' ? 'sort-' + sortDirection : ''}" onclick="sortTable('format')">Format</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    displayBooks.forEach(book => {
+        tableHTML += `
+            <tr>
+                <td>${escapeHtml(book.title)}</td>
+                <td>${escapeHtml(book.author)}</td>
+                <td>${book.pages || '-'}</td>
+                <td>${escapeHtml(book.genre)}</td>
+                <td>${escapeHtml(book.finishDate)}</td>
+                <td>${book.rating || '-'}</td>
+                <td>${escapeHtml(book.format)}</td>
+            </tr>
+        `;
+    });
+    
+    tableHTML += `
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    container.innerHTML = tableHTML;
+}
+
+function sortTable(column) {
+    if (sortColumn === column) {
+        // Toggle direction if same column
+        sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+        // New column, default to ascending
+        sortColumn = column;
+        sortDirection = 'asc';
+    }
+    renderBooksTable();
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Parse date strings in various formats
+function parseDate(dateStr) {
+    if (!dateStr) return null;
+    
+    // Try to parse common formats: MM/DD/YYYY, M/D/YYYY, YYYY-MM-DD, etc.
+    const date = new Date(dateStr);
+    
+    // Check if valid date
+    if (!isNaN(date.getTime())) {
+        return date;
+    }
+    
+    return null;
 }
