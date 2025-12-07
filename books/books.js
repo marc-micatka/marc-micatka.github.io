@@ -17,9 +17,22 @@ let sortDirection = 'desc';
 // ===========================================
 document.addEventListener('DOMContentLoaded', function() {
     loadBooksData();
+    console.log("Reading List page loaded.");
+
 });
 
 
+// ===========================================
+// EVENT LISTENERS (UPDATED)
+// ===========================================
+
+function setupEventListeners() {
+    const searchInput = document.getElementById('searchInput');
+    
+    // Listen for input changes (typing)
+    searchInput.addEventListener('input', renderBooksTable);
+    renderBooksTable();
+}
 // ===========================================
 // TAB Switching
 // ===========================================
@@ -57,10 +70,6 @@ function switchTab(tabId) {
     console.log(`Switched to tab: ${tabId}`);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Reading List page loaded.");
-});
-
 // ===========================================
 // DATA LOADING
 // ===========================================
@@ -92,6 +101,7 @@ function loadBooksData() {
             }));
             
             messageDiv.innerHTML = '';
+            setupEventListeners();
             renderBooksTable();
         },
         error: function(error) {
@@ -105,17 +115,34 @@ function loadBooksData() {
 // TABLE RENDERING
 // ===========================================
 function renderBooksTable() {
-    const container = document.getElementById('all-data');
+    // Check for search input
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+
+    const container = document.getElementById('books-table');
     
     if (allBooks.length === 0) {
         container.innerHTML = '<p>No books data available.</p>';
         return;
     }
     
+    let filteredBooks = allBooks.filter(book => {
+        const titleSafe = String(book.title || '').toLowerCase();
+        const authorSafe = String(book.author || '').toLowerCase();
+
+        const matchesSearch = !searchTerm || 
+            titleSafe.includes(searchTerm) || 
+            authorSafe.includes(searchTerm);
+        
+        return matchesSearch;
+    });
+    
     // Sort books if a column is selected
-    let displayBooks = [...allBooks];
     if (sortColumn) {
-        displayBooks.sort((a, b) => {
+        filteredBooks.sort((a, b) => {
             let aVal = a[sortColumn];
             let bVal = b[sortColumn];
             
@@ -165,8 +192,10 @@ function renderBooksTable() {
                 </thead>
                 <tbody>
     `;
+
     
-    displayBooks.forEach(book => {
+    
+    filteredBooks.forEach(book => {
         tableHTML += `
             <tr>
                 <td>${escapeHtml(book.title)}</td>

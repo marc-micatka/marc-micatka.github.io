@@ -6,13 +6,6 @@
     font-family: sans-serif;
 }
 
-.page-title {
-    color: #2c3e50;
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 32px;
-}
-
 /* Tab bar styling */
 .tabs {
     display: flex;
@@ -76,10 +69,10 @@
 /* Table container with fixed header */
 .table-container {
     max-height: 600px;
-    overflow-y: auto;
     border: 1px solid #ddd;
     border-radius: 4px;
     position: relative;
+    overflow: hidden;
 }
 
 /* Table styling */
@@ -94,18 +87,20 @@
     top: 0 !important;
     background-color: #f8f9fa !important;
     z-index: 100 !important;
-}
-
-.books-table thead tr {
     display: table;
     width: 100%;
     table-layout: fixed;
 }
 
+.books-table thead tr {
+    display: table-row;
+}
+
 .books-table tbody {
     display: block;
-    max-height: calc(600px - 50px);
+    max-height: 550px;
     overflow-y: auto;
+    width: 100%;
 }
 
 .books-table tbody tr {
@@ -165,15 +160,38 @@
     background-color: #e3f2fd !important;
 }
 
+
+
+/* Search bar styling */
+.search-container {
+    margin-bottom: 15px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
 /* Column width distribution */
 .books-table th:nth-child(1), /* Title */
 .books-table td:nth-child(1) {
     width: 25%;
+    text-align: left;
 }
 
 .books-table th:nth-child(2), /* Author */
 .books-table td:nth-child(2) {
     width: 20%;
+    text-align: center;
 }
 
 .books-table th:nth-child(3), /* Pages */
@@ -185,11 +203,13 @@
 .books-table th:nth-child(4), /* Genre */
 .books-table td:nth-child(4) {
     width: 15%;
+    text-align: center;
 }
 
 .books-table th:nth-child(5), /* Finish Date */
 .books-table td:nth-child(5) {
     width: 12%;
+    text-align: center;
 }
 
 .books-table th:nth-child(6), /* Rating */
@@ -201,4 +221,5 @@
 .books-table th:nth-child(7), /* Format */
 .books-table td:nth-child(7) {
     width: 12%;
+    text-align: center;
 }
