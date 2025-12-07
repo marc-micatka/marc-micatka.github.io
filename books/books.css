@@ -6,6 +6,13 @@
     font-family: sans-serif;
 }
 
+.page-title {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 32px;
+}
+
 /* Tab bar styling */
 .tabs {
     display: flex;
@@ -146,8 +153,16 @@
     overflow-wrap: break-word;
 }
 
+.books-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.books-table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
 .books-table tbody tr:hover {
-    background-color: #f8f9fa;
+    background-color: #e3f2fd !important;
 }
 
 /* Column width distribution */

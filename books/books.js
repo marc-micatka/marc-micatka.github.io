@@ -9,9 +9,8 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
 // ===========================================
     
 let allBooks = [];
-let sortColumn = null;
-let sortDirection = 'asc';
-
+let sortColumn = 'finishDate';
+let sortDirection = 'desc';
 
 // ===========================================
 // INITIALIZE APP
