@@ -18,7 +18,7 @@ let sortDirection = 'desc';
 document.addEventListener('DOMContentLoaded', function() {
     loadBooksData();
     console.log("Reading List page loaded.");
-
+    setupModalListeners();
 });
 
 
@@ -33,6 +33,35 @@ function setupEventListeners() {
     searchInput.addEventListener('input', renderBooksTable);
     renderBooksTable();
 }
+
+// ===========================================
+// MODAL SETUP
+// ===========================================
+function setupModalListeners() {
+    // Close modal when clicking on X or outside the modal
+    window.onclick = function(event) {
+        const modal = document.getElementById('reviewModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+}
+
+function showReview(reviewText, bookTitle) {
+    const modal = document.getElementById('reviewModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    
+    modalTitle.textContent = bookTitle;
+    modalBody.textContent = reviewText;
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    const modal = document.getElementById('reviewModal');
+    modal.style.display = 'none';
+}
+
 // ===========================================
 // TAB Switching
 // ===========================================
@@ -96,7 +125,7 @@ function loadBooksData() {
                 genre: book.Genre || book.genre || '',
                 finishDate: book['Finish Date'] || book.finishDate || book['Finish date'] || '',
                 rating: parseFloat(book['Rating'] || book.rating || book.Rating) || 0,
-                format: book['Format'] || book.format || book.Format || '',
+                audiobook: book['Audiobook?'] || book.audiobook || book.Audiobook || '',
                 review: book['Review'] || book.Review || book.review || ''
             }));
             
@@ -187,7 +216,8 @@ function renderBooksTable() {
                         <th class="sortable ${sortColumn === 'genre' ? 'sort-' + sortDirection : ''}" onclick="sortTable('genre')">Genre</th>
                         <th class="sortable ${sortColumn === 'finishDate' ? 'sort-' + sortDirection : ''}" onclick="sortTable('finishDate')">Finish Date</th>
                         <th class="sortable ${sortColumn === 'rating' ? 'sort-' + sortDirection : ''}" onclick="sortTable('rating')">Rating</th>
-                        <th class="sortable ${sortColumn === 'format' ? 'sort-' + sortDirection : ''}" onclick="sortTable('format')">Format</th>
+                        <th class="sortable ${sortColumn === 'audiobook' ? 'sort-' + sortDirection : ''}" onclick="sortTable('audiobook')">Audiobook?</th>
+                        <th>Review</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -195,7 +225,17 @@ function renderBooksTable() {
 
     
     
-    filteredBooks.forEach(book => {
+    filteredBooks.forEach((book, index) => {
+        // Format column: show green checkmark if audiobook is "Yes"
+        const formatCell = (book.audiobook && book.audiobook.toString().toLowerCase() === 'yes') 
+            ? '<span class="checkmark">✓</span>' 
+            : '';
+        
+        // Review column: show button if review exists
+        const reviewCell = (book.review && book.review.toString().trim() !== '') 
+            ? `<button class="review-btn" onclick="showReview(\`${escapeHtml(book.review).replace(/`/g, '\\`')}\`, \`${escapeHtml(book.title).replace(/`/g, '\\`')}\`)">View</button>` 
+            : '';
+        
         tableHTML += `
             <tr>
                 <td>${escapeHtml(book.title)}</td>
@@ -204,7 +244,8 @@ function renderBooksTable() {
                 <td>${escapeHtml(book.genre)}</td>
                 <td>${escapeHtml(book.finishDate)}</td>
                 <td>${book.rating || '-'}</td>
-                <td>${escapeHtml(book.format)}</td>
+                <td>${formatCell}</td>
+                <td>${reviewCell}</td>
             </tr>
         `;
     });
@@ -212,6 +253,17 @@ function renderBooksTable() {
     tableHTML += `
                 </tbody>
             </table>
+        </div>
+        
+        <!-- Modal for displaying reviews -->
+        <div id="reviewModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Review</h2>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+            </div>
         </div>
     `;
     
