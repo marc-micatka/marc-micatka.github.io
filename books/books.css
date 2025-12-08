@@ -239,7 +239,6 @@
 
 
 /* Statistics table - equal column widths and centered text */
-#statistics .books-table th,
 #statistics .books-table td {
     width: auto;
     text-align: center;
@@ -248,4 +247,79 @@
 #statistics .books-table th {
     white-space: normal;
     line-height: 1.3;
+}
+
+/*  */
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.2s;
+    border: 1px solid #eee;
+}
+
+.collapsible-header:hover {
+    background-color: #e9ecef;
+}
+
+/* The arrow icon */
+.collapsible-header::after {
+    content: '▼';
+    font-size: 0.8em;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+/* Rotated arrow when collapsed */
+.collapsible-header.collapsed::after {
+    transform: rotate(-90deg);
+}
+
+/* Hide content when collapsed */
+.collapsible-content.collapsed {
+    display: none;
+}
+
+/* Chart Layouts (From previous step) */
+#statistics-charts {
+    margin-top: 10px;
+    padding-bottom: 50px;
+}
+
+.chart-wrapper {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.charts-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.chart-half {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.chart-wrapper canvas, 
+.chart-half canvas {
+    max-height: 400px; 
+    width: 100%;
 }

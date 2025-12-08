@@ -29,8 +29,24 @@ function setupEventListeners() {
     const searchInput = document.getElementById('searchInput');
     
     // Listen for input changes (typing)
-    searchInput.addEventListener('input', renderBooksTable);
-    renderBooksTable();
+    if (searchInput) {
+        searchInput.addEventListener('input', renderBooksTable);
+    }
+    
+    // [ADD THIS] Collapsible headers logic
+    const collapsibles = document.querySelectorAll('.collapsible-header');
+    collapsibles.forEach(header => {
+        header.addEventListener('click', function() {
+            // Toggle the 'collapsed' class on the header (for the arrow rotation)
+            this.classList.toggle('collapsed');
+            
+            // Find the next sibling (the content div) and toggle its visibility
+            const content = this.nextElementSibling;
+            if (content && content.classList.contains('collapsible-content')) {
+                content.classList.toggle('collapsed');
+            }
+        });
+    });
 }
 
 // ===========================================
@@ -270,8 +286,13 @@ function parseDate(dateStr) {
 let statsSortColumn = 'year';
 let statsSortDirection = 'desc';
 
+// Store chart instances globally so we can destroy them before re-rendering
+let activityChartInstance = null;
+let genreChartInstance = null;
+let formatChartInstance = null;
+
 function renderStatistics() {
-    const container = document.getElementById('statistics');
+    const container = document.getElementById('statistics-table');
     
     if (allBooks.length === 0) {
         container.innerHTML = '<p>No books data available.</p>';
@@ -285,7 +306,7 @@ function renderStatistics() {
     });
     
     // Calculate statistics for each year
-    const yearStats = [];
+    let yearStats = [];
     
     Object.keys(booksByYear).forEach(year => {
         if (year === 'Unknown') return;
@@ -299,7 +320,7 @@ function renderStatistics() {
         const totalPages = _.sumBy(books, 'pages');
         const booksFinished = books.length;
         
-        // Count fiction vs non-fiction (assuming genre field indicates this)
+        // Count fiction vs non-fiction
         const fictionCount = books.filter(b => {
             const genre = String(b.genre || '').toLowerCase();
             return genre.includes('fiction') && !genre.includes('non-fiction');
@@ -309,6 +330,13 @@ function renderStatistics() {
             const genre = String(b.genre || '').toLowerCase();
             return genre.includes('non-fiction') || genre.includes('nonfiction');
         }).length;
+
+        // Count Audiobooks
+        const audiobookCount = books.filter(b => {
+            const ab = String(b.audiobook || '').toLowerCase();
+            return ab === 'yes' || ab === 'true';
+        }).length;
+        const regularBookCount = booksFinished - audiobookCount;
         
         // Calculate days in year (accounting for leap years)
         const daysInYear = (yearNum % 4 === 0 && (yearNum % 100 !== 0 || yearNum % 400 === 0)) ? 366 : 365;
@@ -323,23 +351,22 @@ function renderStatistics() {
             booksFinished,
             fictionCount,
             nonFictionCount,
+            audiobookCount,
+            regularBookCount,
             avgBookLength,
             booksDisplay: `${booksFinished}<br><span style="font-size: 0.85em;">(${fictionCount}/${nonFictionCount})</span>`,
             pagesDisplay: `${totalPages.toLocaleString()}<br><span style="font-size: 0.85em;">(${avgPerDay.toFixed(1)}/day)</span>`
         });
     });
     
-    // Sort the stats
-    yearStats.sort((a, b) => {
+    // 1. Render the Table (Same as before, just sorting logic applied)
+    const sortedStats = [...yearStats].sort((a, b) => {
         let aVal = a[statsSortColumn];
         let bVal = b[statsSortColumn];
         
-        // Handle different data types
         if (typeof aVal === 'number' && typeof bVal === 'number') {
             return statsSortDirection === 'asc' ? aVal - bVal : bVal - aVal;
         }
-        
-        // String comparison
         aVal = String(aVal || '').toLowerCase();
         bVal = String(bVal || '').toLowerCase();
         
@@ -350,9 +377,7 @@ function renderStatistics() {
         }
     });
     
-    // Build table HTML
     let tableHTML = `
-        <h2>Reading Statistics by Year</h2>
         <div class="table-container">
             <table class="books-table stats-table">
                 <thead>
@@ -366,7 +391,7 @@ function renderStatistics() {
                 <tbody>
     `;
     
-    yearStats.forEach(stat => {
+    sortedStats.forEach(stat => {
         tableHTML += `
             <tr>
                 <td>${stat.year}</td>
@@ -377,21 +402,147 @@ function renderStatistics() {
         `;
     });
     
-    tableHTML += `
-                </tbody>
-            </table>
-        </div>
-    `;
-    
+    tableHTML += `</tbody></table></div>`;
     container.innerHTML = tableHTML;
+
+    // 2. Render the Charts
+    renderCharts(yearStats);
 }
 
+function renderCharts(data) {
+    // Sort by year ascending for charts so time flows left-to-right
+    const chartData = [...data].sort((a, b) => a.year - b.year);
+    const labels = chartData.map(d => d.year);
+
+    // --- Chart 1: Activity (Pages/Day vs Books Finished) ---
+    const ctxActivity = document.getElementById('activityChart').getContext('2d');
+    
+    if (activityChartInstance) activityChartInstance.destroy();
+
+    activityChartInstance = new Chart(ctxActivity, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Books Finished',
+                    data: chartData.map(d => d.booksFinished),
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    yAxisID: 'y1',
+                    order: 2
+                },
+                {
+                    label: 'Avg Pages / Day',
+                    data: chartData.map(d => d.avgPerDay),
+                    type: 'line',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    yAxisID: 'y',
+                    order: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                title: { display: true, text: 'Reading Habits Over Time' }
+            },
+            scales: {
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: { display: true, text: 'Avg Pages / Day' }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: { drawOnChartArea: false },
+                    title: { display: true, text: 'Books Finished' }
+                }
+            }
+        }
+    });
+
+    // --- Chart 2: Fiction vs Non-Fiction (Stacked) ---
+    const ctxGenre = document.getElementById('genreChart').getContext('2d');
+    if (genreChartInstance) genreChartInstance.destroy();
+
+    genreChartInstance = new Chart(ctxGenre, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Fiction',
+                    data: chartData.map(d => d.fictionCount),
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                },
+                {
+                    label: 'Non-Fiction',
+                    data: chartData.map(d => d.nonFictionCount),
+                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: { display: true, text: 'Fiction vs. Non-Fiction' },
+            },
+            scales: {
+                x: { stacked: true },
+                y: { stacked: true, beginAtZero: true }
+            }
+        }
+    });
+
+    // --- Chart 3: Audio vs Regular (Stacked) ---
+    const ctxFormat = document.getElementById('formatChart').getContext('2d');
+    if (formatChartInstance) formatChartInstance.destroy();
+
+    formatChartInstance = new Chart(ctxFormat, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Audiobook',
+                    data: chartData.map(d => d.audiobookCount),
+                    backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                },
+                {
+                    label: 'Regular (Print/E-book)',
+                    data: chartData.map(d => d.regularBookCount),
+                    backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: { display: true, text: 'Audiobook vs. Regular' },
+            },
+            scales: {
+                x: { stacked: true },
+                y: { stacked: true, beginAtZero: true }
+            }
+        }
+    });
+}
 function sortStatsTable(column) {
     if (statsSortColumn === column) {
-        // Toggle direction if same column
         statsSortDirection = statsSortDirection === 'asc' ? 'desc' : 'asc';
     } else {
-        // New column, default to ascending
         statsSortColumn = column;
         statsSortDirection = 'asc';
     }
