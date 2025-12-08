@@ -67,6 +67,12 @@ function switchTab(tabId) {
     if (activeButton) {
         activeButton.classList.add('active');
     }
+    
+    // Render statistics when switching to that tab
+    if (tabId === 'statistics') {
+        renderStatistics();
+    }
+    
     console.log(`Switched to tab: ${tabId}`);
 }
 
@@ -255,4 +261,139 @@ function parseDate(dateStr) {
     }
     
     return null;
+}
+
+// ===========================================
+// STATISTICS RENDERING
+// ===========================================
+
+let statsSortColumn = 'year';
+let statsSortDirection = 'desc';
+
+function renderStatistics() {
+    const container = document.getElementById('statistics');
+    
+    if (allBooks.length === 0) {
+        container.innerHTML = '<p>No books data available.</p>';
+        return;
+    }
+    
+    // Group books by year
+    const booksByYear = _.groupBy(allBooks, book => {
+        const date = parseDate(book.finishDate);
+        return date ? date.getFullYear() : 'Unknown';
+    });
+    
+    // Calculate statistics for each year
+    const yearStats = [];
+    
+    Object.keys(booksByYear).forEach(year => {
+        if (year === 'Unknown') return;
+        
+        const yearNum = parseInt(year);
+        
+        // Only include data from 2015 onwards
+        if (yearNum < 2015) return;
+        
+        const books = booksByYear[year];
+        const totalPages = _.sumBy(books, 'pages');
+        const booksFinished = books.length;
+        
+        // Count fiction vs non-fiction (assuming genre field indicates this)
+        const fictionCount = books.filter(b => {
+            const genre = String(b.genre || '').toLowerCase();
+            return genre.includes('fiction') && !genre.includes('non-fiction');
+        }).length;
+        
+        const nonFictionCount = books.filter(b => {
+            const genre = String(b.genre || '').toLowerCase();
+            return genre.includes('non-fiction') || genre.includes('nonfiction');
+        }).length;
+        
+        // Calculate days in year (accounting for leap years)
+        const daysInYear = (yearNum % 4 === 0 && (yearNum % 100 !== 0 || yearNum % 400 === 0)) ? 366 : 365;
+        const avgPerDay = totalPages / daysInYear;
+        
+        const avgBookLength = totalPages / booksFinished;
+        
+        yearStats.push({
+            year: yearNum,
+            totalPages,
+            avgPerDay,
+            booksFinished,
+            fictionCount,
+            nonFictionCount,
+            avgBookLength,
+            booksDisplay: `${booksFinished}<br><span style="font-size: 0.85em;">(${fictionCount}/${nonFictionCount})</span>`,
+            pagesDisplay: `${totalPages.toLocaleString()}<br><span style="font-size: 0.85em;">(${avgPerDay.toFixed(1)}/day)</span>`
+        });
+    });
+    
+    // Sort the stats
+    yearStats.sort((a, b) => {
+        let aVal = a[statsSortColumn];
+        let bVal = b[statsSortColumn];
+        
+        // Handle different data types
+        if (typeof aVal === 'number' && typeof bVal === 'number') {
+            return statsSortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+        }
+        
+        // String comparison
+        aVal = String(aVal || '').toLowerCase();
+        bVal = String(bVal || '').toLowerCase();
+        
+        if (statsSortDirection === 'asc') {
+            return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+        } else {
+            return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+        }
+    });
+    
+    // Build table HTML
+    let tableHTML = `
+        <h2>Reading Statistics by Year</h2>
+        <div class="table-container">
+            <table class="books-table stats-table">
+                <thead>
+                    <tr>
+                        <th class="sortable ${statsSortColumn === 'year' ? 'sort-' + statsSortDirection : ''}" onclick="sortStatsTable('year')">Year</th>
+                        <th class="sortable ${statsSortColumn === 'totalPages' ? 'sort-' + statsSortDirection : ''}" onclick="sortStatsTable('totalPages')">Total Pages<br><span style="font-size: 0.85em; font-weight: normal;">(Average/Day)</span></th>
+                        <th class="sortable ${statsSortColumn === 'booksFinished' ? 'sort-' + statsSortDirection : ''}" onclick="sortStatsTable('booksFinished')">Books Finished<br><span style="font-size: 0.85em; font-weight: normal;">(Fiction/Non-Fiction)</span></th>
+                        <th class="sortable ${statsSortColumn === 'avgBookLength' ? 'sort-' + statsSortDirection : ''}" onclick="sortStatsTable('avgBookLength')">Average Book Length</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    yearStats.forEach(stat => {
+        tableHTML += `
+            <tr>
+                <td>${stat.year}</td>
+                <td>${stat.pagesDisplay}</td>
+                <td>${stat.booksDisplay}</td>
+                <td>${Math.round(stat.avgBookLength).toLocaleString()}</td>
+            </tr>
+        `;
+    });
+    
+    tableHTML += `
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    container.innerHTML = tableHTML;
+}
+
+function sortStatsTable(column) {
+    if (statsSortColumn === column) {
+        // Toggle direction if same column
+        statsSortDirection = statsSortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+        // New column, default to ascending
+        statsSortColumn = column;
+        statsSortDirection = 'asc';
+    }
+    renderStatistics();
 }

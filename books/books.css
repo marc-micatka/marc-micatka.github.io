@@ -237,3 +237,15 @@
     font-weight: bold;
 }
 
+
+/* Statistics table - equal column widths and centered text */
+#statistics .books-table th,
+#statistics .books-table td {
+    width: auto;
+    text-align: center;
+}
+
+#statistics .books-table th {
+    white-space: normal;
+    line-height: 1.3;
+}
