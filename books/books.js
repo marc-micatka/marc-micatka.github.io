@@ -2,7 +2,7 @@
 // CONFIGURATION
 // ===========================================
 
-const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=1749726170&single=true&output=csv';
+const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=290047373&single=true&output=csv';
 
 // ===========================================
 // GLOBAL VARIABLES
@@ -16,31 +16,38 @@ let sortDirection = 'desc';
 // INITIALIZE APP
 // ===========================================
 document.addEventListener('DOMContentLoaded', function() {
+    switchTab('statistics');
     loadBooksData();
     console.log("Reading List page loaded.");
 });
 
 
 // ===========================================
-// EVENT LISTENERS (UPDATED)
+// EVENT LISTENERS
 // ===========================================
 
 function setupEventListeners() {
+    // 1. Search Input
     const searchInput = document.getElementById('searchInput');
-    
-    // Listen for input changes (typing)
     if (searchInput) {
         searchInput.addEventListener('input', renderBooksTable);
     }
+
+    // 2. Filter Inputs (Rating, Pages, Date)
+    const filterIds = ['ratingMin', 'ratingMax', 'pagesMin', 'pagesMax', 'dateStart', 'dateEnd'];
+    filterIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', renderBooksTable);
+            el.addEventListener('change', renderBooksTable); 
+        }
+    });
     
-    // [ADD THIS] Collapsible headers logic
+    // 3. Collapsible headers logic
     const collapsibles = document.querySelectorAll('.collapsible-header');
     collapsibles.forEach(header => {
         header.addEventListener('click', function() {
-            // Toggle the 'collapsed' class on the header (for the arrow rotation)
             this.classList.toggle('collapsed');
-            
-            // Find the next sibling (the content div) and toggle its visibility
             const content = this.nextElementSibling;
             if (content && content.classList.contains('collapsible-content')) {
                 content.classList.toggle('collapsed');
@@ -49,14 +56,19 @@ function setupEventListeners() {
     });
 }
 
+function clearFilters() {
+    const ids = ['searchInput', 'ratingMin', 'ratingMax', 'pagesMin', 'pagesMax', 'dateStart', 'dateEnd'];
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+    });
+    renderBooksTable();
+}
+
 // ===========================================
-// TAB Switching
+// TAB Switching & Navigation
 // ===========================================
-/**
- * Handles switching between tabs in the reading list view.
- *
- * @param {string} tabId The ID of the tab content to show (e.g., 'overview', 'statistics').
- */
+
 function switchTab(tabId) {
     // 1. Get all tab content elements and buttons
     const tabContents = document.querySelectorAll('.tab-content');
@@ -84,12 +96,29 @@ function switchTab(tabId) {
         activeButton.classList.add('active');
     }
     
-    // Render statistics when switching to that tab
     if (tabId === 'statistics') {
         renderStatistics();
     }
-    
-    console.log(`Switched to tab: ${tabId}`);
+}
+
+// Helper function to link from table to review tab
+function goToReview(slug) {
+    switchTab('reviews');
+    // Allow the DOM to update visibility before scrolling
+    setTimeout(() => {
+        const element = document.getElementById(slug);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Optional: Highlight the review briefly
+            element.classList.add('highlight-review');
+            setTimeout(() => element.classList.remove('highlight-review'), 2000);
+        }
+    }, 50);
+}
+
+function createSlug(title) {
+    if (!title) return 'unknown';
+    return 'review-' + title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 }
 
 // ===========================================
@@ -124,7 +153,11 @@ function loadBooksData() {
             
             messageDiv.innerHTML = '';
             setupEventListeners();
+            
+            // Render all views
             renderBooksTable();
+            renderStatistics();
+            renderReviews(); // New function
         },
         error: function(error) {
             console.error('Fetch error:', error);
@@ -137,55 +170,65 @@ function loadBooksData() {
 // TABLE RENDERING
 // ===========================================
 function renderBooksTable() {
-    // Check for search input
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
-
-    const searchTerm = searchInput.value.toLowerCase().trim();
-
-
     const container = document.getElementById('books-table');
+    if (!container) return; 
     
     if (allBooks.length === 0) {
         container.innerHTML = '<p>No books data available.</p>';
         return;
     }
-    
+
+    // 1. Get Filter Values
+    const searchTerm = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
+    const ratingMin = parseFloat(document.getElementById('ratingMin')?.value);
+    const ratingMax = parseFloat(document.getElementById('ratingMax')?.value);
+    const pagesMin = parseInt(document.getElementById('pagesMin')?.value);
+    const pagesMax = parseInt(document.getElementById('pagesMax')?.value);
+    const dateStartRaw = document.getElementById('dateStart')?.value;
+    const dateEndRaw = document.getElementById('dateEnd')?.value;
+    const dateStart = dateStartRaw ? new Date(dateStartRaw) : null;
+    const dateEnd = dateEndRaw ? new Date(dateEndRaw) : null;
+
+    // 2. Filter Logic
     let filteredBooks = allBooks.filter(book => {
         const titleSafe = String(book.title || '').toLowerCase();
         const authorSafe = String(book.author || '').toLowerCase();
-
-        const matchesSearch = !searchTerm || 
-            titleSafe.includes(searchTerm) || 
-            authorSafe.includes(searchTerm);
         
-        return matchesSearch;
+        if (searchTerm && !titleSafe.includes(searchTerm) && !authorSafe.includes(searchTerm)) return false;
+        if (!isNaN(ratingMin) && (book.rating < ratingMin)) return false;
+        if (!isNaN(ratingMax) && (book.rating > ratingMax)) return false;
+        
+        const p = book.pages || 0;
+        if (!isNaN(pagesMin) && p < pagesMin) return false;
+        if (!isNaN(pagesMax) && p > pagesMax) return false;
+
+        const bookDate = parseDate(book.finishDate);
+        if ((dateStart || dateEnd) && !bookDate) return false;
+        if (dateStart && bookDate < dateStart) return false;
+        if (dateEnd && bookDate > dateEnd) return false;
+        
+        return true;
     });
     
-    // Sort books if a column is selected
+    // 3. Sort Logic
     if (sortColumn) {
         filteredBooks.sort((a, b) => {
             let aVal = a[sortColumn];
             let bVal = b[sortColumn];
             
-            // Handle dates specially
             if (sortColumn === 'finishDate') {
                 const dateA = parseDate(aVal);
                 const dateB = parseDate(bVal);
-                
                 if (!dateA && !dateB) return 0;
                 if (!dateA) return sortDirection === 'asc' ? 1 : -1;
                 if (!dateB) return sortDirection === 'asc' ? -1 : 1;
-                
                 return sortDirection === 'asc' ? dateA - dateB : dateB - dateA;
             }
             
-            // Handle different data types
             if (typeof aVal === 'number' && typeof bVal === 'number') {
                 return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
             }
             
-            // String comparison
             aVal = String(aVal || '').toLowerCase();
             bVal = String(bVal || '').toLowerCase();
             
@@ -197,7 +240,7 @@ function renderBooksTable() {
         });
     }
     
-    // Build table HTML
+    // 4. Build Table
     let tableHTML = `
         <div class="table-container">
             <table class="books-table">
@@ -210,32 +253,50 @@ function renderBooksTable() {
                         <th class="sortable ${sortColumn === 'finishDate' ? 'sort-' + sortDirection : ''}" onclick="sortTable('finishDate')">Finish Date</th>
                         <th class="sortable ${sortColumn === 'rating' ? 'sort-' + sortDirection : ''}" onclick="sortTable('rating')">Rating</th>
                         <th class="sortable ${sortColumn === 'audiobook' ? 'sort-' + sortDirection : ''}" onclick="sortTable('audiobook')">Audiobook?</th>
+                        <th style="width: 100px;">Full Review</th>
                     </tr>
                 </thead>
                 <tbody>
     `;
 
-    
-    
-    filteredBooks.forEach((book, index) => {
-        // Format column: show green checkmark if audiobook is "Yes"
-        const formatCell = (book.audiobook && book.audiobook.toString().toLowerCase() === 'yes') 
-            ? '<span class="checkmark">✓</span>' 
-            : '';
-        
-        
-        tableHTML += `
-            <tr>
-                <td>${escapeHtml(book.title)}</td>
-                <td>${escapeHtml(book.author)}</td>
-                <td>${book.pages || '-'}</td>
-                <td>${escapeHtml(book.genre)}</td>
-                <td>${escapeHtml(book.finishDate)}</td>
-                <td>${book.rating || '-'}</td>
-                <td>${formatCell}</td>
-            </tr>
-        `;
-    });
+    if (filteredBooks.length === 0) {
+        tableHTML += `<tr><td colspan="8" style="text-align:center; padding: 20px;">No books match your filters.</td></tr>`;
+    } else {
+        filteredBooks.forEach((book) => {
+            const formatCell = (book.audiobook && book.audiobook.toString().toLowerCase() === 'yes') 
+                ? '<span class="checkmark">✓</span>' 
+                : '';
+            
+            const hasReview = book.review && String(book.review).trim().length > 0;
+            
+            // Logic for Review Column and Row Hover
+            let reviewCell = '';
+            let rowTitle = '';
+            
+            if (hasReview) {
+                const slug = createSlug(book.title);
+                // The checkmark links to the review tab
+                reviewCell = `<span class="review-link" onclick="goToReview('${slug}')">📝</span>`;
+                // The title attribute provides the hover text for the whole row
+                rowTitle = `title="${escapeAttribute(book.review)}"`;
+            } else {
+                reviewCell = '<span style="color: #ccc;">-</span>';
+            }
+            
+            tableHTML += `
+                <tr ${rowTitle}>
+                    <td>${escapeHtml(book.title)}</td>
+                    <td>${escapeHtml(book.author)}</td>
+                    <td>${book.pages || '-'}</td>
+                    <td>${escapeHtml(book.genre)}</td>
+                    <td>${escapeHtml(book.finishDate)}</td>
+                    <td>${book.rating || '-'}</td>
+                    <td>${formatCell}</td>
+                    <td style="text-align: center; cursor: pointer;">${reviewCell}</td>
+                </tr>
+            `;
+        });
+    }
     
     tableHTML += `
                 </tbody>
@@ -246,12 +307,63 @@ function renderBooksTable() {
     container.innerHTML = tableHTML;
 }
 
+// ===========================================
+// REVIEWS RENDERING
+// ===========================================
+
+function renderReviews() {
+    const container = document.getElementById('reviews');
+    if (!container) return;
+
+    // Filter for books with reviews
+    let booksWithReviews = allBooks.filter(book => book.review && String(book.review).trim().length > 0);
+
+    if (booksWithReviews.length === 0) {
+        container.innerHTML = '<div class="no-reviews">No reviews available yet.</div>';
+        return;
+    }
+
+    // Sort by Date Descending
+    booksWithReviews.sort((a, b) => {
+        const dateA = parseDate(a.finishDate);
+        const dateB = parseDate(b.finishDate);
+        if (!dateA && !dateB) return 0;
+        if (!dateA) return 1;
+        if (!dateB) return -1;
+        return dateB - dateA; // Descending
+    });
+
+    let html = '<div class="reviews-container">';
+
+    booksWithReviews.forEach(book => {
+        const slug = createSlug(book.title);
+        const dateDisplay = book.finishDate ? `Finished: ${book.finishDate}` : 'Date Unknown';
+        
+        html += `
+            <div id="${slug}" class="review-card">
+                <h2 class="review-header">
+                    ${escapeHtml(book.title)} - ${escapeHtml(book.author)} 
+                    <span class="review-rating">${book.rating}/10 ⭐ </span>
+                </h2>
+                <div class="review-meta">${dateDisplay}</div>
+                <div class="review-body">${book.review}</div> 
+                <div class="review-divider">***</div>
+            </div>
+        `;
+    });
+
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+// ===========================================
+// UTILS
+// ===========================================
+
 function sortTable(column) {
     if (sortColumn === column) {
-        // Toggle direction if same column
         sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
-        // New column, default to ascending
         sortColumn = column;
         sortDirection = 'asc';
     }
@@ -259,34 +371,33 @@ function sortTable(column) {
 }
 
 function escapeHtml(text) {
+    if (!text) return '';
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
 }
 
-// Parse date strings in various formats
+// For use in HTML attributes like title="..."
+function escapeAttribute(text) {
+    if (!text) return '';
+    return text.replace(/"/g, '&quot;').replace(/\n/g, ' ');
+}
+
 function parseDate(dateStr) {
     if (!dateStr) return null;
-    
-    // Try to parse common formats: MM/DD/YYYY, M/D/YYYY, YYYY-MM-DD, etc.
     const date = new Date(dateStr);
-    
-    // Check if valid date
     if (!isNaN(date.getTime())) {
         return date;
     }
-    
     return null;
 }
 
 // ===========================================
-// STATISTICS RENDERING
+// STATISTICS RENDERING (UNCHANGED)
 // ===========================================
 
 let statsSortColumn = 'year';
 let statsSortDirection = 'desc';
-
-// Store chart instances globally so we can destroy them before re-rendering
 let activityChartInstance = null;
 let genreChartInstance = null;
 let formatChartInstance = null;
@@ -305,22 +416,16 @@ function renderStatistics() {
         return date ? date.getFullYear() : 'Unknown';
     });
     
-    // Calculate statistics for each year
     let yearStats = [];
-    
     Object.keys(booksByYear).forEach(year => {
         if (year === 'Unknown') return;
-        
         const yearNum = parseInt(year);
-        
-        // Only include data from 2015 onwards
         if (yearNum < 2015) return;
         
         const books = booksByYear[year];
         const totalPages = _.sumBy(books, 'pages');
         const booksFinished = books.length;
         
-        // Count fiction vs non-fiction
         const fictionCount = books.filter(b => {
             const genre = String(b.genre || '').toLowerCase();
             return genre.includes('fiction') && !genre.includes('non-fiction');
@@ -331,17 +436,14 @@ function renderStatistics() {
             return genre.includes('non-fiction') || genre.includes('nonfiction');
         }).length;
 
-        // Count Audiobooks
         const audiobookCount = books.filter(b => {
             const ab = String(b.audiobook || '').toLowerCase();
             return ab === 'yes' || ab === 'true';
         }).length;
         const regularBookCount = booksFinished - audiobookCount;
         
-        // Calculate days in year (accounting for leap years)
         const daysInYear = (yearNum % 4 === 0 && (yearNum % 100 !== 0 || yearNum % 400 === 0)) ? 366 : 365;
         const avgPerDay = totalPages / daysInYear;
-        
         const avgBookLength = totalPages / booksFinished;
         
         yearStats.push({
@@ -359,22 +461,15 @@ function renderStatistics() {
         });
     });
     
-    // 1. Render the Table (Same as before, just sorting logic applied)
     const sortedStats = [...yearStats].sort((a, b) => {
         let aVal = a[statsSortColumn];
         let bVal = b[statsSortColumn];
-        
         if (typeof aVal === 'number' && typeof bVal === 'number') {
             return statsSortDirection === 'asc' ? aVal - bVal : bVal - aVal;
         }
         aVal = String(aVal || '').toLowerCase();
         bVal = String(bVal || '').toLowerCase();
-        
-        if (statsSortDirection === 'asc') {
-            return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
-        } else {
-            return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
-        }
+        return statsSortDirection === 'asc' ? (aVal < bVal ? -1 : aVal > bVal ? 1 : 0) : (aVal > bVal ? -1 : aVal < bVal ? 1 : 0);
     });
     
     let tableHTML = `
@@ -405,140 +500,88 @@ function renderStatistics() {
     tableHTML += `</tbody></table></div>`;
     container.innerHTML = tableHTML;
 
-    // 2. Render the Charts
     renderCharts(yearStats);
 }
 
 function renderCharts(data) {
-    // Sort by year ascending for charts so time flows left-to-right
     const chartData = [...data].sort((a, b) => a.year - b.year);
     const labels = chartData.map(d => d.year);
 
-    // --- Chart 1: Activity (Pages/Day vs Books Finished) ---
-    const ctxActivity = document.getElementById('activityChart').getContext('2d');
-    
-    if (activityChartInstance) activityChartInstance.destroy();
-
-    activityChartInstance = new Chart(ctxActivity, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Books Finished',
-                    data: chartData.map(d => d.booksFinished),
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    yAxisID: 'y1',
-                    order: 2
-                },
-                {
-                    label: 'Avg Pages / Day',
-                    data: chartData.map(d => d.avgPerDay),
-                    type: 'line',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderWidth: 3,
-                    tension: 0.3,
-                    yAxisID: 'y',
-                    order: 1
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            interaction: {
-                mode: 'index',
-                intersect: false,
+    const ctxActivity = document.getElementById('activityChart')?.getContext('2d');
+    if(ctxActivity) {
+        if (activityChartInstance) activityChartInstance.destroy();
+        activityChartInstance = new Chart(ctxActivity, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Books Finished',
+                        data: chartData.map(d => d.booksFinished),
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y1',
+                        order: 2
+                    },
+                    {
+                        label: 'Avg Pages / Day',
+                        data: chartData.map(d => d.avgPerDay),
+                        type: 'line',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        yAxisID: 'y',
+                        order: 1
+                    }
+                ]
             },
-            plugins: {
-                title: { display: true, text: 'Reading Habits Over Time' }
-            },
-            scales: {
-                y: {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    title: { display: true, text: 'Avg Pages / Day' }
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    grid: { drawOnChartArea: false },
-                    title: { display: true, text: 'Books Finished' }
+            options: {
+                responsive: true,
+                interaction: { mode: 'index', intersect: false },
+                plugins: { title: { display: true, text: 'Reading Habits Over Time' } },
+                scales: {
+                    y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Avg Pages / Day' } },
+                    y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Books Finished' } }
                 }
             }
-        }
-    });
+        });
+    }
 
-    // --- Chart 2: Fiction vs Non-Fiction (Stacked) ---
-    const ctxGenre = document.getElementById('genreChart').getContext('2d');
-    if (genreChartInstance) genreChartInstance.destroy();
-
-    genreChartInstance = new Chart(ctxGenre, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Fiction',
-                    data: chartData.map(d => d.fictionCount),
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                },
-                {
-                    label: 'Non-Fiction',
-                    data: chartData.map(d => d.nonFictionCount),
-                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: { display: true, text: 'Fiction vs. Non-Fiction' },
+    const ctxGenre = document.getElementById('genreChart')?.getContext('2d');
+    if(ctxGenre) {
+        if (genreChartInstance) genreChartInstance.destroy();
+        genreChartInstance = new Chart(ctxGenre, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    { label: 'Fiction', data: chartData.map(d => d.fictionCount), backgroundColor: 'rgba(75, 192, 192, 0.6)' },
+                    { label: 'Non-Fiction', data: chartData.map(d => d.nonFictionCount), backgroundColor: 'rgba(255, 206, 86, 0.6)' }
+                ]
             },
-            scales: {
-                x: { stacked: true },
-                y: { stacked: true, beginAtZero: true }
-            }
-        }
-    });
+            options: { responsive: true, plugins: { title: { display: true, text: 'Fiction vs. Non-Fiction' } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } }
+        });
+    }
 
-    // --- Chart 3: Audio vs Regular (Stacked) ---
-    const ctxFormat = document.getElementById('formatChart').getContext('2d');
-    if (formatChartInstance) formatChartInstance.destroy();
-
-    formatChartInstance = new Chart(ctxFormat, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Audiobook',
-                    data: chartData.map(d => d.audiobookCount),
-                    backgroundColor: 'rgba(153, 102, 255, 0.6)',
-                },
-                {
-                    label: 'Regular (Print/E-book)',
-                    data: chartData.map(d => d.regularBookCount),
-                    backgroundColor: 'rgba(255, 159, 64, 0.6)',
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: { display: true, text: 'Audiobook vs. Regular' },
+    const ctxFormat = document.getElementById('formatChart')?.getContext('2d');
+    if(ctxFormat) {
+        if (formatChartInstance) formatChartInstance.destroy();
+        formatChartInstance = new Chart(ctxFormat, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    { label: 'Audiobook', data: chartData.map(d => d.audiobookCount), backgroundColor: 'rgba(153, 102, 255, 0.6)' },
+                    { label: 'Regular (Print/E-book)', data: chartData.map(d => d.regularBookCount), backgroundColor: 'rgba(255, 159, 64, 0.6)' }
+                ]
             },
-            scales: {
-                x: { stacked: true },
-                y: { stacked: true, beginAtZero: true }
-            }
-        }
-    });
+            options: { responsive: true, plugins: { title: { display: true, text: 'Audiobook vs. Regular' } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } }
+        });
+    }
 }
+
 function sortStatsTable(column) {
     if (statsSortColumn === column) {
         statsSortDirection = statsSortDirection === 'asc' ? 'desc' : 'asc';
