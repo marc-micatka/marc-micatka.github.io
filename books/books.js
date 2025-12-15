@@ -148,7 +148,8 @@ function loadBooksData() {
                 finishDate: book['Finish Date'] || book.finishDate || book['Finish date'] || '',
                 rating: parseFloat(book['Rating'] || book.rating || book.Rating) || 0,
                 audiobook: book['Audiobook?'] || book.audiobook || book.Audiobook || '',
-                review: book['Review'] || book.Review || book.review || ''
+                review: book['Review'] || book.Review || book.review || '',
+                hasReview: (book['Review'] || book.Review || book.review || '').trim().length > 0
             }));
             
             messageDiv.innerHTML = '';
@@ -225,6 +226,11 @@ function renderBooksTable() {
                 return sortDirection === 'asc' ? dateA - dateB : dateB - dateA;
             }
             
+            if (sortColumn === 'hasReview') {
+                // Sort by presence of review (true/false)
+                return sortDirection === 'asc' ? (aVal === bVal ? 0 : aVal ? 1 : -1) : (aVal === bVal ? 0 : aVal ? -1 : 1);
+            }
+            
             if (typeof aVal === 'number' && typeof bVal === 'number') {
                 return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
             }
@@ -253,7 +259,7 @@ function renderBooksTable() {
                         <th class="sortable ${sortColumn === 'finishDate' ? 'sort-' + sortDirection : ''}" onclick="sortTable('finishDate')">Finish Date</th>
                         <th class="sortable ${sortColumn === 'rating' ? 'sort-' + sortDirection : ''}" onclick="sortTable('rating')">Rating</th>
                         <th class="sortable ${sortColumn === 'audiobook' ? 'sort-' + sortDirection : ''}" onclick="sortTable('audiobook')">Audiobook?</th>
-                        <th style="width: 100px;">Full Review</th>
+                        <th class="sortable ${sortColumn === 'hasReview' ? 'sort-' + sortDirection : ''}" onclick="sortTable('hasReview')">Full Review</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -393,7 +399,7 @@ function parseDate(dateStr) {
 }
 
 // ===========================================
-// STATISTICS RENDERING (UNCHANGED)
+// STATISTICS RENDERING
 // ===========================================
 
 let statsSortColumn = 'year';
@@ -401,6 +407,7 @@ let statsSortDirection = 'desc';
 let activityChartInstance = null;
 let genreChartInstance = null;
 let formatChartInstance = null;
+let current2025ChartInstance = null;
 
 function renderStatistics() {
     const container = document.getElementById('statistics-table');
@@ -409,6 +416,9 @@ function renderStatistics() {
         container.innerHTML = '<p>No books data available.</p>';
         return;
     }
+    
+    // Render 2025-specific stats first
+    render2025Stats();
     
     // Group books by year
     const booksByYear = _.groupBy(allBooks, book => {
@@ -590,4 +600,125 @@ function sortStatsTable(column) {
         statsSortDirection = 'asc';
     }
     renderStatistics();
+}
+
+// ===========================================
+// 2025 STATISTICS RENDERING
+// ===========================================
+
+function render2025Stats() {
+    const container = document.getElementById('stats-2025');
+    if (!container) return;
+
+    // Filter books from 2025
+    const books2025 = allBooks.filter(book => {
+        const date = parseDate(book.finishDate);
+        return date && date.getFullYear() === 2025;
+    });
+
+    if (books2025.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #666;">No books finished in 2025 yet.</p>';
+        return;
+    }
+
+    // Calculate fiction/non-fiction counts
+    const fictionBooks = books2025.filter(b => {
+        const genre = String(b.genre || '').toLowerCase();
+        return genre.includes('fiction') && !genre.includes('non-fiction');
+    });
+    
+    const nonFictionBooks = books2025.filter(b => {
+        const genre = String(b.genre || '').toLowerCase();
+        return genre.includes('non-fiction') || genre.includes('nonfiction');
+    });
+
+    // Get top 5 and bottom 5 rated books
+    const ratedBooks = books2025.filter(b => b.rating > 0);
+    const sortedByRating = [...ratedBooks].sort((a, b) => b.rating - a.rating);
+    const topRated = sortedByRating.slice(0, 5);
+    const bottomRated = sortedByRating.slice(-5).reverse();
+
+    let html = `
+        <!-- Fiction/Non-Fiction Chart (Full Width) -->
+        <div style="background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 30px;">
+            <h4 style="margin-top: 0; text-align: center; color: #333;">2025 Reading by Genre</h4>
+            <canvas id="current2025Chart" style="max-height: 300px;"></canvas>
+            <div style="text-align: center; margin-top: 15px; color: #666;">
+                <strong>${books2025.length}</strong> books finished so far
+            </div>
+        </div>
+
+        <!-- Top and Bottom Rated Books Side by Side -->
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 30px;">
+            <!-- Top Rated Books -->
+            <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <h4 style="margin-top: 0; text-align: center; color: #333;">Top Rated Books (2025)</h4>
+                ${topRated.length > 0 ? generateBookList(topRated, true) : '<p style="text-align: center; color: #666;">No rated books yet.</p>'}
+            </div>
+
+            <!-- Bottom Rated Books -->
+            ${bottomRated.length > 0 && bottomRated.length >= 5 ? `
+            <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <h4 style="margin-top: 0; text-align: center; color: #333;">Lowest Rated Books (2025)</h4>
+                ${generateBookList(bottomRated, false)}
+            </div>
+            ` : ''}
+        </div>
+    `;
+
+    container.innerHTML = html;
+
+    // Render the chart
+    const ctx = document.getElementById('current2025Chart')?.getContext('2d');
+    if (ctx) {
+        if (current2025ChartInstance) current2025ChartInstance.destroy();
+        
+        current2025ChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Fiction', 'Non-Fiction'],
+                datasets: [{
+                    label: 'Books Read',
+                    data: [fictionBooks.length, nonFictionBooks.length],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+    }
+}
+
+function generateBookList(books, isTopRated) {
+    let html = '<ol style="margin: 0; padding-left: 20px; line-height: 1.8;">';
+    books.forEach(book => {
+        const ratingColor = book.rating >= 8 ? '#28a745' : book.rating >= 6 ? '#ffc107' : '#dc3545';
+        html += `
+            <li style="margin-bottom: 8px;">
+                <strong>${escapeHtml(book.title)}</strong> by ${escapeHtml(book.author)}
+                <span style="color: ${ratingColor}; font-weight: bold; margin-left: 8px;">${book.rating}/10</span>
+            </li>
+        `;
+    });
+    html += '</ol>';
+    return html;
 }
