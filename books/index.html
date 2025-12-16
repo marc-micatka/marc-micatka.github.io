@@ -11,11 +11,12 @@ title: Reading List
 <script src="{{ '/books/books.js' | relative_url }}"></script>
 
 <div class="container" id="books-data">
+    <h1 class="page-title">📚 Books 📚</h1>
 
-    <h1 class="page-title" align="center">📚 Books Database 📚</h1>
-    <div class="header">
-        I've been tracking every book I've read since 2015. 
-        Data is <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=290047373&single=true&output=csv" target="_blank">here</a> and the blog post providing some background is <a href="/books_database/" target="_blank">here</a>.
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+        <button class="tab-btn" onclick="switchTab('statistics')">Statistics</button>
+        <button class="tab-btn" onclick="switchTab('all-data')">All Data</button>
     </div>
 
     <div id="overview" class="tab-content active">
@@ -42,34 +43,17 @@ title: Reading List
     </div>
 
     <div id="all-data" class="tab-content">
-        <div class="filters-panel">
-            <div class="filter-row">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search title or author...">
-            </div>
-
-            <div class="filter-row ranges">
-
-
-                <div class="filter-group">
-                    <label>Date Finished</label>
-                    <div class="range-inputs">
-                        <input type="date" id="dateStart">
-                        <span>-</span>
-                        <input type="date" id="dateEnd">
-                    </div>
-                </div>
-                
-                <div class="filter-actions">
-                     <button class="btn-clear" onclick="clearFilters()">Clear Filters</button>
-                </div>
+        <div class="filter-group">
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Search title or author...">
             </div>
         </div>
-
         <div id="books-table"></div>
         <div id="message"></div>
     </div>
 
-    <div id="reviews" class="tab-content">
+    <div class="footer">
+        I've been tracking every book I've read since 2015. This page visualizes that data 
+        and helps me explore my reading habits over time.
     </div>
-    
 </div>
