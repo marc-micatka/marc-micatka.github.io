@@ -10,3 +10,4 @@ Gemfile.lock
 
 # Any backup files created by editors
 *~
+_config.yml

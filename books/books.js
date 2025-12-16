@@ -408,11 +408,6 @@ let genreChartInstance = null;
 let formatChartInstance = null;
 let current2025ChartInstance = null;
 
-// Store chart instances globally so we can destroy them before re-rendering
-let activityChartInstance = null;
-let genreChartInstance = null;
-let formatChartInstance = null;
-
 function renderStatistics() {
     const container = document.getElementById('statistics-table');
     
