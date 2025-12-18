@@ -1,0 +1,16 @@
+---
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; 
+
+
+.sidebar__right .toc {
+  background-color: #eeeeee !important;
+}
+
+.sidebar__right .toc .nav__title {
+  background-color: #a6a6a6 !important; /* Slightly darker orange for the header */
+}
