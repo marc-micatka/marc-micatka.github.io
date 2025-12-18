@@ -3,16 +3,22 @@ title: "North Cascades - Ptarmigan Loop"
 excerpt: "High peaks and bushwacking."
 permalink: /ptarmigan/
 last_modified_at: 2022-08-22
+classes: wide
 
 header:
-  image: "https://farm66.staticflickr.com/65535/52305347102_acc7ac022b.jpg"
-  teaser: "https://farm66.staticflickr.com/65535/52306070656_b55f97890b.jpg"
+  image: "/assets/images/ptarmigan/header.jpg"
+  teaser: "/assets/images/ptarmigan/thumbnail_big.jpg"
   
 tags:
   - Trip Reports
   - Travel
   - Photos
   - Backpacking
+
+toc: true
+toc_sticky: true
+toc_label: "Ptarmigan Loop"
+toc_icon: "mountain"
 ---
 
 Many moons ago, I read this article about the thrilling and beautiful Ptarmigan Traverse - a high route through the rugged terrain of the North Cascades, a mix of glacier and rock and trail travel. I was sold and began scheming to do it one day.

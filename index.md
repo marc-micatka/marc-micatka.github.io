@@ -1,11 +1,16 @@
 ---
-# title: "Marc Micatka"
 layout: splash
-# header:
-#   overlay_color: "#000"
-#   overlay_filter: "0.5"
-#   overlay_image: /assets/images/site_images/nepal_full.jpg
 ---
+
+<div class="container hero-banner">
+  <h1 class="page-title">Marc Micatka</h1>
+  <div class="header-subtext">
+    Welcome to my personal blog.<br>
+    I write a bit about travel, about books, and about projects.<br>
+    Sometimes these things involve a refreshing amount of danger.
+
+  </div>
+</div>
 
 <div class="custom-grid">
   {% for post in site.posts %}

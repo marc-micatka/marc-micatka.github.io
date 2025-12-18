@@ -1,20 +1,11 @@
 ---
 ---
-
-@charset "utf-8";
-
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'air' }}"; 
 @import "minimal-mistakes"; 
 
-
-.sidebar__right .toc {
-  background-color: #eeeeee !important;
-}
-
-.sidebar__right .toc .nav__title {
-  background-color: #a6a6a6 !important; /* Slightly darker grey for the header */
-}
-
+// ------------------------------------------------- //
+//        GRID
+// ------------------------------------------------- //
 // Custom Home Page
 .custom-grid {
   display: grid;
@@ -119,4 +110,118 @@
 /* Ensure the grid behaves correctly within the sections */
 .archive-grid {
   margin-top: 10px;
+}
+
+/* Move TOC to the Left for 'wide' classes without pushing text down */
+@include breakpoint($large) {
+  .layout--single.wide .sidebar__right {
+    position: absolute; /* Prevents it from taking up space in the document flow */
+    top: 0;
+    inset-inline-start: 0; /* Align to the left */
+    inset-inline-end: auto;
+    width: $right-sidebar-width-narrow;
+    margin-inline-start: -1 * $right-sidebar-width-narrow; /* Pull it into the left gutter */
+    margin-inline-end: 0;
+    padding-inline-end: 1em; /* Add space between TOC and text */
+    padding-inline-start: 0;
+    z-index: 10;
+
+    &.sticky {
+      position: sticky;
+      top: 2em;
+      float: inline-start; /* Float left instead of right */
+
+      .toc .toc__menu {
+        overflow-y: auto;
+        max-height: calc(100vh - 7em);
+      }
+    }
+  }
+}
+
+@include breakpoint($x-large) {
+  .layout--single.wide .sidebar__right {
+    width: $right-sidebar-width;
+    margin-inline-start: -1 * $right-sidebar-width;
+  }
+}
+
+// ------------------------------------------------- //
+//        HERO BANNER (HOMEPAGE)
+// ------------------------------------------------- //
+
+.hero-banner {
+  /* 1. Setup the background image with a dark overlay */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url('/assets/images/site_images/nepal_full.jpg');
+  
+  /* 2. Make it cover the full width and set a height */
+  background-size: cover;
+  background-position: center;
+  min-height: 200px; 
+  display: flex;
+  flex-direction: column;
+  
+  /* 4. Aesthetics */
+  padding: 20px;
+  border-radius: 4px; 
+  color: #ffffff !important;
+}
+
+.hero-banner .page-title {
+  color: #ffffff !important;
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.hero-banner .header-subtext {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-top: 10px;
+}
+
+// ------------------------------------------------- //
+//       RIGHT STICKY ToC
+// ------------------------------------------------- //
+/* Move TOC to the Left for 'wide' classes without pushing text down */
+@include breakpoint($large) {
+  .layout--single.wide .sidebar__right {
+    position: absolute; /* Prevents it from taking up space in the document flow */
+    top: 0;
+    inset-inline-start: 0; /* Align to the left */
+    inset-inline-end: auto;
+    width: $right-sidebar-width-narrow;
+    margin-inline-start: -1 * $right-sidebar-width-narrow; /* Pull it into the left gutter */
+    margin-inline-end: 0;
+    padding-inline-end: 1em; /* Add space between TOC and text */
+    padding-inline-start: 0;
+    z-index: 10;
+
+    &.sticky {
+      position: sticky;
+      top: 2em;
+      float: inline-start; /* Float left instead of right */
+
+      .toc .toc__menu {
+        overflow-y: auto;
+        max-height: calc(100vh - 7em);
+      }
+    }
+  }
+}
+
+@include breakpoint($x-large) {
+  .layout--single.wide .sidebar__right {
+    width: $right-sidebar-width;
+    margin-inline-start: -1 * $right-sidebar-width;
+  }
+}
+.sidebar__right .toc {
+  background-color: #eeeeee !important;
+}
+
+.sidebar__right .toc .nav__title {
+  background-color: #a6a6a6 !important; /* Slightly darker grey for the header */
 }
