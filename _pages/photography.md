@@ -2,8 +2,10 @@
 title: "Photography"
 permalink: /photography/
 header:
-  overlay_image: /assets/images/nepal_full.jpg
-author_profile: true
+  overlay_image: /assets/images/site_images/nepal_full.jpg
+author_profile: false
+layout: splash
+
 tags:
   - photography
 gallery1:

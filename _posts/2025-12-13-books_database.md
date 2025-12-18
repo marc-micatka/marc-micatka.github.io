@@ -1,5 +1,5 @@
 ---
-title: "The **Books** Database"
+title: "The Books Database"
 excerpt: "A Brief Reading Journey"
 permalink: /books_database/
 last_modified_at: 2025-12-13

@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header:
-  overlay_image: /assets/images/nepal_full.jpg
+  overlay_image: /assets/images/site_images/nepal_full.jpg
 author_profile: true
 ---
 <figure style="width: 300px" class="align-right">

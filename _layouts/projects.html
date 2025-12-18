@@ -4,28 +4,28 @@ layout: archive
 
 {{ content }}
 
-{% assign tags_max = 0 %}
-{% for tag in site.tags %}
-  {% if tag[1].size > tags_max %}
-    {% assign tags_max = tag[1].size %}
-  {% endif %}
-{% endfor %}
-
 {% assign project_tag = "Projects" %}
 
-{% for i in (1..tags_max) reversed %}
+<div class="custom-grid archive-grid">
   {% for tag in site.tags %}
-    {% if tag[1].size == i %}
-        {% if tag[0] == project_tag %}
-<section id="{{slugify | downcase }}" class="taxonomy__section">
-            <div class="entries-{{ page.entries_layout | default: 'list' }}">
-              {% for post in tag.last %}
-                {% include archive-single-pic.html type=page.entries_layout %}
-              {% endfor %}
-            </div>
-            <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-          </section>     
-        {% endif %}        
+    {% if tag[0] == project_tag %}
+      {% for post in tag.last %}
+        <a href="{{ post.url | relative_url }}" class="grid-item always-visible">
+          {% if post.header.teaser %}
+            <img src="{{ post.header.teaser | relative_url }}" alt="{{ post.title }}">
+          {% elsif post.header.image %}
+            <img src="{{ post.header.image | relative_url }}" alt="{{ post.title }}">
+          {% else %}
+            <img src="/assets/images/default-thumbnail.jpg" alt="{{ post.title }}">
+          {% endif %}
+          
+          <div class="grid-overlay">
+            <h3 class="grid-title">{{ post.title }}</h3>
+          </div>
+        </a>
+      {% endfor %}
     {% endif %}
   {% endfor %}
-{% endfor %}
+</div>
+
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>

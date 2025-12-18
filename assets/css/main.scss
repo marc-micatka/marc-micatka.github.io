@@ -12,5 +12,111 @@
 }
 
 .sidebar__right .toc .nav__title {
-  background-color: #a6a6a6 !important; /* Slightly darker orange for the header */
+  background-color: #a6a6a6 !important; /* Slightly darker grey for the header */
+}
+
+// Custom Home Page
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px; 
+  padding: 20px 0;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  aspect-ratio: 1 / 1; /* Keeps all boxes the same size */
+  border-radius: 4px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  opacity: 1;
+  opacity: 0;             
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Show overlay on hover */
+.grid-item:hover .grid-overlay {
+  opacity: 1;
+}
+
+.grid-item:hover img {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.grid-item:hover .grid-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.grid-title {
+  color: #d9d9d9 !important;
+  margin: 0 0 10px 0 !important;
+  font-size: 1.0rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.grid-excerpt {
+  color: #ddd !important;
+  font-size: 0.9rem;
+  margin: 0 !important;
+}
+/* Archive specific overrides to keep titles visible */
+.grid-item.always-visible .grid-overlay {
+  opacity: 1 !important; /* Force visibility */
+  background: rgba(0, 0, 0, 0.4); /* Subtle shadow for readability */
+  justify-content: flex-start; /* Title at the top */
+  padding-top: 20px;
+}
+
+/* Optional: Slight hover effect just to show it's clickable */
+.grid-item.always-visible:hover img {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+}
+
+.grid-item.always-visible:hover .grid-overlay {
+  background: rgba(0, 0, 0, 0.6); /* Darkens slightly on hover */
+}
+
+/* Spacing between year sections */
+.taxonomy__section {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #333; /* Optional: subtle line between years */
+  padding-bottom: 2rem;
+}
+
+/* Year Heading Style */
+.archive__subtitle {
+  font-family: $sans-serif;
+  border-bottom: none; /* Removes the default theme line if you prefer a cleaner look */
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: $primary-color; /* Or any color that fits your skin */
+}
+
+/* Ensure the grid behaves correctly within the sections */
+.archive-grid {
+  margin-top: 10px;
 }
