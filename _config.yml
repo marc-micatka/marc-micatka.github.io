@@ -23,8 +23,8 @@ search: true
 
 # Build settings
 markdown: kramdown
-remote_theme: "mmistakes/minimal-mistakes@4.26.2"
-# theme: minimal-mistakes-jekyll
+# remote_theme: "mmistakes/minimal-mistakes@4.26.2"
+theme: minimal-mistakes-jekyll
 
 # Outputting
 permalink: /:categories/:title/
@@ -57,7 +57,7 @@ plugins:
 
 author:
   name      : "Marc Micatka"
-  avatar    : "/assets/images/headshot.jpeg"
+  avatar    : "/assets/images/site_images/headshot.jpeg"
   bio       : "Occasional computer scientist, mechanical engineer, and traveler."
   location  : "Seattle, WA"
   email     : "marc.micatka@gmail.com"
@@ -85,7 +85,7 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       comments: true
 #      share: true
       related: true
