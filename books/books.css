@@ -438,11 +438,14 @@
     padding-top: 20px;
 }
 
+/* Review Card Offset/Highlighting */
 #reviews .review-card {
-    background-color: transparent; /* Blends with site background */
-    border-bottom: 1px solid #eee;
-    padding: 25px 0;   /* Vertical spacing between reviews */
-    margin-bottom: 0;
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
 /* Highlight effect when linking from table */
