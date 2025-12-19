@@ -16,11 +16,26 @@ let sortDirection = 'desc';
 // INITIALIZE APP
 // ===========================================
 document.addEventListener('DOMContentLoaded', function() {
-    switchTab('statistics');
+    // Read initial tab from URL hash, default to statistics
+    const hash = window.location.hash.substring(1); // Remove the '#'
+    const validTabs = ['statistics', 'all-data', 'reviews'];
+    const initialTab = validTabs.includes(hash) ? hash : 'statistics';
+    
+    switchTab(initialTab);
     loadBooksData();
     console.log("Reading List page loaded.");
+    
+    // Listen for hash changes (back/forward navigation)
+    window.addEventListener('hashchange', function() {
+        const newHash = window.location.hash.substring(1);
+        if (validTabs.includes(newHash)) {
+            switchTab(newHash);
+        }
+    });
+    
+    // Initialize scroll to top button
+    initScrollToTop();
 });
-
 
 // ===========================================
 // EVENT LISTENERS
@@ -95,6 +110,11 @@ function switchTab(tabId) {
     if (activeButton) {
         activeButton.classList.add('active');
     }
+
+    // 6. Update URL hash without triggering hashchange event
+   if (window.location.hash !== '#' + tabId) {
+       history.replaceState(null, null, '#' + tabId);
+   }
     
     if (tabId === 'statistics') {
         renderStatistics();
@@ -851,4 +871,33 @@ function generateBookList(books, isTopRated) {
     });
     html += '</ol>';
     return html;
+}
+
+// ===========================================
+// SCROLL TO TOP FUNCTIONALITY
+// ===========================================
+
+function initScrollToTop() {
+    // Create the button element
+    const button = document.createElement('button');
+    button.id = 'scrollToTop';
+    button.innerHTML = 'Back to Top ↑';
+    button.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(button);
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            button.classList.add('visible');
+        } else {
+            button.classList.remove('visible');
+        }
+    });
+    // Smooth scroll to top when clicked
+    button.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }

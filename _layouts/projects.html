@@ -6,7 +6,7 @@ layout: archive
 
 {% assign project_tag = "Projects" %}
 
-<div class="custom-grid archive-grid">
+<div class="custom-grid archive-grid" type="grid">
   {% for tag in site.tags %}
     {% if tag[0] == project_tag %}
       {% for post in tag.last %}
