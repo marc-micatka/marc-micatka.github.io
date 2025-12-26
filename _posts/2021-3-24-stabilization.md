@@ -8,6 +8,12 @@ tags:
   - Projects
   - OMSCS
   - Computer Vision
+classes: wide
+
+toc: true
+toc_sticky: true
+toc_label: "Stabilization"
+toc_icon: "gears"
 ---
 
 The final for *CS 6475* focused on implementing a paper and trying to achieve similar results to the authors' using our own images. We had a choice of five or six papers and I chose to try to implement <a href="http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37041.pdf" target="_blank">*Auto-Directed Video Stabilization with Robust L1 Optimal Camera Paths*</a>. This paper is really awesome - there's a ton of math and image processing techniques that get covered, and the results are actually really amazing. In fact, a modified version of this technique is still used in Google products.

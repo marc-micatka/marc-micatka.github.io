@@ -8,7 +8,15 @@ tags:
   - Projects
   - OMSCS
   - AI
+classes: wide
+
+toc: true
+toc_sticky: true
+toc_label: "ML4T"
+toc_icon: "arrow-trend-up"
 ---
+
+## Introduction
 
 I took Machine Learning for Trading Summer 2020. Although I found it covered a lot of the same ground as *CS 6601 - Artificial Intelligence* but in less depth and detail, I appreciated learning about stock indicators and trading strategies as well as getting more familiar with database operations using pandas.
 

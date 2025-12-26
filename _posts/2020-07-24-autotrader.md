@@ -8,6 +8,12 @@ tags:
   - Projects
   - OMSCS
   - AI
+classes: wide
+
+toc: true
+toc_sticky: true
+toc_label: "Autotrade"
+toc_icon: "arrow-trend-up"
 ---
 
 I took Machine Learning for Trading Summer 2020. The final project consisted of a manual strategy based on hard-coded indicator threshold values and a Strategy Learner bot that used random forests to generate trading decisions based on calculed indicators. In <a href="/indicators/" target="_blank">Part I</a>, the indicator calculations are discussed in detail. Here, we'll talk through three strategies - the theoretically optimal strategy, a manual strategy and machine learning strategy.

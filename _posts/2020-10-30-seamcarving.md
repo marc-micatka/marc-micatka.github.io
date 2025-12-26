@@ -8,7 +8,15 @@ tags:
   - Projects
   - OMSCS
   - Computer Vision
+classes: wide
+
+toc: true
+toc_sticky: true
+toc_label: "Seam Carving"
+toc_icon: "gears"
 ---
+
+## Introduction
 
 The midterm for *CS 6475* focused on replicating the results of <a href="https://www.gwern.net/docs/technology/2007-avidan.pdf" target="_blank">*Seam Carving for Content-Aware Image Resizing (2007)*</a> 
 and <a href="https://faculty.idc.ac.il/arik/SCWeb/vidret/index.html" target="_blank">*Improved Seam Carving for Video Retargeting (2008)*</a>. The objective of content-aware image resizing is to change the size of an image in one dimension ONLY without scaling or cropping the image, which would change the image content dramatically​. 
