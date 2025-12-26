@@ -8,7 +8,12 @@ gem "activesupport", ">= 6.0.3.1"
 gem "addressable", ">= 2.8.0"
 gem "nokogiri", ">= 1.12.5"
 gem "webrick"
-gem "minimal-mistakes-jekyll"
+gem "base64"
+gem "logger"
+gem "ostruct"
+gem "bigdecimal"
+gem "csv"
+gem "minimal-mistakes-jekyll", "~> 4.26.2"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
