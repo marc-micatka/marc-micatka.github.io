@@ -46,3 +46,48 @@
 .sidebar__right .toc .nav__title {
   background-color: #a6a6a6 !important; /* Slightly darker grey for the header */
 }
+
+// ------------------------------------------------- //
+//       ALL POSTS 
+// ------------------------------------------------- //
+
+/* Layout container for Year vs Posts */
+.archive__year-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2em;
+  border-top: 1px solid #f2f2f2;
+  padding-top: 1em;
+}
+
+/* Year Column Width */
+.archive__year-column {
+  flex: 0 0 100px; /* Adjust this width as needed */
+}
+
+.archive__year-column .archive__subtitle {
+  margin-top: 0;
+  border: none; /* Removes default theme borders if present */
+}
+
+/* Posts Column */
+.archive__list-column {
+  flex: 1;
+  padding-left: 20px;
+}
+
+/* Force Thumbnail Small and Left */
+.list__item .archive__item-teaser {
+  max-width: 100px; /* Controls thumbnail size */
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+}
+
+/* Clearfix for post items */
+.list__item {
+  clear: both;
+  display: block;
+  overflow: hidden; /* Keeps the text from wrapping under the image if desired */
+  margin-bottom: 1em;
+}
