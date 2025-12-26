@@ -1,0 +1,522 @@
+/* Basic container styling */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* Tab bar styling */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+/* Tab button styling */
+.tab-btn {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    outline: none;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab-btn:hover:not(.active) {
+    background-color: #eee;
+}
+
+/* Active tab styling */
+.tab-btn.active {
+    border: 1px solid #ccc;
+    border-bottom: 1px solid white; /* visually connects the tab to the content area */
+    background-color: #fff;
+    font-weight: bold;
+    color: #007bff; /* Highlight color */
+}
+
+/* Content area styling */
+.tab-content {
+    padding: 10px 0;
+    display: none; /* Hidden by default */
+}
+
+/* Show active content */
+.tab-content.active {
+    display: block;
+}
+
+/* Loading state styling */
+.loading {
+    padding: 20px;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Table container with fixed header */
+.table-container {
+    max-height: 600px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    position: relative;
+    overflow: auto; 
+}
+
+/* Table styling */
+.books-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.books-table thead {
+    position: sticky !important;
+    top: 0 !important;
+    background-color: #f8f9fa !important;
+    z-index: 100 !important;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.books-table thead tr {
+    display: table-row;
+}
+
+.books-table tbody {
+    display: block;
+    max-height: 550px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.books-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.books-table th {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    background-color: #f8f9fa !important;
+    position: sticky;
+    top: 0;
+}
+
+.books-table th:hover {
+    background-color: #e9ecef;
+}
+
+.books-table th.sortable::after {
+    content: ' ↕';
+    color: #999;
+}
+
+.books-table th.sort-asc::after {
+    content: ' ↑';
+    color: #007bff;
+}
+
+.books-table th.sort-desc::after {
+    content: ' ↓';
+    color: #007bff;
+}
+
+.books-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.books-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.books-table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.books-table tbody tr:hover {
+    background-color: #e3f2fd !important;
+}
+
+
+
+/* Search bar styling */
+.search-container {
+    margin-bottom: 15px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Column width distribution */
+.books-table th:nth-child(1), /* Title */
+.books-table td:nth-child(1) {
+    width: 20%;
+    text-align: left;
+}
+
+.books-table th:nth-child(2), /* Author */
+.books-table td:nth-child(2) {
+    width: 15%;
+    text-align: center;
+}
+
+.books-table th:nth-child(3), /* Pages */
+.books-table td:nth-child(3) {
+    width: 8%;
+    text-align: center;
+}
+
+.books-table th:nth-child(4), /* Genre */
+.books-table td:nth-child(4) {
+    width: 15%;
+    text-align: center;
+}
+
+.books-table th:nth-child(5), /* Finish Date */
+.books-table td:nth-child(5) {
+    width: 12%;
+    text-align: center;
+}
+
+.books-table th:nth-child(6), /* Rating */
+.books-table td:nth-child(6) {
+    width: 8%;
+    text-align: center;
+}
+
+.books-table th:nth-child(7), /* Audiobook */
+.books-table td:nth-child(7) {
+    width: 12%;
+    text-align: center;
+}
+
+.books-table th:nth-child(8), /* Review */
+.books-table td:nth-child(8) {
+    width: 10%;
+    text-align: center;
+}
+
+/* Green checkmark styling */
+.checkmark {
+    color: #28a745;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Statistics table - equal column widths and centered text */
+#statistics .books-table td {
+    width: auto;
+    text-align: center;
+}
+
+#statistics .books-table th {
+    white-space: normal;
+    line-height: 1.3;
+}
+
+/*  */
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.2s;
+    border: 1px solid #eee;
+}
+
+.collapsible-header:hover {
+    background-color: #e9ecef;
+}
+
+/* The arrow icon */
+.collapsible-header::after {
+    content: '▼';
+    font-size: 0.8em;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+/* Rotated arrow when collapsed */
+.collapsible-header.collapsed::after {
+    transform: rotate(-90deg);
+}
+
+/* Hide content when collapsed */
+.collapsible-content.collapsed {
+    display: none;
+}
+
+/* Chart Layouts (From previous step) */
+#statistics-charts {
+    margin-top: 10px;
+    padding-bottom: 50px;
+}
+
+.chart-wrapper {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.charts-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.chart-half {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.chart-wrapper canvas, 
+.chart-half canvas {
+    max-height: 400px; 
+    width: 100%;
+}
+
+/* FILTERS PANEL STYLING */
+.filters-panel {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-row {
+    margin-bottom: 15px;
+}
+
+.filter-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Flex container for the ranges row */
+.filter-row.ranges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.range-inputs span {
+    color: #777;
+    font-weight: bold;
+}
+
+/* Input specific styling */
+.filter-group input[type="number"] {
+    width: 70px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-group input[type="date"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+/* Clear Button */
+.filter-actions {
+    margin-left: auto; /* Push to right */
+    padding-bottom: 1px;
+}
+
+.btn-clear {
+    background-color: #fff;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s;
+}
+
+.btn-clear:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .filter-row.ranges {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-actions {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    .range-inputs input {
+        flex: 1;
+    }
+}
+/* REVIEW TAB STYLING */
+
+/* We use '#reviews' before classes to increase specificity 
+   and override site-wide CSS defaults.
+*/
+
+#reviews .reviews-container {
+    max-width: 900px !important;  /* Constraints width to create side margins */
+    width: 90% !important;    /* Ensures 5% margin on mobile devices */
+    margin: 0 auto;    /* Centers the container */
+    padding-top: 20px;
+}
+
+#reviews .review-card {
+    background-color: transparent; /* Blends with site background */
+    border-bottom: 1px solid #eee;
+    padding: 25px 0;   /* Vertical spacing between reviews */
+    margin-bottom: 0;
+}
+
+/* Highlight effect when linking from table */
+#reviews .highlight-review {
+    background-color: #fff8e1; 
+    border-radius: 8px;
+    padding: 25px 20px; /* Add internal padding only when highlighted */
+    
+    /* Pull negative margins so the text doesn't shift when highlighted */
+    margin-left: -20px; 
+    margin-right: -20px;
+    width: auto; 
+    max-width: none; 
+}
+
+#reviews .review-header {
+    font-size: 1.1rem; /* Slightly larger than body, smaller than standard H2 */
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    line-height: 1.3;
+    color: #333;
+}
+
+#reviews .review-rating {
+    font-size: 0.9em; 
+    color: #ffc107; 
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+#reviews .review-meta {
+    font-size: 0.8rem; /* Small date text */
+    color: #999;
+    margin-bottom: 12px;
+    font-style: italic;
+    display: block; /* Ensures it sits on its own line */
+}
+
+#reviews .review-body {
+    font-size: 0.9rem; /* Smaller body text (approx 14px if base is 16px) */
+    line-height: 1.6;  /* Good reading height */
+    color: #444;
+    white-space: pre-wrap; 
+}
+
+#reviews .review-divider {
+    text-align: center;
+    color: #eee;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    font-size: 0.8em;
+}
+
+#reviews .no-reviews {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* TABLE REVIEW INTERACTION (Keep generic as it applies to the table tab) */
+.review-link {
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.review-link:hover {
+    transform: scale(1.2);
+}
+
+.books-table tbody tr[title]:hover {
+    background-color: #fff3cd !important;
+    cursor: help;
+}
+
