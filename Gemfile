@@ -14,6 +14,8 @@ gem "ostruct"
 gem "bigdecimal"
 gem "csv"
 gem "minimal-mistakes-jekyll", "~> 4.26.2"
+gem "jekyll-remote-theme"
+gem "openssl", ">= 3.3.1"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do

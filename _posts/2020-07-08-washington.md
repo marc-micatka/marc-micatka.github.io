@@ -3,6 +3,7 @@ title: "Summer in Seattle - 2019"
 excerpt: "Adventures in the Northwest"
 permalink: /washington/
 last_modified_at: 2020-10-31
+classes: wide
 
 header:
   image: "/assets/images/washington/washington_header.jpg"
@@ -13,13 +14,18 @@ tags:
   - Travel
   - Photos
   - Backpacking
+
+toc: true
+toc_sticky: true
+toc_label: "Summer in Seattle"
+toc_icon: "mountain"  
 ---
 Our travel nursing adventure continues. From Bemidji, Minnesota we accepted a position in Bellevue, Washington outside of Seattle. We loaded up the car and drove to Seattle in April. I had worked in Mount Rainier National Park in college and had some familiarity with the area, but had only spent a few days in Seattle and had only the smallest idea of what life in the Northwest would be. Turns out, it's just as rainy as everyone says.
 
 While in Seattle, I accepted a contract engineering position at the Boeing factory in Everett, Washington. That job cut significantly into my outdoor time but was a valuable professional experience. Enough about work, this post is about some of our selected adventures over the summer.
 
 ### Olympic National Park
-#### March 29, 2019 - April 1, 2019
+**March 29, 2019 - April 1, 2019**
 <figure class = "half">
     <a href="/assets/images/washington/olympic1.jpg"><img src="/assets/images/washington/olympic1.jpg"></a>
     <a href="/assets/images/washington/olympic2.jpg"><img src="/assets/images/washington/olympic2.jpg"></a>
@@ -36,7 +42,7 @@ In the morning, we hiked out and got trapped about a mile down the trail because
 Overall, wonderful, relaxing backpacking trip. We had no issues with rain, it wasn't super strenuous, just a long, relaxing walk on the beach!
 
 ### Gothic Basin and Del Campo Peak
-#### June 15, 2019
+**June 15, 2019**
 
 Day hiked to Gothic Basin and up Del Campo Peak with Matt Mayo. This was a tough hike in and the basin and peak were snow covered. I was thankful for the full sun protection I was wearing. Saw a lot of day hikers doing this in tennis shoes, shorts, and tank tops. Sunburn city.
 <figure class = "half">
@@ -52,7 +58,7 @@ The scramble off the snow to the peak was awesome - classic Washington class 3 s
 </figure>
 
 ### Enchantments Thru Hike (Plus Little Annapurna)
-#### July 6, 2019
+**July 6, 2019**
 
 My friend, old roommate, and rowing team mate Ross Wise dropped in for a long weekend. While he was here, I figured I should finally try the 19 mile thru hike of the Enchantments.
 
@@ -73,7 +79,7 @@ Once you get through the lakes, the last 6-8 miles was a descent back through th
 <img src="/assets/images/washington/enchantments3.jpg"></a>
 </figure>
 ### Perry Creek and Mt Forgotten Meadows
-#### July 19, 2019
+**July 19, 2019
 
 I was feeling a bit cooped up at Boeing, so I left after work for a short overnight backpacking/photography trip to Mount Forgotten Meadows.
 
@@ -89,7 +95,7 @@ This trip typified what I love so much about getting outside in Washington. The 
 </figure>
 
 ### Snowking Mountain
-#### August 31 - September 2, 2019
+**August 31 - September 2, 2019**
 Mary and I met up with some Arthur and Kristi to do an out and back trip to Cyclone Lake and Snowking Mountain over Labor Day weekend. 
 
 The hike in was HARD, one of the steepest approaches I've ever seen with about 3500ft of elevation gained in 1.75 miles. I've done a lot of steep approaches over the years but the miles going up and down are on old climber trails through thick trees. It feels like climbing a staircase for miles, except on loose dirt. The cluster of lakes around the base of Snowking are unbelievable and the view from the summit might make the grind up worth it. 

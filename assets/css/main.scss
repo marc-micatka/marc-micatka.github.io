@@ -1,0 +1,48 @@
+---
+---
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'air' }}"; 
+@import "minimal-mistakes"; 
+
+// ------------------------------------------------- //
+//       RIGHT STICKY ToC
+// ------------------------------------------------- //
+/* Move TOC to the Left for 'wide' classes without pushing text down */
+@include breakpoint($large) {
+  .layout--single.wide .sidebar__right {
+    position: absolute; /* Prevents it from taking up space in the document flow */
+    top: 0;
+    inset-inline-start: 0; /* Align to the left */
+    inset-inline-end: auto;
+    width: $right-sidebar-width-narrow;
+    margin-inline-start: -1 * $right-sidebar-width-narrow; /* Pull it into the left gutter */
+    margin-inline-end: 0;
+    padding-inline-end: 1em; /* Add space between TOC and text */
+    padding-inline-start: 0;
+    z-index: 10;
+
+    &.sticky {
+      position: sticky;
+      top: 2em;
+      float: inline-start; /* Float left instead of right */
+
+      .toc .toc__menu {
+        overflow-y: auto;
+        max-height: calc(100vh - 7em);
+      }
+    }
+  }
+}
+
+@include breakpoint($x-large) {
+  .layout--single.wide .sidebar__right {
+    width: $right-sidebar-width;
+    margin-inline-start: -1 * $right-sidebar-width;
+  }
+}
+.sidebar__right .toc {
+  background-color: #eeeeee !important;
+}
+
+.sidebar__right .toc .nav__title {
+  background-color: #a6a6a6 !important; /* Slightly darker grey for the header */
+}
