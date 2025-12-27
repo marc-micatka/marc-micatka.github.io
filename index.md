@@ -1,8 +1,8 @@
 ---
 title: "Marc Micatka"
 author_profile: true
-header:
-  image: /assets/images/home/header.jpg
+# header:
+#   image: /assets/images/home/header.jpg
   
 ---
 

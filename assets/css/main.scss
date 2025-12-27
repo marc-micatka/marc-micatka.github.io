@@ -157,8 +157,22 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
+  z-index: 0;  /* ADD THIS LINE */
+}
+
+/* Container for overlay text - must be above the dark overlay */
+.home-grid-overlay-text {  
+  position: relative;
+  z-index: 2;
+}
+
+.home-grid-overlay-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 /* Darken more on hover */
@@ -176,12 +190,7 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.home-grid-overlay-text p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
+
 
 
 /* Responsive design for smaller screens */
