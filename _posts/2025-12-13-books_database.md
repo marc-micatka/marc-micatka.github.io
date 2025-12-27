@@ -12,14 +12,14 @@ tags:
   - Books
 ---
 
-I put together a web-based visualization of a personal database of books I've read and reviewed over the last 10+ years.  The database is <a href="/books/" target="_blank">here</a> and the data can be downloaded directly as a CSV from <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=290047373&single=true&output=csv" target="_blank">here</a>.
+I put together a web-based visualization of a personal database of books I've read and reviewed over the last 10+ years.  The database is <a href="/books/" target="_blank">here</a> and the data can be downloaded directly as a CSV from <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT6eNcmziFeeUr186W7gMhlsOtCI-sJofslOPbh61gMVYOesPt9o0RVyVxWov9IAp2NrfnhiFRyd_z_/pub?gid=268068742&single=true&output=csv" target="_blank">here</a>.
 
 
 ### Background
 
-Parents saying their child likes to read is a bit trite, but I swear I actually was - *Magic Treehouse*, and *Encyclopedia Brown* and *Great Illustrated Classics* featured prominently. I shared a birthday with Harry Potter, and read the books obsessively. Our childhood house had a great built-in shelf along an entire wall of a large room and it was crammed to overflowing with books. Books on top of, shoved behind, other books. 
+Growing up, I was pretty into reading. Every parent likes to say that, but I swear I actually was - *Magic Treehouse*, and *Encyclopedia Brown* and *Great Illustrated Classics* featured prominently in my life. I shared a birthday with Harry Potter and read the books obsessively. Our childhood house had a great built-in shelf along an entire wall of the living room and it was crammed to overflowing with books. Books on top of, shoved behind, other books. 
 
-I read a bit throughout high-school. I actually read a bit obnoxiously - reading ostentatiously, cumbersomely, large, volumes like *Gone With the Wind* in class. I'm not proud of this. 
+I read a bit throughout high-school. I actually read a bit obnoxiously - pulling out ostentatiously, cumbersomely, large, volumes like *Gone With the Wind* in class. I'm not proud of this. 
 
 After my freshman year of college, summer of 2012, I lived and worked inside Mount Rainier National Park at the Paradise Lodge. I lived above the kitchen and worked five days a week in the bakery. This was, for a number of reasons, a transformative summer. I'm bringing it up in the context of this post because there was no cell reception, no internet, no wi-fi, no cable TV. What I did have was time, loads of it. I worked from 6am to 2pm and spent the rest of the time hiking when the weather was good and reading when the weather was bad. I read in my room, in the lodge, from the comfort of my sleeping bag. I read intensely. I read easy, fun stuff - the Harry Potter series in six days, Neil Gaiman by the handful, the entire Game of Thrones series. I read classics, Huxley, Hesse, Atwood, Steinbeck. 
 
