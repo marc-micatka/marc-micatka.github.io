@@ -1,47 +1,67 @@
 ---
 layout: archive
 ---
-
 {{ content }}
-
 {% assign postsByYear = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
-
 {% for year in postsByYear %}
-  <section id="{{ year.name }}" class="taxonomy__section archive__year-wrapper">
-    
-    <div class="archive__year-column">
-      <h2 class="archive__subtitle">{{ year.name }}</h2>
-    </div>
-
-    <div class="archive__list-column">
-      <div class="entries-list">
-        {% for post in year.items %}
-          <div class="list__item">
-            <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-              <div class="archive__item-content">
-                {% if post.header.teaser %}
-                  <div class="archive__item-teaser">
-                    <img src="{{ post.header.teaser | relative_url }}" alt="{% if post.title %}{{ post.title | escape }}{% endif %}">
-                  </div>
-                {% endif %}
-                <div class="archive__item-text">
-                  <h2 class="archive__item-title" itemprop="headline">
-                    <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
-                  </h2>
-                  {% if post.excerpt %}
-                    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
-                  {% endif %}
-                  {% if post.last_modified_at %}
-                    <p class="page__meta archive__item-modified"><i>Modified: {{ post.last_modified_at | date: "%B %-d, %Y" }}</i></p>
-                  {% endif %}
-                </div>
-              </div>
-            </article>
+<section id="{{ year.name }}" class="taxonomy__section archive__year-wrapper">
+  <div class="archive__year-column">
+    <h2 class="archive__subtitle">{{ year.name }}</h2>
+  </div>
+  <div class="archive__list-column">
+    <div class="entries-list">
+      {% for post in year.items %}
+      <div class="list__item">
+        <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+          <div class="archive__item-content">
+            {% if post.header.teaser %}
+            <div class="archive__item-teaser">
+              <img src="{{ post.header.teaser | relative_url }}"
+                alt="{% if post.title %}{{ post.title | escape }}{% endif %}">
+            </div>
+            {% endif %}
+            <div class="archive__item-text">
+              <h2 class="archive__item-title" itemprop="headline">
+                <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
+              </h2>
+              {% if post.excerpt %}
+              <p class="archive__item-excerpt" itemprop="description">
+                {{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
+              {% endif %}
+              {% if post.last_modified_at %}
+              <p class="page__meta archive__item-modified"><i>Modified:
+                  {{ post.last_modified_at | date: "%B %-d, %Y" }}</i></p>
+              {% endif %}
+            </div>
           </div>
-        {% endfor %}
+        </article>
       </div>
-      <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+      {% endfor %}
     </div>
-
-  </section>
+  </div>
+</section>
 {% endfor %}
+
+<!-- Back to Top Button (appears once, fixed position) -->
+<button class="back-to-top" id="archiveBackToTop" onclick="scrollToTop()">Back to Top ↑</button>
+
+<script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Show/hide button based on scroll position
+  function toggleBackToTop() {
+    const btn = document.getElementById('archiveBackToTop');
+    if (btn) {
+      if (window.scrollY > 100) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', toggleBackToTop);
+  window.addEventListener('load', toggleBackToTop);
+</script>

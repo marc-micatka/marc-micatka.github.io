@@ -1,42 +1,65 @@
 ---
 layout: archive
 ---
-
 {{ content }}
-
 {% assign tags_max = 0 %}
 {% for tag in site.tags %}
   {% if tag[1].size > tags_max %}
     {% assign tags_max = tag[1].size %}
   {% endif %}
 {% endfor %}
-
 <ul class="taxonomy__index">
   {% for i in (1..tags_max) reversed %}
     {% for tag in site.tags %}
       {% if tag[1].size == i %}
-        <li>
-          <a href="#{{ tag[0] | slugify }}">
-            <strong>{{ tag[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
-          </a>
-        </li>
+<li>
+<a href="#{{ tag[0] | slugify }}">
+<strong>{{ tag[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
+</a>
+</li>
       {% endif %}
     {% endfor %}
   {% endfor %}
 </ul>
-
 {% for i in (1..tags_max) reversed %}
   {% for tag in site.tags %}
     {% if tag[1].size == i %}
-      <section id="{{ tag[0] | slugify | downcase }}" class="taxonomy__section">
-        <h2 class="archive__subtitle">{{ tag[0] }}</h2>
-        <div class="entries-{{ page.entries_layout | default: 'list' }}">
+<section id="{{ tag[0] | slugify | downcase }}" class="taxonomy__section archive__year-wrapper">
+<div class="archive__year-column">
+<h2 class="archive__subtitle">{{ tag[0] }}</h2>
+</div>
+<div class="archive__list-column">
+<div class="entries-{{ page.entries_layout | default: 'list' }}">
           {% for post in tag.last %}
             {% include archive-single.html type=page.entries_layout %}
           {% endfor %}
-        </div>
-        <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-      </section>
+</div>
+</div>
+</section>
     {% endif %}
   {% endfor %}
 {% endfor %}
+
+<!-- Back to Top Button (appears once, fixed position) -->
+<button class="back-to-top" id="archiveBackToTop" onclick="scrollToTop()">Back to Top ↑</button>
+
+<script>
+function scrollToTop() {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+// Show/hide button based on scroll position
+function toggleBackToTop() {
+const btn = document.getElementById('archiveBackToTop');
+if (btn) {
+if (window.scrollY > 100) {
+btn.classList.add('visible');
+      } else {
+btn.classList.remove('visible');
+      }
+    }
+  }
+
+window.addEventListener('scroll', toggleBackToTop);
+window.addEventListener('load', toggleBackToTop);
+</script>

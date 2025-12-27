@@ -280,7 +280,7 @@ function renderBooksTable() {
                         <th class="sortable ${sortColumn === 'finishDate' ? 'sort-' + sortDirection : ''}" onclick="sortTable('finishDate')">Finish Date</th>
                         <th class="sortable ${sortColumn === 'rating' ? 'sort-' + sortDirection : ''}" onclick="sortTable('rating')">Rating</th>
                         <th class="sortable ${sortColumn === 'audiobook' ? 'sort-' + sortDirection : ''}" onclick="sortTable('audiobook')">Audiobook?</th>
-                        <th class="sortable ${sortColumn === 'hasReview' ? 'sort-' + sortDirection : ''}" onclick="sortTable('hasReview')">Full Review</th>
+                        <th class="sortable ${sortColumn === 'hasReview' ? 'sort-' + sortDirection : ''}" onclick="sortTable('hasReview')">Review</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -381,7 +381,7 @@ function renderReviews() {
     });
 
     html += '</div>';
-    html += '<button class="back-to-top" id="backToTopBtn" onclick="scrollToTop()">Back to Top ↑</button>';
+    html += '<button class="back-to-top" id="backToTopBtn" onclick="scrollToTop()">BACK TO TOP ↑</button>';
     
     container.innerHTML = html;
     
@@ -945,7 +945,7 @@ function setupBackToTopButton() {
     if (!btn) return;
     
     const toggleButton = () => {
-        if (window.scrollY > 300) {
+        if (window.scrollY > 100) {
             btn.classList.add('visible');
         } else {
             btn.classList.remove('visible');

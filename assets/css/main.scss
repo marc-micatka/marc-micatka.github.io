@@ -191,8 +191,6 @@
 }
 
 
-
-
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .home-grid-item {
@@ -208,4 +206,62 @@
   .home-grid-image h2 {
     font-size: 1.8rem;
   }
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    z-index: 1000;
+    display: none;
+}
+
+.back-to-top.visible {
+    display: block;
+}
+
+.back-to-top:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Two-column archive layout */
+.archive__year-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.archive__year-column {
+    flex: 0 0 150px;
+    min-width: 150px;
+}
+
+.archive__list-column {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+    .archive__year-wrapper {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .archive__year-column {
+        flex: none;
+    }
 }
