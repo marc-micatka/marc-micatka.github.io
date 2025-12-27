@@ -249,6 +249,11 @@
     line-height: 1.3;
 }
 
+/* Reduce margin at top of statistics tab */
+#statistics > .collapsible-header:first-child {
+    margin-top: 0;
+}
+
 /*  */
 .collapsible-header {
     cursor: pointer;

@@ -419,7 +419,7 @@ let statsSortDirection = 'desc';
 let activityChartInstance = null;
 let genreChartInstance = null;
 let formatChartInstance = null;
-let current2025ChartInstance = null;
+let currentYearChartInstance = null;
 
 function renderStatistics() {
     const container = document.getElementById('statistics-table');
@@ -429,8 +429,8 @@ function renderStatistics() {
         return;
     }
     
-    // Render 2025-specific stats first
-    // render2025Stats();
+    // Render year specific stats first
+    renderYearStats();
     
     // Group books by year
     const booksByYear = _.groupBy(allBooks, book => {
@@ -596,7 +596,7 @@ function renderCharts(data) {
                 labels: labels,
                 datasets: [
                     { label: 'Audiobook', data: chartData.map(d => d.audiobookCount), backgroundColor: 'rgba(153, 102, 255, 0.6)' },
-                    { label: 'Regular (Print/E-book)', data: chartData.map(d => d.regularBookCount), backgroundColor: 'rgba(255, 159, 64, 0.6)' }
+                    { label: 'Regular', data: chartData.map(d => d.regularBookCount), backgroundColor: 'rgba(255, 159, 64, 0.6)' }
                 ]
             },
             options: { responsive: true, plugins: { title: { display: true, text: 'Audiobook vs. Regular' } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } }
@@ -745,37 +745,55 @@ function sortStatsTable(column) {
 }
 
 // ===========================================
-// 2025 STATISTICS RENDERING
+// Current YEAR STATISTICS RENDERING
 // ===========================================
 
-function render2025Stats() {
-    const container = document.getElementById('stats-2025');
+function renderYearStats() {
+    const container = document.getElementById('stats-current-year');
     if (!container) return;
 
-    // Filter books from 2025
-    const books2025 = allBooks.filter(book => {
+    // Get current year dynamically
+    const currentYear = new Date().getFullYear();
+
+    // Filter books from current year
+    const booksCurrentYear = allBooks.filter(book => {
         const date = parseDate(book.finishDate);
-        return date && date.getFullYear() === 2025;
+        return date && date.getFullYear() === currentYear;
     });
 
-    if (books2025.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #666;">No books finished in 2025 yet.</p>';
+    if (booksCurrentYear.length === 0) {
+        container.innerHTML = `<p style="text-align: center; color: #666;">No books finished in ${currentYear} yet.</p>`;
         return;
     }
 
-    // Calculate fiction/non-fiction counts
-    const fictionBooks = books2025.filter(b => {
+    // Calculate fiction/non-fiction counts and audiobook splits
+    const fictionBooks = booksCurrentYear.filter(b => {
         const genre = String(b.genre || '').toLowerCase();
         return genre.includes('fiction') && !genre.includes('non-fiction');
     });
     
-    const nonFictionBooks = books2025.filter(b => {
+    const nonFictionBooks = booksCurrentYear.filter(b => {
         const genre = String(b.genre || '').toLowerCase();
         return genre.includes('non-fiction') || genre.includes('nonfiction');
     });
 
+    // Count audiobooks within each category
+    const fictionAudio = fictionBooks.filter(b => {
+        const ab = String(b.audiobook || '').toLowerCase();
+        return ab === 'yes' || ab === 'true';
+    }).length;
+    
+    const fictionRegular = fictionBooks.length - fictionAudio;
+    
+    const nonFictionAudio = nonFictionBooks.filter(b => {
+        const ab = String(b.audiobook || '').toLowerCase();
+        return ab === 'yes' || ab === 'true';
+    }).length;
+    
+    const nonFictionRegular = nonFictionBooks.length - nonFictionAudio;
+
     // Get top 5 and bottom 5 rated books
-    const ratedBooks = books2025.filter(b => b.rating > 0);
+    const ratedBooks = booksCurrentYear.filter(b => b.rating > 0);
     const sortedByRating = [...ratedBooks].sort((a, b) => b.rating - a.rating);
     const topRated = sortedByRating.slice(0, 5);
     const bottomRated = sortedByRating.slice(-5).reverse();
@@ -783,10 +801,12 @@ function render2025Stats() {
     let html = `
         <!-- Fiction/Non-Fiction Chart (Full Width) -->
         <div style="background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 30px;">
-            <h4 style="margin-top: 0; text-align: center; color: #333;">2025 Reading by Genre</h4>
-            <canvas id="current2025Chart" style="max-height: 300px;"></canvas>
+            <h4 style="margin-top: 0; text-align: center; color: #333;">${currentYear} Reading by Genre</h4>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <canvas id="currentYearChart" style="max-height: 200px;"></canvas>
+            </div>
             <div style="text-align: center; margin-top: 15px; color: #666;">
-                <strong>${books2025.length}</strong> books finished so far
+                <strong>${booksCurrentYear.length}</strong> books finished so far
             </div>
         </div>
 
@@ -794,14 +814,14 @@ function render2025Stats() {
         <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 30px;">
             <!-- Top Rated Books -->
             <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <h4 style="margin-top: 0; text-align: center; color: #333;">Top Rated Books (2025)</h4>
+                <h4 style="margin-top: 0; text-align: center; color: #333;">Top Rated Books (${currentYear})</h4>
                 ${topRated.length > 0 ? generateBookList(topRated, true) : '<p style="text-align: center; color: #666;">No rated books yet.</p>'}
             </div>
 
             <!-- Bottom Rated Books -->
             ${bottomRated.length > 0 && bottomRated.length >= 5 ? `
             <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <h4 style="margin-top: 0; text-align: center; color: #333;">Lowest Rated Books (2025)</h4>
+                <h4 style="margin-top: 0; text-align: center; color: #333;">Lowest Rated Books (${currentYear})</h4>
                 ${generateBookList(bottomRated, false)}
             </div>
             ` : ''}
@@ -810,39 +830,50 @@ function render2025Stats() {
 
     container.innerHTML = html;
 
-    // Render the chart
-    const ctx = document.getElementById('current2025Chart')?.getContext('2d');
+    // Render the horizontal stacked bar chart
+    const ctx = document.getElementById('currentYearChart')?.getContext('2d');
     if (ctx) {
-        if (current2025ChartInstance) current2025ChartInstance.destroy();
+        if (currentYearChartInstance) currentYearChartInstance.destroy();
         
-        current2025ChartInstance = new Chart(ctx, {
+        currentYearChartInstance = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: ['Fiction', 'Non-Fiction'],
-                datasets: [{
-                    label: 'Books Read',
-                    data: [fictionBooks.length, nonFictionBooks.length],
-                    backgroundColor: [
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(255, 206, 86, 0.6)'
-                    ],
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 2
-                }]
+                datasets: [
+                    {
+                        label: 'Regular (Print/E-book)',
+                        data: [fictionRegular, nonFictionRegular],
+                        backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Audiobook',
+                        data: [fictionAudio, nonFictionAudio],
+                        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
+                    }
+                ]
             },
             options: {
+                indexAxis: 'y', // Makes it horizontal
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { display: false }
+                    legend: { 
+                        display: true,
+                        position: 'bottom'
+                    }
                 },
                 scales: {
-                    y: {
+                    x: {
+                        stacked: true,
                         beginAtZero: true,
                         ticks: { stepSize: 1 }
+                    },
+                    y: {
+                        stacked: true
                     }
                 }
             }
