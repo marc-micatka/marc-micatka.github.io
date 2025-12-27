@@ -6,6 +6,6 @@ author_profile: true
   
 ---
 
-Hello! My name is Marc Micatka. Welcome to my personal website and portfolio.</br> 
+Hello! My name is Marc Micatka. Welcome to my personal website and portfolio.<br />
 I write about the things I love and the things I'm proud of. 
 
