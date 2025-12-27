@@ -882,16 +882,21 @@ function renderYearStats() {
 }
 
 function generateBookList(books, isTopRated) {
-    let html = '<ol style="margin: 0; padding-left: 20px; line-height: 1.8;">';
+    let html = '<ul style="margin: 0; padding-left: 20px; line-height: 1.6; list-style: none;">';
     books.forEach(book => {
         const ratingColor = book.rating >= 8 ? '#28a745' : book.rating >= 6 ? '#ffc107' : '#dc3545';
         html += `
-            <li style="margin-bottom: 8px;">
-                <strong>${escapeHtml(book.title)}</strong> by ${escapeHtml(book.author)}
-                <span style="color: ${ratingColor}; font-weight: bold; margin-left: 8px;">${book.rating}/10</span>
+            <li style="margin-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <div><strong>${escapeHtml(book.title)}</strong></div>
+                        <div style="font-size: 0.75em; font-style: italic; color: #666;">${escapeHtml(book.author)}</div>
+                    </div>
+                    <span style="color: ${ratingColor}; font-weight: bold; margin-left: 12px; white-space: nowrap;">${book.rating}/10</span>
+                </div>
             </li>
         `;
     });
-    html += '</ol>';
+    html += '</ul>';
     return html;
 }
