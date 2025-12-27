@@ -58,13 +58,12 @@ plugins:
 
 author:
   name      : "Marc Micatka"
-  avatar    : "/assets/images/site_images/headshot.jpeg"
+  avatar    : "/assets/images/site_images/headshot.jpg"
   bio       : "Occasional computer scientist, mechanical engineer, and traveler."
   location  : "Seattle, WA"
   email     : "marc.micatka@gmail.com"
   github    : "marc-micatka"
   linkedin  : "marcmicatka"
-  url       : "marcmicatka.com"
 
 footer:
   links:

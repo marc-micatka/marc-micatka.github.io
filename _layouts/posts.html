@@ -5,16 +5,43 @@ layout: archive
 {{ content }}
 
 {% assign postsByYear = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
-{% for year in postsByYear %}
-  <section id="{{ year.name }}" class="taxonomy__section">
-    <h2 class="archive__subtitle">{{ year.name }}</h2>
-    <div class="entries-{{ page.entries_layout | default: 'list' }}">
-      {% for post in year.items %}
 
-        {% include archive-single.html type=page.entries_layout %}
-      {% endfor %}
+{% for year in postsByYear %}
+  <section id="{{ year.name }}" class="taxonomy__section archive__year-wrapper">
+    
+    <div class="archive__year-column">
+      <h2 class="archive__subtitle">{{ year.name }}</h2>
     </div>
-    <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+    <div class="archive__list-column">
+      <div class="entries-list">
+        {% for post in year.items %}
+          <div class="list__item">
+            <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+              <div class="archive__item-content">
+                {% if post.header.teaser %}
+                  <div class="archive__item-teaser">
+                    <img src="{{ post.header.teaser | relative_url }}" alt="{% if post.title %}{{ post.title | escape }}{% endif %}">
+                  </div>
+                {% endif %}
+                <div class="archive__item-text">
+                  <h2 class="archive__item-title" itemprop="headline">
+                    <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
+                  </h2>
+                  {% if post.excerpt %}
+                    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
+                  {% endif %}
+                  {% if post.last_modified_at %}
+                    <p class="page__meta archive__item-modified"><i>Modified: {{ post.last_modified_at | date: "%B %-d, %Y" }}</i></p>
+                  {% endif %}
+                </div>
+              </div>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
+      <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+    </div>
+
   </section>
 {% endfor %}
-

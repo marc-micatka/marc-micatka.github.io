@@ -1,6 +1,6 @@
 main:
-  - title: "Travel"
-    url: /travel/
+  - title: "Adventure"
+    url: /adventure/
   - title: "Projects"
     url: /projects/
   - title: "Photography"

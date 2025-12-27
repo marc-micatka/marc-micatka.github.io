@@ -11,6 +11,7 @@ header:
 tags:
   - Trip Reports
   - Travel
+  - Adventure
   - Photos
   - Backpacking
 ---
