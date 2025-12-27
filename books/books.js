@@ -1,8 +1,7 @@
 // ===========================================
 // CONFIGURATION
 // ===========================================
-
-const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=290047373&single=true&output=csv';
+const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT6eNcmziFeeUr186W7gMhlsOtCI-sJofslOPbh61gMVYOesPt9o0RVyVxWov9IAp2NrfnhiFRyd_z_/pub?gid=268068742&single=true&output=csv';
 
 // ===========================================
 // GLOBAL VARIABLES
@@ -16,12 +15,22 @@ let sortDirection = 'desc';
 // INITIALIZE APP
 // ===========================================
 document.addEventListener('DOMContentLoaded', function() {
-    switchTab('statistics');
+    // Check URL hash for tab
+    const hash = window.location.hash.slice(1); // Remove the '#'
+    const validTabs = ['statistics', 'all-data', 'reviews'];
+    const initialTab = validTabs.includes(hash) ? hash : 'statistics';
+    
+    switchTab(initialTab);
     loadBooksData();
     console.log("Reading List page loaded.");
 });
 
-
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function(event) {
+    if (event.state && event.state.tab) {
+        switchTab(event.state.tab);
+    }
+});
 // ===========================================
 // EVENT LISTENERS
 // ===========================================
@@ -95,6 +104,9 @@ function switchTab(tabId) {
     if (activeButton) {
         activeButton.classList.add('active');
     }
+    
+    // UPDATE URL
+    window.history.pushState({tab: tabId}, '', `#${tabId}`);
     
     if (tabId === 'statistics') {
         renderStatistics();
@@ -418,7 +430,7 @@ function renderStatistics() {
     }
     
     // Render 2025-specific stats first
-    render2025Stats();
+    // render2025Stats();
     
     // Group books by year
     const booksByYear = _.groupBy(allBooks, book => {
