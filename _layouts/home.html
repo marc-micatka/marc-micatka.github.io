@@ -1,19 +1,52 @@
 ---
-layout: archive
+layout: default
 ---
 
-{{ content }}
+<div class="home-header" style="background-image: url('{{ page.header.image }}');">
+</div>
 
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+<div id="main" role="main">
+  {% include sidebar.html %}
 
-{% if paginator %}
-  {% assign posts = paginator.posts %}
-{% else %}
-  {% assign posts = site.posts %}
-{% endif %}
-
-{% for post in posts %}
-  {% include archive-single.html %}
-{% endfor %}
-
-{% include paginator.html %}
+  <div class="home-content">
+    {{ content }}
+    
+    <div class="home-grid">
+      <div class="home-grid-item">
+        <a href="{{ site.baseurl }}/adventure/" class="home-grid-image" style="background-image: url('/assets/images/home/adventures.jpg');">
+          <div class="home-grid-overlay-text">
+            <h2>Adventure</h2>
+            <p>Trip reports from backpacking, climbing, and traveling around the PNW and beyond</p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="home-grid-item">
+        <a href="{{ site.baseurl }}/projects/" class="home-grid-image" style="background-image: url('/assets/images/home/projects.png');">
+          <div class="home-grid-overlay-text">
+            <h2>Projects</h2>
+            <p>Portfolio of personal, academic, and professional projects.</p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="home-grid-item">
+        <a href="{{ site.baseurl }}/photography/" class="home-grid-image" style="background-image: url('/assets/images/home/photography.jpg');">
+          <div class="home-grid-overlay-text">
+            <h2>Photography</h2>
+            <p>Gallery of photographs I've taken that I am proud of</p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="home-grid-item">
+        <a href="{{ site.baseurl }}/books/" class="home-grid-image" style="background-image: url('/assets/images/home/books.jpg');">
+          <div class="home-grid-overlay-text">
+            <h2>Books</h2>
+            <p>My personal reading list, some reviews, some statistics</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

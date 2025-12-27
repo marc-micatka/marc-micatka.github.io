@@ -32,7 +32,7 @@ layout: archive
                     <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
                   {% endif %}
                   {% if post.last_modified_at %}
-                    <p class="page__meta"><i>{{ post.last_modified_at | date: "%B %-d, %Y" }}</i></p>
+                    <p class="page__meta archive__item-modified"><i>Modified: {{ post.last_modified_at | date: "%B %-d, %Y" }}</i></p>
                   {% endif %}
                 </div>
               </div>
