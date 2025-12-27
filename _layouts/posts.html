@@ -42,26 +42,3 @@ layout: archive
 </section>
 {% endfor %}
 
-<!-- Back to Top Button (appears once, fixed position) -->
-<button class="back-to-top" id="archiveBackToTop" onclick="scrollToTop()">Back to Top ↑</button>
-
-<script>
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // Show/hide button based on scroll position
-  function toggleBackToTop() {
-    const btn = document.getElementById('archiveBackToTop');
-    if (btn) {
-      if (window.scrollY > 100) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
-      }
-    }
-  }
-
-  window.addEventListener('scroll', toggleBackToTop);
-  window.addEventListener('load', toggleBackToTop);
-</script>
