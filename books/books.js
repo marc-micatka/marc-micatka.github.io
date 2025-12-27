@@ -124,6 +124,12 @@ function goToReview(slug) {
             // Optional: Highlight the review briefly
             element.classList.add('highlight-review');
             setTimeout(() => element.classList.remove('highlight-review'), 2000);
+            
+            // Force back-to-top button to appear
+            const btn = document.getElementById('backToTopBtn');
+            if (btn) {
+                btn.classList.add('visible');
+            }
         }
     }, 50);
 }
@@ -170,7 +176,7 @@ function loadBooksData() {
             // Render all views
             renderBooksTable();
             renderStatistics();
-            renderReviews(); // New function
+            renderReviews();
         },
         error: function(error) {
             console.error('Fetch error:', error);
@@ -232,9 +238,12 @@ function renderBooksTable() {
             if (sortColumn === 'finishDate') {
                 const dateA = parseDate(aVal);
                 const dateB = parseDate(bVal);
+                
+                // Put invalid dates at the bottom regardless of sort direction
                 if (!dateA && !dateB) return 0;
-                if (!dateA) return sortDirection === 'asc' ? 1 : -1;
-                if (!dateB) return sortDirection === 'asc' ? -1 : 1;
+                if (!dateA) return 1;  // Always put invalid dates at bottom
+                if (!dateB) return -1; // Always put invalid dates at bottom
+                
                 return sortDirection === 'asc' ? dateA - dateB : dateB - dateA;
             }
             
@@ -295,8 +304,10 @@ function renderBooksTable() {
                 const slug = createSlug(book.title);
                 // The checkmark links to the review tab
                 reviewCell = `<span class="review-link" onclick="goToReview('${slug}')">📝</span>`;
-                // The title attribute provides the hover text for the whole row
-                rowTitle = `title="${escapeAttribute(book.review)}"`;
+                
+                // Strip HTML and truncate for hover text
+                const reviewText = stripHtmlAndTruncate(book.review, 200);
+                rowTitle = `title="${escapeAttribute(reviewText)}"`;
             } else {
                 reviewCell = '<span style="color: #ccc;">-</span>';
             }
@@ -328,7 +339,6 @@ function renderBooksTable() {
 // ===========================================
 // REVIEWS RENDERING
 // ===========================================
-
 function renderReviews() {
     const container = document.getElementById('reviews');
     if (!container) return;
@@ -353,7 +363,7 @@ function renderReviews() {
 
     let html = '<div class="reviews-container">';
 
-    booksWithReviews.forEach(book => {
+    booksWithReviews.forEach((book, index) => {
         const slug = createSlug(book.title);
         const dateDisplay = book.finishDate ? `Finished: ${book.finishDate}` : 'Date Unknown';
         
@@ -364,14 +374,19 @@ function renderReviews() {
                     <span class="review-rating">${book.rating}/10 ⭐ </span>
                 </h2>
                 <div class="review-meta">${dateDisplay}</div>
-                <div class="review-body">${book.review}</div> 
-                <div class="review-divider">***</div>
+                <div class="review-body">${book.review}</div>
+                ${index < booksWithReviews.length - 1 ? '<div class="review-divider"></div>' : ''}
             </div>
         `;
     });
 
     html += '</div>';
+    html += '<button class="back-to-top" id="backToTopBtn" onclick="scrollToTop()">Back to Top ↑</button>';
+    
     container.innerHTML = html;
+    
+    // Setup scroll listener for back-to-top button
+    setupBackToTopButton();
 }
 
 // ===========================================
@@ -401,6 +416,26 @@ function escapeAttribute(text) {
     return text.replace(/"/g, '&quot;').replace(/\n/g, ' ');
 }
 
+function stripHtmlAndTruncate(html, maxLength) {
+    if (!html) return '';
+    
+    // Create a temporary div to parse HTML
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    
+    // Get text content (strips all HTML tags)
+    let text = temp.textContent || temp.innerText || '';
+    
+    // Remove excessive whitespace
+    text = text.replace(/\s+/g, ' ').trim();
+    
+    // Truncate if needed
+    if (text.length > maxLength) {
+        text = text.substring(0, maxLength) + '...';
+    }
+    
+    return text;
+}
 function parseDate(dateStr) {
     if (!dateStr) return null;
     const date = new Date(dateStr);
@@ -815,14 +850,14 @@ function renderYearStats() {
             <!-- Top Rated Books -->
             <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
                 <h4 style="margin-top: 0; text-align: center; color: #333;">Top Rated Books (${currentYear})</h4>
-                ${topRated.length > 0 ? generateBookList(topRated, true) : '<p style="text-align: center; color: #666;">No rated books yet.</p>'}
+                ${topRated.length > 0 ? generateBookList(topRated) : '<p style="text-align: center; color: #666;">No rated books yet.</p>'}
             </div>
 
             <!-- Bottom Rated Books -->
             ${bottomRated.length > 0 && bottomRated.length >= 5 ? `
             <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
                 <h4 style="margin-top: 0; text-align: center; color: #333;">Lowest Rated Books (${currentYear})</h4>
-                ${generateBookList(bottomRated, false)}
+                ${generateBookList(bottomRated)}
             </div>
             ` : ''}
         </div>
@@ -881,7 +916,7 @@ function renderYearStats() {
     }
 }
 
-function generateBookList(books, isTopRated) {
+function generateBookList(books) {
     let html = '<ul style="margin: 0; padding-left: 20px; line-height: 1.6; list-style: none;">';
     books.forEach(book => {
         const ratingColor = book.rating >= 8 ? '#28a745' : book.rating >= 6 ? '#ffc107' : '#dc3545';
@@ -899,4 +934,24 @@ function generateBookList(books, isTopRated) {
     });
     html += '</ul>';
     return html;
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function setupBackToTopButton() {
+    const btn = document.getElementById('backToTopBtn');
+    if (!btn) return;
+    
+    const toggleButton = () => {
+        if (window.scrollY > 300) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    };
+    
+    window.addEventListener('scroll', toggleButton);
+    toggleButton(); 
 }
