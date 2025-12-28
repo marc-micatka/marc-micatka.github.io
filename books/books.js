@@ -6,7 +6,7 @@ const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1v
 // ===========================================
 // GLOBAL VARIABLES
 // ===========================================
-    
+
 let allBooks = [];
 let sortColumn = 'finishDate';
 let sortDirection = 'desc';
@@ -14,19 +14,19 @@ let sortDirection = 'desc';
 // ===========================================
 // INITIALIZE APP
 // ===========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Check URL hash for tab
     const hash = window.location.hash.slice(1); // Remove the '#'
     const validTabs = ['statistics', 'all-data', 'reviews'];
     const initialTab = validTabs.includes(hash) ? hash : 'statistics';
-    
+
     switchTab(initialTab);
     loadBooksData();
     console.log("Reading List page loaded.");
 });
 
 // Handle browser back/forward buttons
-window.addEventListener('popstate', function(event) {
+window.addEventListener('popstate', function (event) {
     if (event.state && event.state.tab) {
         switchTab(event.state.tab);
     }
@@ -36,26 +36,35 @@ window.addEventListener('popstate', function(event) {
 // ===========================================
 
 function setupEventListeners() {
-    // 1. Search Input
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', renderBooksTable);
-    }
+    const inputs = [
+        'searchInput', 'ratingMin', 'ratingMax',
+        'dateStart', 'dateEnd', 'audiobookFilter', 'reviewFilter'
+    ];
 
-    // 2. Filter Inputs (Rating, Pages, Date)
-    const filterIds = ['ratingMin', 'ratingMax', 'pagesMin', 'pagesMax', 'dateStart', 'dateEnd'];
-    filterIds.forEach(id => {
+    inputs.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-            el.addEventListener('input', renderBooksTable);
-            el.addEventListener('change', renderBooksTable); 
+            el.addEventListener('input', () => {
+                // Prevent Min from exceeding Max
+                if (id === 'ratingMin' || id === 'ratingMax') {
+                    const min = parseFloat(document.getElementById('ratingMin').value);
+                    const max = parseFloat(document.getElementById('ratingMax').value);
+                    if (min > max) {
+                        if (id === 'ratingMin') document.getElementById('ratingMin').value = max;
+                        else document.getElementById('ratingMax').value = min;
+                    }
+                    document.getElementById('ratingDisplay').textContent = `${document.getElementById('ratingMin').value} - ${document.getElementById('ratingMax').value}`;
+                }
+                renderBooksTable();
+            });
         }
     });
-    
+
+
     // 3. Collapsible headers logic
     const collapsibles = document.querySelectorAll('.collapsible-header');
     collapsibles.forEach(header => {
-        header.addEventListener('click', function() {
+        header.addEventListener('click', function () {
             this.classList.toggle('collapsed');
             const content = this.nextElementSibling;
             if (content && content.classList.contains('collapsible-content')) {
@@ -66,11 +75,18 @@ function setupEventListeners() {
 }
 
 function clearFilters() {
-    const ids = ['searchInput', 'ratingMin', 'ratingMax', 'pagesMin', 'pagesMax', 'dateStart', 'dateEnd'];
+    const ids = ['searchInput', 'dateStart', 'dateEnd'];
     ids.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
     });
+    
+    document.getElementById('ratingMin').value = 0;
+    document.getElementById('ratingMax').value = 10;
+    document.getElementById('audiobookFilter').value = 'all';
+    document.getElementById('reviewFilter').value = 'all';
+    document.getElementById('ratingDisplay').textContent = "0 - 10";
+    
     renderBooksTable();
 }
 
@@ -104,10 +120,10 @@ function switchTab(tabId) {
     if (activeButton) {
         activeButton.classList.add('active');
     }
-    
+
     // UPDATE URL
-    window.history.pushState({tab: tabId}, '', `#${tabId}`);
-    
+    window.history.pushState({ tab: tabId }, '', `#${tabId}`);
+
     if (tabId === 'statistics') {
         renderStatistics();
     }
@@ -124,7 +140,7 @@ function goToReview(slug) {
             // Optional: Highlight the review briefly
             element.classList.add('highlight-review');
             setTimeout(() => element.classList.remove('highlight-review'), 2000);
-            
+
             // Force back-to-top button to appear
             const btn = document.getElementById('backToTopBtn');
             if (btn) {
@@ -145,19 +161,19 @@ function createSlug(title) {
 function loadBooksData() {
     const messageDiv = document.getElementById('message');
     messageDiv.innerHTML = '<div class="loading">Loading your books...</div>';
-    
+
     Papa.parse(GOOGLE_SHEETS_CSV_URL, {
         download: true,
         header: true,
         dynamicTyping: true,
         skipEmptyLines: true,
-        complete: function(results) {
+        complete: function (results) {
             if (results.errors.length > 0) {
                 console.error('Parse errors:', results.errors);
                 messageDiv.innerHTML = '<div class="error">Error parsing CSV. Check console for details.</div>';
                 return;
             }
-            
+
             allBooks = results.data.map(book => ({
                 title: book.Title || book.title || '',
                 author: book.Author || book.author || '',
@@ -169,16 +185,16 @@ function loadBooksData() {
                 review: book['Review'] || book.Review || book.review || '',
                 hasReview: (book['Review'] || book.Review || book.review || '').trim().length > 0
             }));
-            
+
             messageDiv.innerHTML = '';
             setupEventListeners();
-            
+
             // Render all views
             renderBooksTable();
             renderStatistics();
             renderReviews();
         },
-        error: function(error) {
+        error: function (error) {
             console.error('Fetch error:', error);
             messageDiv.innerHTML = '<div class="error">Error loading CSV. Make sure the Google Sheets link is public and published as CSV.</div>';
         }
@@ -190,8 +206,8 @@ function loadBooksData() {
 // ===========================================
 function renderBooksTable() {
     const container = document.getElementById('books-table');
-    if (!container) return; 
-    
+    if (!container) return;
+
     if (allBooks.length === 0) {
         container.innerHTML = '<p>No books data available.</p>';
         return;
@@ -210,55 +226,69 @@ function renderBooksTable() {
 
     // 2. Filter Logic
     let filteredBooks = allBooks.filter(book => {
+        const searchTerm = document.getElementById('searchInput')?.value.toLowerCase().trim() || '';
+        const ratingMin = parseFloat(document.getElementById('ratingMin')?.value);
+        const ratingMax = parseFloat(document.getElementById('ratingMax')?.value);
+        const dateStart = document.getElementById('dateStart')?.value ? new Date(document.getElementById('dateStart').value) : null;
+        const dateEnd = document.getElementById('dateEnd')?.value ? new Date(document.getElementById('dateEnd').value) : null;
+        const audiobookFilter = document.getElementById('audiobookFilter')?.value || 'all';
+        const reviewFilter = document.getElementById('reviewFilter')?.value || 'all';
+
+        // Text Search
         const titleSafe = String(book.title || '').toLowerCase();
         const authorSafe = String(book.author || '').toLowerCase();
-        
         if (searchTerm && !titleSafe.includes(searchTerm) && !authorSafe.includes(searchTerm)) return false;
-        if (!isNaN(ratingMin) && (book.rating < ratingMin)) return false;
-        if (!isNaN(ratingMax) && (book.rating > ratingMax)) return false;
-        
-        const p = book.pages || 0;
-        if (!isNaN(pagesMin) && p < pagesMin) return false;
-        if (!isNaN(pagesMax) && p > pagesMax) return false;
 
+        // Rating Range
+        if (book.rating < ratingMin || book.rating > ratingMax) return false;
+
+        // Date Range
         const bookDate = parseDate(book.finishDate);
-        if ((dateStart || dateEnd) && !bookDate) return false;
-        if (dateStart && bookDate < dateStart) return false;
-        if (dateEnd && bookDate > dateEnd) return false;
-        
+        if (dateStart && (!bookDate || bookDate < dateStart)) return false;
+        if (dateEnd && (!bookDate || bookDate > dateEnd)) return false;
+
+        // Audiobook Toggle
+        const isAudio = String(book.audiobook || '').toLowerCase() === 'yes';
+        if (audiobookFilter === 'yes' && !isAudio) return false;
+        if (audiobookFilter === 'no' && isAudio) return false;
+
+        // Review Toggle
+        if (reviewFilter === 'yes' && !book.hasReview) return false;
+        if (reviewFilter === 'no' && book.hasReview) return false;
+
         return true;
     });
-    
+
     // 3. Sort Logic
     if (sortColumn) {
         filteredBooks.sort((a, b) => {
             let aVal = a[sortColumn];
             let bVal = b[sortColumn];
-            
+
             if (sortColumn === 'finishDate') {
                 const dateA = parseDate(aVal);
                 const dateB = parseDate(bVal);
-                
+
                 // Put invalid dates at the bottom regardless of sort direction
                 if (!dateA && !dateB) return 0;
                 if (!dateA) return 1;  // Always put invalid dates at bottom
                 if (!dateB) return -1; // Always put invalid dates at bottom
-                
+
                 return sortDirection === 'asc' ? dateA - dateB : dateB - dateA;
             }
-            
+
             if (sortColumn === 'hasReview') {
                 // Sort by presence of review (true/false)
                 return sortDirection === 'asc' ? (aVal === bVal ? 0 : aVal ? 1 : -1) : (aVal === bVal ? 0 : aVal ? -1 : 1);
             }
-            
+
             if (typeof aVal === 'number' && typeof bVal === 'number') {
                 return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
             }
-            
+
             aVal = String(aVal || '').toLowerCase();
             bVal = String(bVal || '').toLowerCase();
-            
+
             if (sortDirection === 'asc') {
                 return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
             } else {
@@ -266,7 +296,7 @@ function renderBooksTable() {
             }
         });
     }
-    
+
     // 4. Build Table
     let tableHTML = `
         <div class="table-container">
@@ -290,28 +320,28 @@ function renderBooksTable() {
         tableHTML += `<tr><td colspan="8" style="text-align:center; padding: 20px;">No books match your filters.</td></tr>`;
     } else {
         filteredBooks.forEach((book) => {
-            const formatCell = (book.audiobook && book.audiobook.toString().toLowerCase() === 'yes') 
-                ? '<span class="checkmark">✓</span>' 
+            const formatCell = (book.audiobook && book.audiobook.toString().toLowerCase() === 'yes')
+                ? '<span class="checkmark">✓</span>'
                 : '';
-            
+
             const hasReview = book.review && String(book.review).trim().length > 0;
-            
+
             // Logic for Review Column and Row Hover
             let reviewCell = '';
             let rowTitle = '';
-            
+
             if (hasReview) {
                 const slug = createSlug(book.title);
                 // The checkmark links to the review tab
                 reviewCell = `<span class="review-link" onclick="goToReview('${slug}')">📝</span>`;
-                
+
                 // Strip HTML and truncate for hover text
                 const reviewText = stripHtmlAndTruncate(book.review, 200);
                 rowTitle = `title="${escapeAttribute(reviewText)}"`;
             } else {
                 reviewCell = '<span style="color: #ccc;">-</span>';
             }
-            
+
             tableHTML += `
                 <tr ${rowTitle}>
                     <td>${escapeHtml(book.title)}</td>
@@ -326,13 +356,13 @@ function renderBooksTable() {
             `;
         });
     }
-    
+
     tableHTML += `
                 </tbody>
             </table>
         </div>
     `;
-    
+
     container.innerHTML = tableHTML;
 }
 
@@ -366,7 +396,7 @@ function renderReviews() {
     booksWithReviews.forEach((book, index) => {
         const slug = createSlug(book.title);
         const dateDisplay = book.finishDate ? `Finished: ${book.finishDate}` : 'Date Unknown';
-        
+
         html += `
             <div id="${slug}" class="review-card">
                 <h2 class="review-header">
@@ -382,9 +412,9 @@ function renderReviews() {
 
     html += '</div>';
     html += '<button class="back-to-top" id="backToTopBtn" onclick="scrollToTop()">BACK TO TOP ↑</button>';
-    
+
     container.innerHTML = html;
-    
+
     // Setup scroll listener for back-to-top button
     setupBackToTopButton();
 }
@@ -418,22 +448,22 @@ function escapeAttribute(text) {
 
 function stripHtmlAndTruncate(html, maxLength) {
     if (!html) return '';
-    
+
     // Create a temporary div to parse HTML
     const temp = document.createElement('div');
     temp.innerHTML = html;
-    
+
     // Get text content (strips all HTML tags)
     let text = temp.textContent || temp.innerText || '';
-    
+
     // Remove excessive whitespace
     text = text.replace(/\s+/g, ' ').trim();
-    
+
     // Truncate if needed
     if (text.length > maxLength) {
         text = text.substring(0, maxLength) + '...';
     }
-    
+
     return text;
 }
 function parseDate(dateStr) {
@@ -458,36 +488,36 @@ let currentYearChartInstance = null;
 
 function renderStatistics() {
     const container = document.getElementById('statistics-table');
-    
+
     if (allBooks.length === 0) {
         container.innerHTML = '<p>No books data available.</p>';
         return;
     }
-    
+
     // Render year specific stats first
     renderYearStats();
-    
+
     // Group books by year
     const booksByYear = _.groupBy(allBooks, book => {
         const date = parseDate(book.finishDate);
         return date ? date.getFullYear() : 'Unknown';
     });
-    
+
     let yearStats = [];
     Object.keys(booksByYear).forEach(year => {
         if (year === 'Unknown') return;
         const yearNum = parseInt(year);
         if (yearNum < 2015) return;
-        
+
         const books = booksByYear[year];
         const totalPages = _.sumBy(books, 'pages');
         const booksFinished = books.length;
-        
+
         const fictionCount = books.filter(b => {
             const genre = String(b.genre || '').toLowerCase();
             return genre.includes('fiction') && !genre.includes('non-fiction');
         }).length;
-        
+
         const nonFictionCount = books.filter(b => {
             const genre = String(b.genre || '').toLowerCase();
             return genre.includes('non-fiction') || genre.includes('nonfiction');
@@ -498,11 +528,11 @@ function renderStatistics() {
             return ab === 'yes' || ab === 'true';
         }).length;
         const regularBookCount = booksFinished - audiobookCount;
-        
+
         const daysInYear = (yearNum % 4 === 0 && (yearNum % 100 !== 0 || yearNum % 400 === 0)) ? 366 : 365;
         const avgPerDay = totalPages / daysInYear;
         const avgBookLength = totalPages / booksFinished;
-        
+
         yearStats.push({
             year: yearNum,
             totalPages,
@@ -517,7 +547,7 @@ function renderStatistics() {
             pagesDisplay: `${totalPages.toLocaleString()}<br><span style="font-size: 0.85em;">(${avgPerDay.toFixed(1)}/day)</span>`
         });
     });
-    
+
     const sortedStats = [...yearStats].sort((a, b) => {
         let aVal = a[statsSortColumn];
         let bVal = b[statsSortColumn];
@@ -528,7 +558,7 @@ function renderStatistics() {
         bVal = String(bVal || '').toLowerCase();
         return statsSortDirection === 'asc' ? (aVal < bVal ? -1 : aVal > bVal ? 1 : 0) : (aVal > bVal ? -1 : aVal < bVal ? 1 : 0);
     });
-    
+
     let tableHTML = `
         <div class="table-container">
             <table class="books-table stats-table">
@@ -542,7 +572,7 @@ function renderStatistics() {
                 </thead>
                 <tbody>
     `;
-    
+
     sortedStats.forEach(stat => {
         tableHTML += `
             <tr>
@@ -553,7 +583,7 @@ function renderStatistics() {
             </tr>
         `;
     });
-    
+
     tableHTML += `</tbody></table></div>`;
     container.innerHTML = tableHTML;
 
@@ -565,7 +595,7 @@ function renderCharts(data) {
     const labels = chartData.map(d => d.year);
 
     const ctxActivity = document.getElementById('activityChart')?.getContext('2d');
-    if(ctxActivity) {
+    if (ctxActivity) {
         if (activityChartInstance) activityChartInstance.destroy();
         activityChartInstance = new Chart(ctxActivity, {
             type: 'bar',
@@ -607,7 +637,7 @@ function renderCharts(data) {
     }
 
     const ctxGenre = document.getElementById('genreChart')?.getContext('2d');
-    if(ctxGenre) {
+    if (ctxGenre) {
         if (genreChartInstance) genreChartInstance.destroy();
         genreChartInstance = new Chart(ctxGenre, {
             type: 'bar',
@@ -623,7 +653,7 @@ function renderCharts(data) {
     }
 
     const ctxFormat = document.getElementById('formatChart')?.getContext('2d');
-    if(ctxFormat) {
+    if (ctxFormat) {
         if (formatChartInstance) formatChartInstance.destroy();
         formatChartInstance = new Chart(ctxFormat, {
             type: 'bar',
@@ -646,7 +676,7 @@ function renderCharts(data) {
 
     // --- Chart 1: Activity (Pages/Day vs Books Finished) ---
     const ctxActivity = document.getElementById('activityChart').getContext('2d');
-    
+
     if (activityChartInstance) activityChartInstance.destroy();
 
     activityChartInstance = new Chart(ctxActivity, {
@@ -806,7 +836,7 @@ function renderYearStats() {
         const genre = String(b.genre || '').toLowerCase();
         return genre.includes('fiction') && !genre.includes('non-fiction');
     });
-    
+
     const nonFictionBooks = booksCurrentYear.filter(b => {
         const genre = String(b.genre || '').toLowerCase();
         return genre.includes('non-fiction') || genre.includes('nonfiction');
@@ -817,14 +847,14 @@ function renderYearStats() {
         const ab = String(b.audiobook || '').toLowerCase();
         return ab === 'yes' || ab === 'true';
     }).length;
-    
+
     const fictionRegular = fictionBooks.length - fictionAudio;
-    
+
     const nonFictionAudio = nonFictionBooks.filter(b => {
         const ab = String(b.audiobook || '').toLowerCase();
         return ab === 'yes' || ab === 'true';
     }).length;
-    
+
     const nonFictionRegular = nonFictionBooks.length - nonFictionAudio;
 
     // Get top 5 and bottom 5 rated books
@@ -869,7 +899,7 @@ function renderYearStats() {
     const ctx = document.getElementById('currentYearChart')?.getContext('2d');
     if (ctx) {
         if (currentYearChartInstance) currentYearChartInstance.destroy();
-        
+
         currentYearChartInstance = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -896,7 +926,7 @@ function renderYearStats() {
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { 
+                    legend: {
                         display: true,
                         position: 'bottom'
                     }
@@ -943,7 +973,7 @@ function scrollToTop() {
 function setupBackToTopButton() {
     const btn = document.getElementById('backToTopBtn');
     if (!btn) return;
-    
+
     const toggleButton = () => {
         if (window.scrollY > 100) {
             btn.classList.add('visible');
@@ -951,7 +981,7 @@ function setupBackToTopButton() {
             btn.classList.remove('visible');
         }
     };
-    
+
     window.addEventListener('scroll', toggleButton);
-    toggleButton(); 
+    toggleButton();
 }

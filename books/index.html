@@ -14,8 +14,11 @@ title: Reading List
 
     <h1 class="page-title" align="center">📚 Books Database 📚</h1>
     <div class="header">
-        I've been tracking every book I've read since 2015. 
-        Data is <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=290047373&single=true&output=csv" target="_blank">here</a> and the blog post providing some background is <a href="/books_database/" target="_blank">here</a>.
+        I've been tracking every book I've read since 2015.
+        Data is <a
+            href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQHLDF-rhQE2RIGdme9IO4lKEnIPxS2gX1pgeCNFPjjmabkWILZqZMthukx_1cjNDd9citMi-Q0A-SK/pub?gid=290047373&single=true&output=csv"
+            target="_blank">here</a> and the blog post providing some background is <a href="/books_database/"
+            target="_blank">here</a>.
     </div>
 
     <div class="tabs">
@@ -23,12 +26,12 @@ title: Reading List
         <button class="tab-btn" onclick="switchTab('all-data')">All Data</button>
         <button class="tab-btn" onclick="switchTab('reviews')">Reviews</button>
     </div>
-        
+
     <div id="statistics" class="tab-content">
         <h3 class="collapsible-header">Year-to-Date!</h3>
         <div id="stats-current-year" class="collapsible-content"></div>
-        
-       
+
+
         <h3 class="collapsible-header">Charts and Graphs!</h3>
         <div id="statistics-charts" class="collapsible-content">
             <div class="chart-wrapper">
@@ -55,22 +58,52 @@ title: Reading List
                 <input type="text" id="searchInput" class="search-input" placeholder="Search title or author...">
             </div>
 
-            <div class="filter-row ranges">
+            <details class="advanced-filters">
+                <summary class="btn-advanced">Advanced Filters & Settings</summary>
 
+                <div class="advanced-content">
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label>Date Finished Range</label>
+                            <div class="range-inputs">
+                                <input type="date" id="dateStart">
+                                <span>to</span>
+                                <input type="date" id="dateEnd">
+                            </div>
+                        </div>
 
-                <div class="filter-group">
-                    <label>Date Finished</label>
-                    <div class="range-inputs">
-                        <input type="date" id="dateStart">
-                        <span>-</span>
-                        <input type="date" id="dateEnd">
+                        <div class="filter-group">
+                            <label>Rating: <span id="ratingDisplay">0 - 10</span></label>
+                            <div class="dual-range-container">
+                                <input type="range" id="ratingMin" min="0" max="10" step="0.5" value="0">
+                                <input type="range" id="ratingMax" min="0" max="10" step="0.5" value="10">
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Format</label>
+                            <select id="audiobookFilter">
+                                <option value="all">All Formats</option>
+                                <option value="yes">Audiobook</option>
+                                <option value="no">Print/E-book</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Review Status</label>
+                            <select id="reviewFilter">
+                                <option value="all">All Books</option>
+                                <option value="yes">With Reviews Only</option>
+                                <option value="no">No Review Yet</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button class="btn-clear" onclick="clearFilters()">Reset All Filters</button>
                     </div>
                 </div>
-                
-                <div class="filter-actions">
-                     <button class="btn-clear" onclick="clearFilters()">Clear Filters</button>
-                </div>
-            </div>
+            </details>
         </div>
 
         <div id="books-table"></div>
@@ -79,5 +112,5 @@ title: Reading List
 
     <div id="reviews" class="tab-content">
     </div>
-    
+
 </div>
