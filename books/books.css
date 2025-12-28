@@ -73,8 +73,8 @@
     border-radius: 4px;
     position: relative;
     overflow: auto; 
+    max-width: 100%;
 }
-
 /* Table styling */
 .books-table {
     width: 100%;
@@ -247,6 +247,11 @@
 #statistics .books-table th {
     white-space: normal;
     line-height: 1.3;
+}
+
+/* Reduce margin at top of statistics tab */
+#statistics > .collapsible-header:first-child {
+    margin-top: 0;
 }
 
 /*  */
@@ -520,3 +525,146 @@
     cursor: help;
 }
 
+
+#reviews .review-divider {
+    text-align: center;
+    color: #ccc;
+    margin: 30px 0;
+    border-bottom: 2px solid #ddd;
+    line-height: 0.1em;
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    z-index: 1000;
+    display: none;
+}
+
+.back-to-top.visible {
+    display: block;
+}
+
+.back-to-top:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Advanced Filter Styling */
+.advanced-filters {
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.btn-advanced {
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #007bff;
+    font-weight: bold;
+    padding: 5px 0;
+    outline: none;
+}
+
+.advanced-content {
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+/* 1. The Grid Layout (2x2) */
+.filter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Force exactly two columns */
+    gap: 20px 40px;                 /* Vertical gap of 20px, Horizontal gap of 40px */
+    margin-bottom: 20px;
+    align-items: end;               /* Aligns items to the bottom of the grid cell */
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;                       /* Space between label and input */
+    position: relative;
+}
+
+/* 2. Fixed Dual Range Slider */
+.dual-range-container {
+    position: relative;
+    width: 100%;
+    height: 24px;       /* Ensure the container has height so it doesn't overlap */
+    background: #eee;   /* Visible track */
+    border-radius: 12px;
+    margin-top: 5px;
+}
+
+.dual-range-container input[type="range"] {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%); /* Center slider on the track */
+    background: none;
+    pointer-events: none;        /* Allows clicking through the track to the thumb */
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ensure handles are clickable and hover over the track */
+.dual-range-container input[type="range"]::-webkit-slider-thumb {
+    pointer-events: auto;
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 3;
+}
+
+/* Firefox support for handles */
+.dual-range-container input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 3;
+}
+
+/* 3. Dropdowns and Inputs styling */
+.filter-group select, 
+.filter-group input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
