@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const validTabs = ['statistics', 'all-data', 'reviews'];
     const initialTab = validTabs.includes(hash) ? hash : 'statistics';
 
-    switchTab(initialTab);
+    switchTab(initialTab, true); // Pass true to indicate initial load
     loadBooksData();
     console.log("Reading List page loaded.");
 });
@@ -31,6 +31,7 @@ window.addEventListener('popstate', function (event) {
         switchTab(event.state.tab);
     }
 });
+
 // ===========================================
 // EVENT LISTENERS
 // ===========================================
@@ -59,7 +60,6 @@ function setupEventListeners() {
             });
         }
     });
-
 
     // 3. Collapsible headers logic
     const collapsibles = document.querySelectorAll('.collapsible-header');
@@ -94,7 +94,7 @@ function clearFilters() {
 // TAB Switching & Navigation
 // ===========================================
 
-function switchTab(tabId) {
+function switchTab(tabId, isInitialLoad = false) {
     // 1. Get all tab content elements and buttons
     const tabContents = document.querySelectorAll('.tab-content');
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -121,11 +121,22 @@ function switchTab(tabId) {
         activeButton.classList.add('active');
     }
 
-    // UPDATE URL
-    window.history.pushState({ tab: tabId }, '', `#${tabId}`);
+    // UPDATE URL (but not on initial load to prevent scrolling)
+    if (!isInitialLoad) {
+        window.history.pushState({ tab: tabId }, '', `#${tabId}`);
+    } else {
+        window.history.replaceState({ tab: tabId }, '', `#${tabId}`);
+    }
 
     if (tabId === 'statistics') {
         renderStatistics();
+    }
+    
+    // Scroll to top on initial load to prevent jumping
+    if (isInitialLoad) {
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 0);
     }
 }
 
@@ -333,7 +344,7 @@ function renderBooksTable() {
             if (hasReview) {
                 const slug = createSlug(book.title);
                 // The checkmark links to the review tab
-                reviewCell = `<span class="review-link" onclick="goToReview('${slug}')">📝</span>`;
+                reviewCell = `<span class="review-link" onclick="goToReview('${slug}')">📄</span>`;
 
                 // Strip HTML and truncate for hover text
                 const reviewText = stripHtmlAndTruncate(book.review, 200);
@@ -466,6 +477,7 @@ function stripHtmlAndTruncate(html, maxLength) {
 
     return text;
 }
+
 function parseDate(dateStr) {
     if (!dateStr) return null;
     const date = new Date(dateStr);
@@ -591,12 +603,15 @@ function renderStatistics() {
 }
 
 function renderCharts(data) {
+    // Sort by year ascending for charts so time flows left-to-right
     const chartData = [...data].sort((a, b) => a.year - b.year);
     const labels = chartData.map(d => d.year);
 
+    // --- Chart 1: Activity (Pages/Day vs Books Finished) ---
     const ctxActivity = document.getElementById('activityChart')?.getContext('2d');
     if (ctxActivity) {
         if (activityChartInstance) activityChartInstance.destroy();
+
         activityChartInstance = new Chart(ctxActivity, {
             type: 'bar',
             data: {
@@ -605,8 +620,8 @@ function renderCharts(data) {
                     {
                         label: 'Books Finished',
                         data: chartData.map(d => d.booksFinished),
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(0, 0, 131, 0.5)',
+                        borderColor: '#000083',
                         borderWidth: 1,
                         yAxisID: 'y1',
                         order: 2
@@ -615,8 +630,8 @@ function renderCharts(data) {
                         label: 'Avg Pages / Day',
                         data: chartData.map(d => d.avgPerDay),
                         type: 'line',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: '#800000',
+                        backgroundColor: 'rgba(128, 0, 0, 0.2)',
                         borderWidth: 3,
                         tension: 0.3,
                         yAxisID: 'y',
@@ -626,179 +641,111 @@ function renderCharts(data) {
             },
             options: {
                 responsive: true,
-                interaction: { mode: 'index', intersect: false },
-                plugins: { title: { display: true, text: 'Reading Habits Over Time' } },
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    title: { display: true, text: 'Reading Habits Over Time' }
+                },
                 scales: {
-                    y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Avg Pages / Day' } },
-                    y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Books Finished' } }
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Avg Pages / Day' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: { drawOnChartArea: false },
+                        title: { display: true, text: 'Books Finished' }
+                    }
                 }
             }
         });
     }
 
+    // --- Chart 2: Fiction vs Non-Fiction (Stacked) ---
     const ctxGenre = document.getElementById('genreChart')?.getContext('2d');
     if (ctxGenre) {
         if (genreChartInstance) genreChartInstance.destroy();
+
         genreChartInstance = new Chart(ctxGenre, {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [
-                    { label: 'Fiction', data: chartData.map(d => d.fictionCount), backgroundColor: 'rgba(75, 192, 192, 0.6)' },
-                    { label: 'Non-Fiction', data: chartData.map(d => d.nonFictionCount), backgroundColor: 'rgba(255, 206, 86, 0.6)' }
+                    {
+                        label: 'Fiction',
+                        data: chartData.map(d => d.fictionCount),
+                        backgroundColor: 'rgba(0, 0, 131, 0.6)',
+                        borderColor: '#000083',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Non-Fiction',
+                        data: chartData.map(d => d.nonFictionCount),
+                        backgroundColor: 'rgba(128, 0, 0, 0.6)',
+                        borderColor: '#800000',
+                        borderWidth: 1
+                    }
                 ]
             },
-            options: { responsive: true, plugins: { title: { display: true, text: 'Fiction vs. Non-Fiction' } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } }
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Books by Genre' },
+                },
+                scales: {
+                    x: { stacked: true },
+                    y: { stacked: true, beginAtZero: true }
+                }
+            }
         });
     }
 
+    // --- Chart 3: Audio vs Regular (Stacked) ---
     const ctxFormat = document.getElementById('formatChart')?.getContext('2d');
     if (ctxFormat) {
         if (formatChartInstance) formatChartInstance.destroy();
+
         formatChartInstance = new Chart(ctxFormat, {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [
-                    { label: 'Audiobook', data: chartData.map(d => d.audiobookCount), backgroundColor: 'rgba(153, 102, 255, 0.6)' },
-                    { label: 'Regular', data: chartData.map(d => d.regularBookCount), backgroundColor: 'rgba(255, 159, 64, 0.6)' }
+                    {
+                        label: 'Books',
+                        data: chartData.map(d => d.regularBookCount),
+                        backgroundColor: 'rgba(0, 0, 131, 0.6)',
+                        borderColor: '#000083',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Audiobooks',
+                        data: chartData.map(d => d.audiobookCount),
+                        backgroundColor: 'rgba(128, 0, 0, 0.6)',
+                        borderColor: '#800000',
+                        borderWidth: 1
+                    }
                 ]
             },
-            options: { responsive: true, plugins: { title: { display: true, text: 'Audiobook vs. Regular' } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } }
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Books by Format' },
+                },
+                scales: {
+                    x: { stacked: true },
+                    y: { stacked: true, beginAtZero: true }
+                }
+            }
         });
     }
 }
 
-function renderCharts(data) {
-    // Sort by year ascending for charts so time flows left-to-right
-    const chartData = [...data].sort((a, b) => a.year - b.year);
-    const labels = chartData.map(d => d.year);
-
-    // --- Chart 1: Activity (Pages/Day vs Books Finished) ---
-    const ctxActivity = document.getElementById('activityChart').getContext('2d');
-
-    if (activityChartInstance) activityChartInstance.destroy();
-
-    activityChartInstance = new Chart(ctxActivity, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Books Finished',
-                    data: chartData.map(d => d.booksFinished),
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    yAxisID: 'y1',
-                    order: 2
-                },
-                {
-                    label: 'Avg Pages / Day',
-                    data: chartData.map(d => d.avgPerDay),
-                    type: 'line',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderWidth: 3,
-                    tension: 0.3,
-                    yAxisID: 'y',
-                    order: 1
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
-            plugins: {
-                title: { display: true, text: 'Reading Habits Over Time' }
-            },
-            scales: {
-                y: {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    title: { display: true, text: 'Avg Pages / Day' }
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    grid: { drawOnChartArea: false },
-                    title: { display: true, text: 'Books Finished' }
-                }
-            }
-        }
-    });
-
-    // --- Chart 2: Fiction vs Non-Fiction (Stacked) ---
-    const ctxGenre = document.getElementById('genreChart').getContext('2d');
-    if (genreChartInstance) genreChartInstance.destroy();
-
-    genreChartInstance = new Chart(ctxGenre, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Fiction',
-                    data: chartData.map(d => d.fictionCount),
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                },
-                {
-                    label: 'Non-Fiction',
-                    data: chartData.map(d => d.nonFictionCount),
-                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: { display: true, text: 'Fiction vs. Non-Fiction' },
-            },
-            scales: {
-                x: { stacked: true },
-                y: { stacked: true, beginAtZero: true }
-            }
-        }
-    });
-
-    // --- Chart 3: Audio vs Regular (Stacked) ---
-    const ctxFormat = document.getElementById('formatChart').getContext('2d');
-    if (formatChartInstance) formatChartInstance.destroy();
-
-    formatChartInstance = new Chart(ctxFormat, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Audiobook',
-                    data: chartData.map(d => d.audiobookCount),
-                    backgroundColor: 'rgba(153, 102, 255, 0.6)',
-                },
-                {
-                    label: 'Regular (Print/E-book)',
-                    data: chartData.map(d => d.regularBookCount),
-                    backgroundColor: 'rgba(255, 159, 64, 0.6)',
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: { display: true, text: 'Audiobook vs. Regular' },
-            },
-            scales: {
-                x: { stacked: true },
-                y: { stacked: true, beginAtZero: true }
-            }
-        }
-    });
-}
 function sortStatsTable(column) {
     if (statsSortColumn === column) {
         statsSortDirection = statsSortDirection === 'asc' ? 'desc' : 'asc';
@@ -906,23 +853,23 @@ function renderYearStats() {
                 labels: ['Fiction', 'Non-Fiction'],
                 datasets: [
                     {
-                        label: 'Regular (Print/E-book)',
+                        label: 'Books',
                         data: [fictionRegular, nonFictionRegular],
-                        backgroundColor: 'rgba(255, 159, 64, 0.6)',
-                        borderColor: 'rgba(255, 159, 64, 1)',
+                        backgroundColor: 'rgba(0, 0, 131, 0.6)',
+                        borderColor: '#000083',
                         borderWidth: 1
                     },
                     {
-                        label: 'Audiobook',
+                        label: 'Audiobooks',
                         data: [fictionAudio, nonFictionAudio],
-                        backgroundColor: 'rgba(153, 102, 255, 0.6)',
-                        borderColor: 'rgba(153, 102, 255, 1)',
+                        backgroundColor: 'rgba(128, 0, 0, 0.6)',
+                        borderColor: '#800000',
                         borderWidth: 1
                     }
                 ]
             },
             options: {
-                indexAxis: 'y', // Makes it horizontal
+                indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
