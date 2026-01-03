@@ -759,22 +759,46 @@ function sortStatsTable(column) {
 // ===========================================
 // Current YEAR STATISTICS RENDERING
 // ===========================================
-
-function renderYearStats() {
+function renderYearStats(selectedYear = null) {
     const container = document.getElementById('stats-current-year');
     if (!container) return;
 
-    // Get current year dynamically
-    const currentYear = new Date().getFullYear();
+    // Use selectedYear if provided, otherwise current year
+    const displayYear = selectedYear || new Date().getFullYear();
+    
+    // Get all available years for dropdown
+    const availableYears = [...new Set(allBooks
+        .map(book => {
+            const date = parseDate(book.finishDate);
+            return date ? date.getFullYear() : null;
+        })
+        .filter(year => year && year >= 2015)
+    )].sort((a, b) => b - a); // Sort descending
 
-    // Filter books from current year
+    // Add current year to availableYears if not present
+    const currentYear = new Date().getFullYear();
+    if (!availableYears.includes(currentYear)) {
+        availableYears.unshift(currentYear);
+    }
+
+    // Filter books from selected year
     const booksCurrentYear = allBooks.filter(book => {
         const date = parseDate(book.finishDate);
-        return date && date.getFullYear() === currentYear;
+        return date && date.getFullYear() === displayYear;
     });
 
     if (booksCurrentYear.length === 0) {
-        container.innerHTML = `<p style="text-align: center; color: #666;">No books finished in ${currentYear} yet.</p>`;
+        container.innerHTML = `
+            <div class="year-selector-container">
+                <label for="yearSelector">Select Year:</label>
+                <select id="yearSelector" onchange="renderYearStats(parseInt(this.value))">
+                    ${availableYears.map(year => 
+                        `<option value="${year}" ${year === displayYear ? 'selected' : ''}>${year}</option>`
+                    ).join('')}
+                </select>
+            </div>
+            <p style="text-align: center; color: #666;">No books finished in ${displayYear} yet.</p>
+        `;
         return;
     }
 
@@ -811,14 +835,24 @@ function renderYearStats() {
     const bottomRated = sortedByRating.slice(-5).reverse();
 
     let html = `
+        <!-- Year Selector -->
+        <div class="year-selector-container">
+            <label for="yearSelector">Select Year:</label>
+            <select id="yearSelector" onchange="renderYearStats(parseInt(this.value))">
+                ${availableYears.map(year => 
+                    `<option value="${year}" ${year === displayYear ? 'selected' : ''}>${year}</option>`
+                ).join('')}
+            </select>
+        </div>
+
         <!-- Fiction/Non-Fiction Chart (Full Width) -->
         <div style="background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 30px;">
-            <h4 style="margin-top: 0; text-align: center; color: #333;">${currentYear} Reading by Genre</h4>
+            <h4 style="margin-top: 0; text-align: center; color: #333;">${displayYear} Reading by Genre</h4>
             <div style="max-width: 600px; margin: 0 auto;">
                 <canvas id="currentYearChart" style="max-height: 200px;"></canvas>
             </div>
             <div style="text-align: center; margin-top: 15px; color: #666;">
-                <strong>${booksCurrentYear.length}</strong> books finished so far
+                <strong>${booksCurrentYear.length}</strong> books finished
             </div>
         </div>
 
@@ -826,14 +860,14 @@ function renderYearStats() {
         <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 30px;">
             <!-- Top Rated Books -->
             <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <h4 style="margin-top: 0; text-align: center; color: #333;">Top Rated Books (${currentYear})</h4>
+                <h4 style="margin-top: 0; text-align: center; color: #333;">Top Rated Books (${displayYear})</h4>
                 ${topRated.length > 0 ? generateBookList(topRated) : '<p style="text-align: center; color: #666;">No rated books yet.</p>'}
             </div>
 
             <!-- Bottom Rated Books -->
             ${bottomRated.length > 0 && bottomRated.length >= 5 ? `
             <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <h4 style="margin-top: 0; text-align: center; color: #333;">Lowest Rated Books (${currentYear})</h4>
+                <h4 style="margin-top: 0; text-align: center; color: #333;">Lowest Rated Books (${displayYear})</h4>
                 ${generateBookList(bottomRated)}
             </div>
             ` : ''}
@@ -892,7 +926,6 @@ function renderYearStats() {
         });
     }
 }
-
 function generateBookList(books) {
     let html = '<ul style="margin: 0; padding-left: 20px; line-height: 1.6; list-style: none;">';
     books.forEach(book => {
