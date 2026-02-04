@@ -497,6 +497,7 @@ let activityChartInstance = null;
 let genreChartInstance = null;
 let formatChartInstance = null;
 let currentYearChartInstance = null;
+let cumulativePagesChartInstance = null;
 
 function renderStatistics() {
     const container = document.getElementById('statistics-table');
@@ -541,8 +542,20 @@ function renderStatistics() {
         }).length;
         const regularBookCount = booksFinished - audiobookCount;
 
-        const daysInYear = (yearNum % 4 === 0 && (yearNum % 100 !== 0 || yearNum % 400 === 0)) ? 366 : 365;
-        const avgPerDay = totalPages / daysInYear;
+        // Calculate days for average - use elapsed days for current year, full year for past years
+        const currentYear = new Date().getFullYear();
+        let daysForAverage;
+        if (yearNum === currentYear) {
+            // For current year, use days elapsed so far
+            const startOfYear = new Date(currentYear, 0, 1);
+            const today = new Date();
+            daysForAverage = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
+        } else {
+            // For past years, use total days in that year
+            daysForAverage = (yearNum % 4 === 0 && (yearNum % 100 !== 0 || yearNum % 400 === 0)) ? 366 : 365;
+        }
+        
+        const avgPerDay = totalPages / daysForAverage;
         const avgBookLength = totalPages / booksFinished;
 
         yearStats.push({
@@ -667,6 +680,9 @@ function renderCharts(data) {
         });
     }
 
+    // --- Chart 1.5: Cumulative Pages Over the Year ---
+    renderCumulativePagesChart(chartData);
+
     // --- Chart 2: Fiction vs Non-Fiction (Stacked) ---
     const ctxGenre = document.getElementById('genreChart')?.getContext('2d');
     if (ctxGenre) {
@@ -744,6 +760,218 @@ function renderCharts(data) {
             }
         });
     }
+}
+
+function renderCumulativePagesChart(yearStats) {
+    const ctxCumulative = document.getElementById('cumulativePagesChart')?.getContext('2d');
+    if (!ctxCumulative) return;
+
+    // Group books by year and day of year
+    const currentYear = new Date().getFullYear();
+    const yearlyData = {};
+    
+    allBooks.forEach(book => {
+        const date = parseDate(book.finishDate);
+        if (!date) return;
+        
+        const year = date.getFullYear();
+        if (year < 2015) return;
+        
+        if (!yearlyData[year]) {
+            yearlyData[year] = [];
+        }
+        
+        // Calculate day of year (1-366)
+        const startOfYear = new Date(year, 0, 1);
+        const dayOfYear = Math.floor((date - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
+        
+        yearlyData[year].push({
+            day: dayOfYear,
+            pages: book.pages || 0
+        });
+    });
+    
+    // Calculate current day of year
+    const today = new Date();
+    const startOfCurrentYear = new Date(currentYear, 0, 1);
+    const currentDayOfYear = Math.floor((today - startOfCurrentYear) / (1000 * 60 * 60 * 24)) + 1;
+    
+    // For each year, create cumulative data for all 365 days (not 366)
+    const cumulativeByYear = {};
+    Object.keys(yearlyData).forEach(year => {
+        const yearNum = parseInt(year);
+        const daysInYear = 365; // Always use 365 days
+        
+        // Sort by day
+        const sorted = yearlyData[year].sort((a, b) => a.day - b.day);
+        
+        // Build cumulative array for each day
+        const cumulative = new Array(daysInYear).fill(0);
+        let runningTotal = 0;
+        let bookIndex = 0;
+        
+        for (let day = 1; day <= daysInYear; day++) {
+            // Add all books finished on this day
+            while (bookIndex < sorted.length && sorted[bookIndex].day === day) {
+                runningTotal += sorted[bookIndex].pages;
+                bookIndex++;
+            }
+            cumulative[day - 1] = runningTotal;
+        }
+        
+        cumulativeByYear[year] = cumulative;
+    });
+    
+    // Calculate average cumulative across all years
+    const years = Object.keys(cumulativeByYear).map(y => parseInt(y));
+    const maxDays = 365; // Use 365 days
+    const avgCumulative = new Array(maxDays).fill(0);
+    
+    for (let day = 0; day < maxDays; day++) {
+        let sum = 0;
+        let count = 0;
+        years.forEach(year => {
+            const yearData = cumulativeByYear[year];
+            if (day < yearData.length) {
+                sum += yearData[day];
+                count++;
+            }
+        });
+        avgCumulative[day] = count > 0 ? sum / count : 0;
+    }
+    
+    // Prepare datasets
+    const datasets = [];
+    
+    // Individual years (light blue, thin lines, no legend)
+    years.forEach(year => {
+        if (year !== currentYear) {
+            datasets.push({
+                label: year.toString(),
+                data: cumulativeByYear[year],
+                borderColor: 'rgba(173, 216, 230, 0.7)', // Light blue
+                backgroundColor: 'rgba(173, 216, 230, 0)',
+                borderWidth: 1,
+                pointRadius: 0,
+                pointHoverRadius: 3,
+                tension: 0
+            });
+        }
+    });
+    
+    // Average line (black, thicker)
+    datasets.push({
+        label: 'Average',
+        data: avgCumulative,
+        borderColor: '#000000',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        borderWidth: 3,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        tension: 0
+    });
+    
+    // Current year (dark red, thickest) - truncate at current day
+    if (cumulativeByYear[currentYear]) {
+        // Only show data up to current day
+        const currentYearData = cumulativeByYear[currentYear].slice(0, currentDayOfYear);
+        datasets.push({
+            label: `${currentYear} (Current)`,
+            data: currentYearData,
+            borderColor: '#8B0000', // Dark red
+            backgroundColor: 'rgba(139, 0, 0, 0)',
+            borderWidth: 3,
+            pointRadius: 1,
+            pointHoverRadius: 3,
+            tension: 0
+        });
+    }
+    
+    // Generate labels for x-axis (day numbers or months)
+    const labels = [];
+    for (let i = 1; i <= 365; i++) {
+        labels.push(i);
+    }
+    
+    if (cumulativePagesChartInstance) cumulativePagesChartInstance.destroy();
+    
+    cumulativePagesChartInstance = new Chart(ctxCumulative, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                title: { 
+                    display: true, 
+                    text: 'Cumulative Pages Read Throughout the Year' 
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        filter: function(item, chart) {
+                            // Only show Average and Current year in legend
+                            return item.text === 'Average' || item.text.includes('Current');
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(context) {
+                            const day = context[0].label;
+                            // Convert day number to approximate date
+                            const date = new Date(2024, 0, parseInt(day)); // Use 2024 (leap year) for reference
+                            const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                            return `Day ${day} (~${monthDay})`;
+                        },
+                        label: function(context) {
+                            const label = context.dataset.label || '';
+                            const value = Math.round(context.parsed.y).toLocaleString();
+                            return `${label}: ${value} pages`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: { 
+                        display: true, 
+                        text: 'Day of Year' 
+                    },
+                    ticks: {
+                        maxTicksLimit: 12,
+                        callback: function(value, index) {
+                            // Show major ticks at month boundaries
+                            const monthStarts = [1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335];
+                            if (monthStarts.includes(parseInt(this.getLabelForValue(value)))) {
+                                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                                return monthNames[monthStarts.indexOf(parseInt(this.getLabelForValue(value)))];
+                            }
+                            return '';
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: { 
+                        display: true, 
+                        text: 'Cumulative Pages' 
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString();
+                        }
+                    }
+                }
+            }
+        }
+    });
 }
 
 function sortStatsTable(column) {
