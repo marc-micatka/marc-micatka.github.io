@@ -4,7 +4,7 @@ source "https://rubygems.org"
 gem "tzinfo-data"
 gem "wdm", "~> 0.1.0" if Gem.win_platform?
 gem "kramdown", ">= 2.3.0"
-gem "activesupport", ">= 6.0.3.1"
+gem "activesupport", "~> 7.1.0"
 gem "addressable", ">= 2.8.0"
 gem "nokogiri", ">= 1.12.5"
 gem "webrick"
