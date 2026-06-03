@@ -1,0 +1,82 @@
+---
+layout: forum_posts
+title: MP Sales Forum Viewer
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP Sales Forum Viewer</title>
+    <link rel="stylesheet" href="{{ '/mp_forum_viewer/static/css/style.css' | relative_url }}">
+</head>
+
+<body>
+
+    <header id="site-header">
+        <div class="header-inner">
+
+            <div class="top-bar">
+                <span class="site-title">MP Forum</span>
+
+                <div class="search-wrap">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                    </svg>
+                    <input type="text" id="search" placeholder="Search posts…" autocomplete="off" spellcheck="false">
+                </div>
+
+                <div class="sort-group" role="group" aria-label="Sort order">
+                    <button class="sort-btn active" data-sort="newest"
+                        onclick="window.setSort(this, 'newest')">Newest</button>
+                    <button class="sort-btn" data-sort="oldest" onclick="window.setSort(this, 'oldest')">Oldest</button>
+                </div>
+
+                <button id="filter-toggle" aria-controls="filter-panel" aria-expanded="false"
+                    onclick="window.toggleFilters()">
+                    <span class="filter-dot" aria-hidden="true"></span>
+                    Filters
+                    <span class="chevron" aria-hidden="true">▾</span>
+                </button>
+            </div>
+
+            <div id="filter-panel" role="region" aria-label="Filters">
+                <div class="filter-row">
+                    <span class="filter-label">Type</span>
+                    <button class="intent-btn" data-intent="FS"
+                        onclick="window.toggleIntent(this, 'FS')">Selling</button>
+                    <button class="intent-btn" data-intent="WTB"
+                        onclick="window.toggleIntent(this, 'WTB')">Buying</button>
+                    <button class="intent-btn" data-intent="FREE"
+                        onclick="window.toggleIntent(this, 'FREE')">Free</button>
+
+                    <label class="toggle-label" for="hasImage">
+                        <input type="checkbox" id="hasImage">
+                        <span class="toggle-track"></span>
+                        Has Images
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div id="results-count" class="results-count"></div>
+
+        <main id="post-list" class="post-list"></main>
+
+        <div id="pagination" class="pagination-controls">
+            <button id="prev-btn" onclick="window.changePage(-1)" aria-label="Previous page" disabled>&lt;</button>
+            <div id="pagination-numbers" class="pagination-numbers"></div>
+            <button id="next-btn" onclick="window.changePage(1)" aria-label="Next page" disabled>&gt;</button>
+        </div>
+    </div>
+
+    <script src="{{ '/mp_forum_viewer/static/js/script.js' | relative_url }}"></script>
+</body>
+
+</html>

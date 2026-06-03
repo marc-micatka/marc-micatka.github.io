@@ -11,3 +11,5 @@ main:
     url: /posts/
   - title: "About"
     url: /about/
+  - title: "Mountain Project Forum Viewer"
+    url: /mp_forum_viewer/
