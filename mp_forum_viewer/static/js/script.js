@@ -155,7 +155,7 @@ function buildCard(post) {
     return card;
 }
 
-const API_BASE = `${window.location.protocol}//${window.location.hostname}:3000/api/posts`;
+const API_BASE = `mp-forum-server.vercel.app/api/posts`;
 
 async function fetchPosts() {
     if (loading) return;
