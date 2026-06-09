@@ -160,8 +160,8 @@ function buildCard(post) {
     return card;
 }
 
-// const API_BASE = `https://mp-forum-server.vercel.app/api/posts`;
-const API_BASE = `http://localhost:3000/api/posts`;
+const API_BASE = `https://mp-forum-server.vercel.app/api/posts`;
+// const API_BASE = `http://localhost:3000/api/posts`;
 
 /**
  * Executes a single, large initial fetch to cache the dataset locally.
