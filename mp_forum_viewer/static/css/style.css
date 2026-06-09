@@ -301,6 +301,57 @@ body {
     transform: translateX(13px);
 }
 
+/* Recency Dropdown Wrapper - Exactly matches toggle-label text styling */
+.filter-dropdown-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    /* Inherits the exact muted gray of the toggle label */
+    user-select: none;
+    margin-left: 8px;
+    padding-left: 8px;
+    border-left: 1px solid var(--border);
+}
+
+/* Dropdown native select element clean-up */
+.filter-dropdown-label select {
+    font-family: var(--font-body);
+    /* Forces 'DM Sans' instead of system default */
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    /* Matches the span color precisely */
+    background: transparent;
+    /* Removes aggressive default white/gray backgrounds */
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1px 24px 1px 6px;
+    /* Right padding leaves room for a clean arrow fallback */
+    cursor: pointer;
+    outline: none;
+
+    /* Perfect vertical centering alignment fix */
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+
+    transition: border-color var(--transition), color var(--transition);
+}
+
+/* Interactive focus/hover states matching the rest of your filter buttons */
+.filter-dropdown-label select:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.filter-dropdown-label select:focus {
+    border-color: var(--accent);
+    color: var(--text);
+}
+
 /* ─── Layout ──────────────────────────────────────────────────────────── */
 .container {
     max-width: 1200px;

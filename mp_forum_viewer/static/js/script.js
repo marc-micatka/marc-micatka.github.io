@@ -1,3 +1,4 @@
+let allPosts = []; // Holds the full in-memory cache of the dataset
 let offset = 0;
 let loading = false;
 let activeIntents = new Set();
@@ -51,7 +52,11 @@ function formatTimeAgo(dateStr) {
 }
 
 function buildThumb(post, iconData) {
-    const urls = post.image_urls || [];
+    let urls = post.image_urls || [];
+    if (typeof urls === 'string') {
+        try { urls = JSON.parse(urls); } catch { urls = []; }
+    }
+
     const wrapper = document.createElement('div');
     wrapper.className = 'thumb-wrapper';
 
@@ -155,25 +160,26 @@ function buildCard(post) {
     return card;
 }
 
-const API_BASE = `https://mp-forum-server.vercel.app/api/posts`;
+// const API_BASE = `https://mp-forum-server.vercel.app/api/posts`;
+const API_BASE = `http://localhost:3000/api/posts`;
 
-async function fetchPosts() {
+/**
+ * Executes a single, large initial fetch to cache the dataset locally.
+ * Pulls the dynamic timeframe selection bound directly from the DOM input.
+ */
+async function loadInitialData() {
     if (loading) return;
     loading = true;
 
-    const search = document.getElementById('search')?.value ?? '';
-    const sort = getSortValue();
-    const hasImg = document.getElementById('hasImage')?.checked ?? false;
+    // Grab configured time window boundary from select field, defaulting back to 90
+    const recencyEl = document.getElementById('recency-select');
+    const targetDays = recencyEl ? recencyEl.value : '90';
 
     const params = new URLSearchParams({
-        offset: String(offset),
-        sort,
-        search,
-        has_image: hasImg ? '1' : '0',
+        limit: '5000',
+        days: targetDays,
+        sort: 'newest'
     });
-    activeIntents.forEach(i => params.append('intent', i));
-
-    setPaginationButtonsDisabled(true);
 
     try {
         const res = await fetch(`${API_BASE}?${params.toString()}`);
@@ -181,78 +187,112 @@ async function fetchPosts() {
 
         const responseData = await res.json();
 
-        let posts = [];
-        let totalCount = 0;
-
         if (responseData && typeof responseData === 'object' && !Array.isArray(responseData)) {
-            posts = responseData.posts || [];
-            totalCount = parseInt(responseData.total ?? 0, 10);
+            allPosts = responseData.posts || [];
         } else {
-            posts = Array.isArray(responseData) ? responseData : [];
-            totalCount = offset + posts.length + (posts.length === PAGE_SIZE ? 1 : 0);
+            allPosts = Array.isArray(responseData) ? responseData : [];
         }
-
-        // 1. Render upper summary counter
-        const countEl = document.getElementById('results-count');
-        if (countEl) {
-            countEl.textContent = `Found ${totalCount} post${totalCount === 1 ? '' : 's'}`;
-        }
-
-        // 2. Refresh main grid listing layout
+    } catch (err) {
+        console.error('Failed to load database dump into memory cache:', err);
         const list = document.getElementById('post-list');
         if (list) {
-            list.innerHTML = '';
-            if (posts.length === 0) {
-                list.innerHTML = '<div class="no-results" style="padding:40px; text-align:center; color:var(--text-muted);">No posts found.</div>';
-            } else {
-                posts.forEach(post => list.appendChild(buildCard(post)));
-            }
-        }
-
-        // 3. Compute structural navigation states
-        const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
-        const currentPage = Math.floor(offset / PAGE_SIZE) + 1;
-
-        // Render dynamic numeric link breadcrumbs
-        renderPaginationNumbers(currentPage, totalPages);
-
-        // 4. Calibrate standard quick-arrows
-        const prevBtn = document.getElementById('prev-btn');
-        if (prevBtn) prevBtn.disabled = (offset === 0);
-
-        const nextBtn = document.getElementById('next-btn');
-        if (nextBtn) nextBtn.disabled = (currentPage >= totalPages || posts.length < PAGE_SIZE);
-
-    } catch (err) {
-        console.error('Failed to fetch posts:', err);
-        const list = document.getElementById('post-list');
-        if (list && list.children.length === 0) {
-            list.innerHTML = '<div class="error-msg" style="padding:40px; text-align:center; color:red;">Failed to load posts. Please try again.</div>';
+            list.innerHTML = '<div class="error-msg" style="padding:40px; text-align:center; color:red;">Failed to initial-load posts.</div>';
         }
     } finally {
         loading = false;
     }
 }
 
-// ─── Dynamic Breadcrumbs Generation Rule Logic ───────────────────────────────
+/**
+ * Runs relational filtering, full text search matching, sorting rules, and
+ * updates DOM components using the local `allPosts` array array matrix context.
+ */
+function processAndRenderLocalPosts() {
+    const search = (document.getElementById('search')?.value ?? '').toLowerCase().trim();
+    const sort = getSortValue();
+    const hasImg = document.getElementById('hasImage')?.checked ?? false;
+
+    // 1. Relational Matching / Filtering Logic
+    let filtered = allPosts.filter(post => {
+        if (activeIntents.size > 0 && !activeIntents.has(post.intent || 'UNKNOWN')) {
+            return false;
+        }
+
+        if (hasImg) {
+            let urls = post.image_urls;
+            if (typeof urls === 'string') {
+                try { urls = JSON.parse(urls); } catch { urls = []; }
+            }
+            if (!urls || urls.length === 0) return false;
+        }
+
+        if (search) {
+            const titleMatch = (post.title || '').toLowerCase().includes(search);
+            const bodyMatch = (post.raw_text || '').toLowerCase().includes(search);
+            const locMatch = (post.location || '').toLowerCase().includes(search);
+            const authMatch = (post.author || '').toLowerCase().includes(search);
+            if (!titleMatch && !bodyMatch && !locMatch && !authMatch) return false;
+        }
+
+        return true;
+    });
+
+    // 2. Local Array Sort In-Place Dispatches
+    if (sort === 'newest') {
+        filtered.sort((a, b) => new Date(b.last_post_ts || 0) - new Date(a.last_post_ts || 0));
+    } else if (sort === 'oldest') {
+        filtered.sort((a, b) => new Date(a.last_post_ts || 0) - new Date(b.last_post_ts || 0));
+    }
+
+    const totalCount = filtered.length;
+
+    // 3. Slice Target Frame Segment Window (Pagination)
+    const paginatedPosts = filtered.slice(offset, offset + PAGE_SIZE);
+
+    // 4. Dom Tree Element Mapping Updates
+    const countEl = document.getElementById('results-count');
+    if (countEl) {
+        countEl.textContent = `Found ${totalCount} post${totalCount === 1 ? '' : 's'}`;
+    }
+
+    const list = document.getElementById('post-list');
+    if (list) {
+        list.innerHTML = '';
+        if (paginatedPosts.length === 0) {
+            list.innerHTML = '<div class="no-results" style="padding:40px; text-align:center; color:var(--text-muted);">No posts found.</div>';
+        } else {
+            paginatedPosts.forEach(post => list.appendChild(buildCard(post)));
+        }
+    }
+
+    const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
+    const currentPage = Math.floor(offset / PAGE_SIZE) + 1;
+
+    renderPaginationNumbers(currentPage, totalPages);
+
+    const prevBtn = document.getElementById('prev-btn');
+    if (prevBtn) prevBtn.disabled = (offset === 0);
+
+    const nextBtn = document.getElementById('next-btn');
+    if (nextBtn) nextBtn.disabled = (offset + PAGE_SIZE >= totalCount);
+}
+
 function renderPaginationNumbers(currentPage, totalPages) {
     const container = document.getElementById('pagination-numbers');
     if (!container) return;
     container.innerHTML = '';
 
-    const delta = 1; // Determines how many adjacent window elements are visible
+    const delta = 1;
     const range = [];
     const rangeWithDots = [];
     let l;
 
-    // Collect legal visible numerical nodes
     for (let i = 1; i <= totalPages; i++) {
         if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
             range.push(i);
         }
     }
 
-    // Insert ellipsis bounds intelligently
     for (let i of range) {
         if (l) {
             if (i - l === 2) {
@@ -265,7 +305,6 @@ function renderPaginationNumbers(currentPage, totalPages) {
         l = i;
     }
 
-    // Inject generated element matrix directly into DOM container targets
     rangeWithDots.forEach(p => {
         if (p === '...') {
             const span = document.createElement('span');
@@ -280,7 +319,7 @@ function renderPaginationNumbers(currentPage, totalPages) {
             if (p === currentPage) btn.setAttribute('aria-current', 'page');
 
             btn.addEventListener('click', () => {
-                if (p !== currentPage && !loading) {
+                if (p !== currentPage) {
                     window.goToPage(p);
                 }
             });
@@ -290,38 +329,34 @@ function renderPaginationNumbers(currentPage, totalPages) {
 }
 
 window.goToPage = (pageNum) => {
-    if (loading) return;
     offset = (pageNum - 1) * PAGE_SIZE;
-    fetchPosts();
+    processAndRenderLocalPosts();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-function setPaginationButtonsDisabled(isDisabled) {
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    if (prevBtn) prevBtn.disabled = isDisabled || (offset === 0);
-    if (nextBtn) nextBtn.disabled = isDisabled;
-
-    document.querySelectorAll('.page-num-btn').forEach(b => b.disabled = isDisabled);
-}
-
 window.changePage = (direction) => {
-    if (loading) return;
-
     if (direction === 1) {
         offset += PAGE_SIZE;
     } else if (direction === -1) {
         offset = Math.max(0, offset - PAGE_SIZE);
     }
-
-    fetchPosts();
+    processAndRenderLocalPosts();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 function resetAndFetch() {
     offset = 0;
-    loading = false;
-    fetchPosts();
+    processAndRenderLocalPosts();
+}
+
+/**
+ * Triggers a hard rebuild cycle when backend-scoped parameter conditions shift.
+ */
+async function clearCacheAndRefetch() {
+    offset = 0;
+    allPosts = []; // Flush old timeframe array data
+    await loadInitialData();
+    processAndRenderLocalPosts();
 }
 
 function debounce(func, delay = 300) {
@@ -360,16 +395,27 @@ function getSortValue() {
     return document.querySelector('.sort-btn.active')?.dataset.sort ?? 'newest';
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     if (!document.getElementById('post-list')) return;
 
-    fetchPosts();
+    // Ensure dropdown element exists and matches the required default initial state tracking choice
+    const recencySelect = document.getElementById('recency-select');
+    if (recencySelect && !recencySelect.value) {
+        recencySelect.value = '90';
+    }
 
-    document.getElementById('search')?.addEventListener('input', debounce(resetAndFetch, 400));
+    // Load initial 90-day data asynchronously over local network
+    await loadInitialData();
+    processAndRenderLocalPosts();
+
+    document.getElementById('search')?.addEventListener('input', debounce(resetAndFetch, 250));
 
     document.getElementById('hasImage')?.addEventListener('change', () => {
         const hasActive = activeIntents.size > 0 || document.getElementById('hasImage')?.checked;
         document.getElementById('filter-toggle')?.classList.toggle('has-active', !!hasActive);
         resetAndFetch();
     });
+
+    // Listen for drop-down updates to reload in-memory cache arrays dynamically
+    recencySelect?.addEventListener('change', clearCacheAndRefetch);
 });
